@@ -10,13 +10,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func logOut(_ sender: UIBarButtonItem) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = sb.instantiateViewController(withIdentifier: "loginVC")
+        navigationController?.pushViewController(loginVC, animated: true)
+    }
     /*
     // MARK: - Navigation
 
