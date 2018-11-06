@@ -16,7 +16,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let userDefault = UserDefaults.standard
+        if userDefault.string(forKey: "userName") != nil {
+            userNameTextField.text = userDefault.string(forKey: "userName")
+            passwordTextField.text = userDefault.string(forKey: "password")
+            goToMainScreen()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +43,7 @@ class LoginViewController: UIViewController {
                 userDefault.removeObject(forKey: "userName")
                 userDefault.removeObject(forKey: "password")
             }
-            self.performSegue(withIdentifier: "fromLoginToHomeSegue", sender: self)
+            goToMainScreen()
         } else {
             let alert = UIAlertController(title: "Unsuccesfull login", message: "Invalid login/password\nTry once again", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -48,6 +53,12 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func signUp(_ sender: Any) {
+    }
+    
+    private func goToMainScreen() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = sb.instantiateViewController(withIdentifier: "mainVC")
+        navigationController?.pushViewController(mainVC, animated: true)
     }
     
 }

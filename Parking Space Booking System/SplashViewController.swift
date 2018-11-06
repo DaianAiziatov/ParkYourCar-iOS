@@ -18,14 +18,8 @@ class SplashViewController: UIViewController {
     @objc func splashTimeOut(sender : Timer) {
         // TODO: Check if the user is already loggedin then direct to Home instead Login
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "loginVC")
-        
-        do {
-            try (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = vc
-        } catch {
-            
-        }
-        
+        let vc = sb.instantiateViewController(withIdentifier: "startNavigationVC")
+        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = vc
     }
     
     
