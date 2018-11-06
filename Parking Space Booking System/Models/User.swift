@@ -15,7 +15,7 @@ struct User {
     var sername: String
     var email: String
     var password: String
-    var contuctNumber: String
+    var contactNumber: String
     var cars: [Car]
     var tickets: [Ticket]
     
