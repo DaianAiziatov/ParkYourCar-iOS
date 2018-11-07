@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: UIButton) {
-        if userNameTextField.text == "admin" && passwordTextField.text == "1234" {
+        if isUserValid() {
             let userDefault = UserDefaults.standard
             if rememberMeSwitch.isOn {
                 userDefault.set(userNameTextField.text, forKey: "userName")
@@ -51,8 +51,22 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func isUserValid() -> Bool {
+        var isValid = false;
+        for user in User.allUsers {
+            if userNameTextField.text == user.email && passwordTextField.text == user.password {
+                isValid = true
+                break
+            }
+        }
+        return isValid
+    }
+    
     
     @IBAction func signUp(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let signupVC = sb.instantiateViewController(withIdentifier: "signupVC")
+        navigationController?.pushViewController(signupVC, animated: true)
     }
     
     private func goToMainScreen() {
