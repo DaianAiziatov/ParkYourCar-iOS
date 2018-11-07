@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="Car" representedClassName="Car" syncable="YES" codeGenerationType="class">
+        <attribute name="carId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="plateNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Manufacturer" representedClassName="Manufacturer" syncable="YES" codeGenerationType="class">
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manufacturerId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Model" representedClassName="Model" syncable="YES" codeGenerationType="class">
+        <attribute name="modelId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="contactNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="cars" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Car" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Car" positionX="-54" positionY="36" width="128" height="105"/>
+        <element name="Manufacturer" positionX="-36" positionY="63" width="128" height="90"/>
+        <element name="Model" positionX="-27" positionY="72" width="128" height="75"/>
+    </elements>
 </model>
