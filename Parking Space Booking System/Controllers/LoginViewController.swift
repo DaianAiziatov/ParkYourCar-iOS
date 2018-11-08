@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -34,21 +35,35 @@ class LoginViewController: UIViewController {
 //    }
 
     @IBAction func login(_ sender: UIButton) {
-        if isUserValid() {
-            let userDefault = UserDefaults.standard
-            if rememberMeSwitch.isOn {
-                userDefault.set(userNameTextField.text, forKey: "userName")
-                userDefault.set(passwordTextField.text, forKey: "password")
-            } else {
-                userDefault.removeObject(forKey: "userName")
-                userDefault.removeObject(forKey: "password")
+        
+        Auth.auth().signIn(withEmail: userNameTextField.text!, password: passwordTextField.text!) {
+            (user, error) in
+            if error == nil {
+                self.goToMainScreen()
             }
-            goToMainScreen()
-        } else {
-            let alert = UIAlertController(title: "Unsuccesfull login", message: "Invalid login/password\nTry once again", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            else{
+                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
+//        if isUserValid() {
+//            let userDefault = UserDefaults.standard
+//            if rememberMeSwitch.isOn {
+//                userDefault.set(userNameTextField.text, forKey: "userName")
+//                userDefault.set(passwordTextField.text, forKey: "password")
+//            } else {
+//                userDefault.removeObject(forKey: "userName")
+//                userDefault.removeObject(forKey: "password")
+//            }
+//            goToMainScreen()
+//        } else {
+//            let alert = UIAlertController(title: "Unsuccesfull login", message: "Invalid login/password\nTry once again", preferredStyle: UIAlertController.Style.alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
     }
     
     private func isUserValid() -> Bool {

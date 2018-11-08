@@ -4,4 +4,5 @@
 target 'Parking Space Booking System' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 end
