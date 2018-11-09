@@ -13,18 +13,23 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    //TODO: figure out how to proceed with firebase and rememberMe switchs
     @IBOutlet weak var rememberMeSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userDefault = UserDefaults.standard
-        if userDefault.string(forKey: "userName") != nil {
-            userNameTextField.text = userDefault.string(forKey: "userName")
-            passwordTextField.text = userDefault.string(forKey: "password")
+        if Auth.auth().currentUser != nil {
             goToMainScreen()
         }
+//        let userDefault = UserDefaults.standard
+//        if userDefault.string(forKey: "userName") != nil {
+//            userNameTextField.text = userDefault.string(forKey: "userName")
+//            passwordTextField.text = userDefault.string(forKey: "password")
+//            goToMainScreen()
+//        }
     }
     
+    //hiding navigation comtroller from login screen
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(true)
 //        self.navigationController?.setNavigationBarHidden(true, animated: true)

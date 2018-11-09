@@ -19,6 +19,7 @@
 		2BD802EB21938018003445ED /* Mazda.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E821938018003445ED /* Mazda.png */; };
 		2BD802EC21938018003445ED /* BMW.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E921938018003445ED /* BMW.png */; };
 		2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */; };
+		2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */; };
 		3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7569218BCD7400960BC8 /* AppDelegate.swift */; };
 		3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D756B218BCD7400960BC8 /* LoginViewController.swift */; };
 		3A0D756F218BCD7400960BC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D756D218BCD7400960BC8 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		2BD802E821938018003445ED /* Mazda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mazda.png; sourceTree = "<group>"; };
 		2BD802E921938018003445ED /* BMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BMW.png; sourceTree = "<group>"; };
 		2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Parking Space Booking System.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7566218BCD7400960BC8 /* Parking Space Booking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parking Space Booking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7569218BCD7400960BC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */,
 				2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */,
 				2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */,
+				2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */,
 				2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */,
 				2BA6D6782191460F00B9B4C2 /* User.swift in Sources */,
+				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
 			);
