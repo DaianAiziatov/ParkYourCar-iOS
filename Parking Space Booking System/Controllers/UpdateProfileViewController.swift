@@ -66,6 +66,20 @@ class UpdateProfileViewController: UIViewController {
                 print("Data saved successfully!")
             }
         }
+        //update password
+        if isPasswordValid() {
+            let credential = EmailAuthProvider.credential(withEmail: user.email!, password: oldPasswordTextField.text!)
+            user.reauthenticateAndRetrieveData(with: credential, completion: { (autDataResult, error) in
+                if let error = error {
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    print("Password couldn't be changed: \(error).")
+                } else {
+                    self.user.updatePassword(to: self.newPasswordTextField.text!)
+                }})
+        }
         navigationController?.popViewController(animated: true)
     
     }
@@ -93,17 +107,17 @@ class UpdateProfileViewController: UIViewController {
     }
     
     //validation methods
-    private func isCarDetailsNotEmpty() -> Bool {
-        return munufacturerTextField.hasText && modelTextField.hasText && colorTextField.hasText && plateNumberTextField.hasText
-    }
+//    private func isCarDetailsNotEmpty() -> Bool {
+//        return munufacturerTextField.hasText && modelTextField.hasText && colorTextField.hasText && plateNumberTextField.hasText
+//    }
     
     private func isPasswordValid() -> Bool {
-        return newPasswordTextField.hasText && (newPasswordTextField.text == checkPasswordTextField.text)
+        return oldPasswordTextField.hasText && newPasswordTextField.hasText && (newPasswordTextField.text == checkPasswordTextField.text)
     }
     
-    private func isUserDetailsNotEmpty() -> Bool {
-        return userNameTextField.hasText && userSurnameTextField.hasText && contactNumberTextField.hasText
-    }
+//    private func isUserDetailsNotEmpty() -> Bool {
+//        return userNameTextField.hasText && userSurnameTextField.hasText && contactNumberTextField.hasText
+//    }
 }
 
 extension UpdateProfileViewController: UIPickerViewDelegate {
