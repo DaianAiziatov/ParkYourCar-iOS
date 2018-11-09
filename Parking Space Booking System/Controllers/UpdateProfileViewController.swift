@@ -45,8 +45,27 @@ class UpdateProfileViewController: UIViewController {
     }
     
     @IBAction func update(_ sender: UIButton) {
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let mainVC = sb.instantiateViewController(withIdentifier: "mainVC")
+        let key = userRef!.child("users").child(user.uid).key
+        print(key!)
+        //user
+        let userName = self.userNameTextField.text!
+        let userSurname = self.userSurnameTextField.text!
+        let contactNumber = self.contactNumberTextField.text!
+        //car
+        let manufacturerName = self.munufacturerTextField.text!
+        let modelName = self.modelTextField.text!
+        let plateNumber = self.plateNumberTextField.text!
+        let color = self.colorTextField.text!
+        let userData = ["firstName": "\(userName)", "lastName": "\(userSurname)", "email": "\(user.email ?? "")", "contactNumber": "\(contactNumber)", "cars" : [["manufacturer" : "\(manufacturerName)", "model": "\(modelName)", "plate": "\(plateNumber)", "color": "\(color)"]] ] as [String : Any]
+        let childUpdates = ["/users/\(key ?? "")": userData]
+        userRef!.updateChildValues(childUpdates) {
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+            } else {
+                print("Data saved successfully!")
+            }
+        }
         navigationController?.popViewController(animated: true)
     
     }
