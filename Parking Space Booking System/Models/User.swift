@@ -11,6 +11,7 @@ import Foundation
 
 struct User {
     
+    //TODO: is user still neccessary? or we should transform it to singleton(?)
     var userId: Int
     var name: String
     var surname: String

@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import Firebase
 
 class MainMenuTableViewController: UITableViewController {
 
@@ -36,6 +37,8 @@ class MainMenuTableViewController: UITableViewController {
             
         } else {
             switch indexPath.row {
+            //update profile
+            case 0: updatePressed()
             //contacts
             case 2 : contactsPressed()
             //logout
@@ -102,8 +105,19 @@ class MainMenuTableViewController: UITableViewController {
     }
     */
     
+    private func updatePressed() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let updateVC = sb.instantiateViewController(withIdentifier: "updateVC")
+        navigationController?.pushViewController(updateVC, animated: true)
+    }
     
     private func logoutPressed() {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
         navigationController?.popToRootViewController(animated: true)
     }
     

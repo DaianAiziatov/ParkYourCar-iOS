@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpViewController: UIViewController {
     
+    //TODO: is user still neccessary?
     private var user: User?
-    private var car: Car?
     private var manufacturersDictionary = [String: Manufacturer]()
+    private var userRef: DatabaseReference?
+    
     private var colors = ["red", "green", "blue"]
     private let theCarPicker = UIPickerView()
     
@@ -31,7 +34,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        logoImageView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         munufacturerTextField.inputView = theCarPicker
         theCarPicker.delegate = self
@@ -41,18 +44,33 @@ class SignUpViewController: UIViewController {
     @IBAction func signUp(_ sender: UIButton) {
         if isUserDetailsNotEmpty() && isCarDetailsNotEmpty() {
             if isPasswordValid() {
-                let userName = userNameTextField.text!
-                let userSurname = userSurnameTextField.text!
                 let email =  emailTextField.text!
-                let contactNumber = contactNumberTextField.text!
                 let password = passwordTextField.text!
-                let manufacturerName = munufacturerTextField.text!
-                let modelName = modelTextField.text!
-                let plateNumber = plateNumberTextField.text!
-                let color = colorTextField.text!
-                car = Car(manufacturerName: manufacturerName, modelName: modelName, plateNumber: plateNumber, color: color)
-                User.allUsers.append(User(name: userName, surname: userSurname, email: email, password: password, contactNumber: contactNumber, cars: [car!]))
-                navigationController?.popToRootViewController(animated: true)
+                //creating user for firebase auth
+                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    if error == nil {
+                        //user
+                        let user = Auth.auth().currentUser!
+                        let userName = self.userNameTextField.text!
+                        let userSurname = self.userSurnameTextField.text!
+                        let contactNumber = self.contactNumberTextField.text!
+                        //car
+                        let manufacturerName = self.munufacturerTextField.text!
+                        let modelName = self.modelTextField.text!
+                        let plateNumber = self.plateNumberTextField.text!
+                        let color = self.colorTextField.text!
+                        //adding user to realtime database
+                        self.userRef!.child("users").child("\(user.uid)").setValue(["firstName": "\(userName)", "lastName": "\(userSurname)", "email": "\(email)", "contactNumber": "\(contactNumber)", "cars" : [["manufacturer" : "\(manufacturerName)", "model": "\(modelName)", "plate": "\(plateNumber)", "color": "\(color)"]] ])
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                    else{
+                        let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        
+                        alertController.addAction(defaultAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
             } else {
                 let alert = UIAlertController(title: "Password do not match", message: "Please check passwords fields", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -66,6 +84,7 @@ class SignUpViewController: UIViewController {
         
     }
     
+    //validation methods
     private func isCarDetailsNotEmpty() -> Bool {
         return munufacturerTextField.hasText && modelTextField.hasText && colorTextField.hasText && plateNumberTextField.hasText
     }
