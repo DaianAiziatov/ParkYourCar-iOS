@@ -34,7 +34,12 @@ class MainMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            
+            switch indexPath.row {
+            //location
+            case 3: locationPressed()
+            default:
+                print(indexPath.row)
+            }
         } else {
             switch indexPath.row {
             //update profile
@@ -104,6 +109,12 @@ class MainMenuTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    private func locationPressed() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let locationVC = sb.instantiateViewController(withIdentifier: "locationVC")
+        navigationController?.pushViewController(locationVC, animated: true)
+    }
     
     private func updatePressed() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
