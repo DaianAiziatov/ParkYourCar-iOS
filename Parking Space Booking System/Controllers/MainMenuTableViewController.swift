@@ -35,15 +35,19 @@ class MainMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             switch indexPath.row {
+            //add new ticket
+            case 1: goTo(screenidentifier: "addticketVC")
             //location
-            case 3: locationPressed()
+            case 3: goTo(screenidentifier: "locationVC")
             default:
                 print(indexPath.row)
             }
         } else {
             switch indexPath.row {
             //update profile
-            case 0: updatePressed()
+            case 0: goTo(screenidentifier: "updateVC")
+            //instruction
+            case 1: goTo(screenidentifier: "instructionVC")
             //contacts
             case 2 : contactsPressed()
             //logout
@@ -110,16 +114,10 @@ class MainMenuTableViewController: UITableViewController {
     }
     */
     
-    private func locationPressed() {
+    private func goTo(screenidentifier: String) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let locationVC = sb.instantiateViewController(withIdentifier: "locationVC")
-        navigationController?.pushViewController(locationVC, animated: true)
-    }
-    
-    private func updatePressed() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let updateVC = sb.instantiateViewController(withIdentifier: "updateVC")
-        navigationController?.pushViewController(updateVC, animated: true)
+        let vc = sb.instantiateViewController(withIdentifier: screenidentifier)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func logoutPressed() {
