@@ -569,6 +569,7 @@
                                 <rect key="frame" x="192" y="410" width="167" height="161"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="161" id="dT1-xg-kU5"/>
                                     <constraint firstAttribute="width" constant="167" id="del-Yn-LVj"/>
                                 </constraints>
                             </imageView>
@@ -578,22 +579,21 @@
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="bgs-Zb-9y8" secondAttribute="trailing" constant="16" id="0ws-LW-mR7"/>
                             <constraint firstItem="UXl-OF-YiE" firstAttribute="leading" secondItem="FWz-XF-mSv" secondAttribute="leading" constant="172" id="4xz-fN-cAJ"/>
                             <constraint firstItem="OfF-Cc-2OK" firstAttribute="leading" secondItem="FWz-XF-mSv" secondAttribute="leading" constant="17" id="800-lk-dTw"/>
-                            <constraint firstAttribute="bottom" secondItem="bgs-Zb-9y8" secondAttribute="bottom" constant="241" id="8NK-bE-ScT"/>
                             <constraint firstItem="cif-Mh-QCr" firstAttribute="top" secondItem="UXl-OF-YiE" secondAttribute="bottom" constant="8" id="Aci-4b-H0p"/>
                             <constraint firstItem="wVM-i4-H5H" firstAttribute="leading" secondItem="FWz-XF-mSv" secondAttribute="leading" constant="17" id="DBP-xv-0zl"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="bottom" secondItem="wt4-8W-vC1" secondAttribute="bottom" id="Dem-on-xSr"/>
                             <constraint firstItem="hht-40-pfo" firstAttribute="top" secondItem="OfF-Cc-2OK" secondAttribute="bottom" constant="8" id="Eks-ww-LoG"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="wVM-i4-H5H" secondAttribute="trailing" constant="16" id="HUf-uA-e7D"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="cif-Mh-QCr" secondAttribute="trailing" constant="16" id="JN5-La-oj8"/>
-                            <constraint firstItem="OfF-Cc-2OK" firstAttribute="top" secondItem="FWz-XF-mSv" secondAttribute="top" constant="36" id="Rqf-yX-BWd"/>
                             <constraint firstItem="UXl-OF-YiE" firstAttribute="top" secondItem="hht-40-pfo" secondAttribute="bottom" constant="8" id="a9p-xD-Lzv"/>
-                            <constraint firstItem="wt4-8W-vC1" firstAttribute="top" secondItem="wVM-i4-H5H" secondAttribute="bottom" constant="139" id="bNb-tm-Dqc"/>
+                            <constraint firstItem="wt4-8W-vC1" firstAttribute="top" relation="lessThanOrEqual" secondItem="wVM-i4-H5H" secondAttribute="bottom" constant="139" id="bNb-tm-Dqc"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="UXl-OF-YiE" secondAttribute="trailing" constant="171.66666666666666" id="bZV-7L-UHH"/>
                             <constraint firstItem="bgs-Zb-9y8" firstAttribute="leading" secondItem="aO7-Q8-Sal" secondAttribute="trailing" constant="8" symbolic="YES" id="h6Z-vQ-4zs"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="hht-40-pfo" secondAttribute="trailing" constant="16" id="iGQ-1G-jP6"/>
                             <constraint firstItem="bgs-Zb-9y8" firstAttribute="top" secondItem="cif-Mh-QCr" secondAttribute="bottom" constant="8" symbolic="YES" id="ie0-Bn-s3j"/>
                             <constraint firstItem="wt4-8W-vC1" firstAttribute="leading" secondItem="FWz-XF-mSv" secondAttribute="leading" constant="161" id="irJ-wi-hX5"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="OfF-Cc-2OK" secondAttribute="trailing" constant="16" id="l47-qz-bUz"/>
+                            <constraint firstItem="OfF-Cc-2OK" firstAttribute="top" secondItem="FWz-XF-mSv" secondAttribute="top" constant="36" id="ncm-mE-qcB"/>
                             <constraint firstItem="wVM-i4-H5H" firstAttribute="top" secondItem="aO7-Q8-Sal" secondAttribute="bottom" constant="73" id="qzh-NN-570"/>
                             <constraint firstItem="FWz-XF-mSv" firstAttribute="trailing" secondItem="wt4-8W-vC1" secondAttribute="trailing" constant="160" id="unF-hf-kuB"/>
                             <constraint firstItem="hht-40-pfo" firstAttribute="leading" secondItem="FWz-XF-mSv" secondAttribute="leading" constant="17" id="vVJ-2D-PJj"/>
