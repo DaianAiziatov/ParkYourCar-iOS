@@ -18,6 +18,8 @@ class AddTicketViewController: UIViewController {
     private var currentTime = Date()
     private var colors = ["red", "green", "blue"]
     private let theCarPicker = UIPickerView()
+    private let theTimingPicker = UIPickerView()
+    private let thePaymentPicker = UIPickerView()
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
@@ -36,18 +38,28 @@ class AddTicketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateLabel.text = currentTime.description
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         carManufacturerTextField.inputView = theCarPicker
+        theCarPicker.tag = 0
         theCarPicker.delegate = self
         theCarPicker.dataSource = self
+        
+        timingTextField.inputView = theTimingPicker
+        theTimingPicker.tag = 1
+        theTimingPicker.delegate = self
+        theTimingPicker.dataSource = self
+        
+        paymentMethodTextField.inputView = thePaymentPicker
+        thePaymentPicker.tag = 2
+        thePaymentPicker.delegate = self
+        thePaymentPicker.dataSource = self
         
     }
     
 
     @IBAction func getReceipt(_ sender: UIButton) {
-        let key = userRef!.child("users").child(user.uid).child("tickets").key
-        print(key!)
         let ticketsRef = userRef!.child("users").child(user.uid).child("tickets").childByAutoId()
         //user
         let email = self.userEmailTextField.text!
@@ -91,17 +103,24 @@ class AddTicketViewController: UIViewController {
 extension AddTicketViewController: UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3
+        return pickerView.tag == 0 ? 3 : 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return manufacturersDictionary.count
-        } else if component == 1 {
-            return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models.count
+        if pickerView.tag == 0 {
+            if component == 0 {
+                return manufacturersDictionary.count
+            } else if component == 1 {
+                return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models.count
+            } else {
+                return colors.count
+            }
+        } else if pickerView.tag == 1 {
+            return ParkingTicket.Timing.allCases.count
         } else {
-            return colors.count
+            return ParkingTicket.PaymentMethod.allCases.count
         }
+        
     }
     
 }
@@ -109,28 +128,42 @@ extension AddTicketViewController: UIPickerViewDelegate {
 extension AddTicketViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var rowInModels = 0
-        if component == 0 {
-            theCarPicker.reloadComponent(1)
-            carManufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
-            carModelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[rowInModels]
-            logoImage.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
-        } else if component == 1 {
-            rowInModels = row
-            carModelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
+        if pickerView.tag == 0 {
+            var rowInModels = 0
+            if component == 0 {
+                theCarPicker.reloadComponent(1)
+                carManufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
+                carModelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[rowInModels]
+                logoImage.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
+            } else if component == 1 {
+                rowInModels = row
+                carModelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
+            } else {
+                carColorTextField.text = colors[row]
+            }
+        } else if pickerView.tag == 1 {
+            timingTextField.text = ParkingTicket.Timing(rawValue: row)?.description
         } else {
-            carColorTextField.text = colors[row]
+            paymentMethodTextField.text = ParkingTicket.PaymentMethod(rawValue: row)?.description
         }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-            return Array(manufacturersDictionary.keys)[row]
-        } else if component == 1 {
-            return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
+        if pickerView.tag == 0 {
+            if component == 0 {
+                return Array(manufacturersDictionary.keys)[row]
+            } else if component == 1 {
+                return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
+            } else {
+                return colors[row]
+            }
+        } else if pickerView.tag == 1 {
+            return ParkingTicket.Timing(rawValue: row)?.description
         } else {
-            return colors[row]
+            return ParkingTicket.PaymentMethod(rawValue: row)?.description
         }
+        
     }
 }
 

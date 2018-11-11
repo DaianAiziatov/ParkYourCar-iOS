@@ -22,21 +22,44 @@ struct ParkingTicket {
     var paymentMethod: PaymentMethod
     var paymentAmount: Double
     
-    enum Timing: String {
-        case halfAHour = "30 mins"
-        case oneHour = "1 hour"
-        case twoHour = "2 hors"
-        case threeHour = "3 hours"
-        case dayEnds = "Day Ends"
+    enum Timing: Int, CaseIterable {
+        case halfAHour = 0
+        case oneHour = 1
+        case twoHour = 2
+        case threeHour = 3
+        case dayEnds = 4
+        
+        var description: String {
+            switch self {
+            case .halfAHour: return "30 mins"
+            case .oneHour   : return "1 hour"
+            case .twoHour  : return "2 hours"
+            case .threeHour : return "3 hours"
+            case .dayEnds: return "Day Ends"
+            default: return ""
+            }
+        }
     }
     
-    enum PaymentMethod: String {
-        case visaDebit = "Visa Debit"
-        case visaCredit = "Visa Credit"
-        case masterCard = "Mastercard"
-        case paypal = "PayPal"
-        case aliPay = "Ali Pay"
-        case wechatPay = "WeChat Pay"
+    enum PaymentMethod: Int, CaseIterable {
+        case visaDebit = 0
+        case visaCredit = 1
+        case masterCard = 2
+        case paypal = 3
+        case aliPay = 4
+        case wechatPay = 5
+        
+        var description: String {
+            switch self {
+            case .visaDebit: return "Visa Debit"
+            case .visaCredit   : return "Visa Credit"
+            case .masterCard  : return "Mastercard"
+            case .paypal : return "PayPal"
+            case .aliPay: return "Ali Pay"
+            case .wechatPay: return "WeChat Pay"
+            default: return ""
+            }
+        }
     }
     
     func loadParkingTickets() {
