@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */; };
 		2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA6D6702191137800B9B4C2 /* splash_logo.png */; };
 		2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.release.xcconfig"; sourceTree = "<group>"; };
+		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2BA6D6702191137800B9B4C2 /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
 		2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */,
 				2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */,
 				2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */,
+				2B8401632198A8E400542305 /* LocationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				2BA6D67A219147E600B9B4C2 /* Ticket.swift in Sources */,
 				2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */,
 				3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */,
+				2B8401642198A8E400542305 /* LocationViewController.swift in Sources */,
 				2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */,
 				2BA6D6782191460F00B9B4C2 /* User.swift in Sources */,
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
@@ -574,7 +578,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambton.Parking-Space-Booking-System";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lambton.Parking-Space-Booking-System-Group4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -593,7 +597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambton.Parking-Space-Booking-System";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lambton.Parking-Space-Booking-System-Group4";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
