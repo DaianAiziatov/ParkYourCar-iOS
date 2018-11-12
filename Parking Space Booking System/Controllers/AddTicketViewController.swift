@@ -84,7 +84,7 @@ class AddTicketViewController: UIViewController {
                 "slotNumber": "\(slotNumber)",
                 "spotNumber": "\(spotNumber)",
                 "payment": "\(payment)",
-                "total:": "\(total)"
+                "total": "\(total)"
             ] as Any
         //let childUpdates = ["/users/\(key ?? "")/tickets/": userData]
         ticketsRef.setValue(userData) {

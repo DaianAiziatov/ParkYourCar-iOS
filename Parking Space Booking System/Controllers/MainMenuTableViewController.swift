@@ -12,9 +12,12 @@ import Firebase
 
 class MainMenuTableViewController: UITableViewController {
 
+    var tickets = [ParkingTicket]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
+        loadParkingTickets(completion: {print(self.tickets.count)})
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,6 +38,7 @@ class MainMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             switch indexPath.row {
+            case 0: print(self.tickets.count)
             //add new ticket
             case 1: goTo(screenidentifier: "addticketVC")
             //location
@@ -57,6 +61,33 @@ class MainMenuTableViewController: UITableViewController {
             }
         }
         
+    }
+    
+    private func loadParkingTickets(completion: @escaping () -> () ) {
+        //var tickets = [ParkingTicket]()
+        let user = Auth.auth().currentUser!
+        let userRef = Database.database().reference()
+        userRef.child("users").child(user.uid).child("tickets").observeSingleEvent(of: .value, with: { (snapshot) in
+            for case let rest as DataSnapshot in snapshot.children {
+                let value = rest.value as? NSDictionary
+                let color = value?["color"] as? String
+                let date = value?["date"] as? String
+                let manufacturer = value?["manufacturer"] as? String
+                let model = value?["model"] as? String
+                let payment = value?["payment"] as? String
+                let plate = value?["plate"] as? String
+                let slotNumber = value?["slotNumber"] as? String
+                let spotNumber = value?["spotNumber"] as? String
+                let timing = value?["timing"] as? String
+                let total = value?["total"] as? Double
+                let userEmail = value?["userEmail"] as? String
+                self.tickets.append(ParkingTicket(userEmail: userEmail!, carPlate: plate!, carManufacturer: manufacturer!, carModel: model!, carColor: color!, timing: timing!, date: date!, slotNumber: slotNumber!, spotNumber: spotNumber!, paymentMethod: payment!, total: total!))
+            }
+            completion()
+            //print("inside function: \(tickets.count)")
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 
     /*
