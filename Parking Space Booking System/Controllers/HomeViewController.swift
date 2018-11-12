@@ -13,13 +13,16 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var ticketsTotlaLabel: UILabel!
+    @IBOutlet weak var lastLoginLabel: UILabel!
     private let user = Auth.auth().currentUser!
     private var numberOftickets = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
+        let userDefault = UserDefaults.standard
         userEmailLabel.text = "User email: \(user.email ?? "")"
+        lastLoginLabel.text = "Last login: \(userDefault.string(forKey: "logDate") ?? "")"
         loadNumberOfParkingTickets(completion: {
             self.ticketsTotlaLabel.text = "Tickets total: \(self.numberOftickets)"
         })

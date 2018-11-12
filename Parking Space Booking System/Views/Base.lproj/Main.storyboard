@@ -118,22 +118,38 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-ft-MmH" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User email:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBA-jp-N3H">
-                                                <rect key="frame" x="8" y="342" width="359" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User email:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBA-jp-N3H">
+                                                <rect key="frame" x="8" y="328" width="347" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tickets total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7i-XG-UGM">
-                                                <rect key="frame" x="8" y="371" width="359" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7i-XG-UGM">
+                                                <rect key="frame" x="8" y="386" width="347" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Login:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtj-xd-hP1">
+                                                <rect key="frame" x="8" y="357" width="347" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="N7i-XG-UGM" secondAttribute="trailing" constant="20" symbolic="YES" id="8yh-RR-Oa5"/>
+                                            <constraint firstAttribute="trailing" secondItem="mtj-xd-hP1" secondAttribute="trailing" constant="20" symbolic="YES" id="CI2-cK-hMw"/>
+                                            <constraint firstItem="zBA-jp-N3H" firstAttribute="top" secondItem="5jP-ft-MmH" secondAttribute="top" constant="328" id="M8S-pg-CvX"/>
+                                            <constraint firstItem="N7i-XG-UGM" firstAttribute="leading" secondItem="5jP-ft-MmH" secondAttribute="leading" constant="8" id="Q5S-tJ-Dtr"/>
+                                            <constraint firstAttribute="bottom" secondItem="N7i-XG-UGM" secondAttribute="bottom" constant="327" id="Ujg-ea-FS0"/>
+                                            <constraint firstItem="mtj-xd-hP1" firstAttribute="top" secondItem="zBA-jp-N3H" secondAttribute="bottom" constant="8" id="VTk-Pr-iBv"/>
+                                            <constraint firstItem="zBA-jp-N3H" firstAttribute="leading" secondItem="5jP-ft-MmH" secondAttribute="leading" constant="8" id="YaF-wu-TX9"/>
+                                            <constraint firstItem="mtj-xd-hP1" firstAttribute="leading" secondItem="5jP-ft-MmH" secondAttribute="leading" constant="8" id="ft6-IA-PFf"/>
+                                            <constraint firstAttribute="trailing" secondItem="zBA-jp-N3H" secondAttribute="trailing" constant="20" symbolic="YES" id="jc8-vI-rfg"/>
+                                            <constraint firstItem="N7i-XG-UGM" firstAttribute="top" secondItem="mtj-xd-hP1" secondAttribute="bottom" constant="8" id="rPF-EI-wre"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -156,6 +172,7 @@
                         <viewLayoutGuide key="safeArea" id="iIN-6i-fnm"/>
                     </view>
                     <connections>
+                        <outlet property="lastLoginLabel" destination="mtj-xd-hP1" id="Ih4-qs-yBu"/>
                         <outlet property="ticketsTotlaLabel" destination="N7i-XG-UGM" id="30L-gu-0TY"/>
                         <outlet property="userEmailLabel" destination="zBA-jp-N3H" id="JNd-8Y-a0y"/>
                     </connections>

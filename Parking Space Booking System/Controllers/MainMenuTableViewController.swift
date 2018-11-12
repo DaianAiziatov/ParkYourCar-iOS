@@ -129,6 +129,8 @@ class MainMenuTableViewController: UITableViewController {
     private func logoutPressed() {
         do {
             try Auth.auth().signOut()
+            let userDefault = UserDefaults.standard
+            userDefault.setValue("", forKey: "logDate")
         }
         catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)

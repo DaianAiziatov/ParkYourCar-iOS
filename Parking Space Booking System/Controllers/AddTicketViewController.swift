@@ -40,6 +40,7 @@ class AddTicketViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Parking Ticket"
         dateLabel.text = currentTime.description
+        userEmailTextField.text = user.email ?? ""
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         carManufacturerTextField.inputView = theCarPicker
