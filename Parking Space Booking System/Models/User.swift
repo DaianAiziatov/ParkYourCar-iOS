@@ -19,7 +19,7 @@ struct User {
     var password: String
     var contactNumber: String
     var cars = [Car]()
-    var tickets = [Ticket]()
+    var tickets = [ParkingTicket]()
     
     static var allUsers = loadUsers()
     
