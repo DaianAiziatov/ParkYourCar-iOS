@@ -41,32 +41,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-//    private func loadParkingTickets(completion: @escaping () -> () ) {
-//        //var tickets = [ParkingTicket]()
-//        let user = Auth.auth().currentUser!
-//        let userRef = Database.database().reference()
-//        userRef.child("users").child(user.uid).child("tickets").observeSingleEvent(of: .value, with: { (snapshot) in
-//            for case let rest as DataSnapshot in snapshot.children {
-//                let value = rest.value as? NSDictionary
-//                let color = value?["color"] as? String
-//                let date = value?["date"] as? String
-//                let manufacturer = value?["manufacturer"] as? String
-//                let model = value?["model"] as? String
-//                let payment = value?["payment"] as? String
-//                let plate = value?["plate"] as? String
-//                let slotNumber = value?["slotNumber"] as? String
-//                let spotNumber = value?["spotNumber"] as? String
-//                let timing = value?["timing"] as? String
-//                let total = value?["total"] as? Double
-//                let userEmail = value?["userEmail"] as? String
-//                self.tickets.append(ParkingTicket(userEmail: userEmail!, carPlate: plate!, carManufacturer: manufacturer!, carModel: model!, carColor: color!, timing: timing!, date: date!, slotNumber: slotNumber!, spotNumber: spotNumber!, paymentMethod: payment!, total: total!))
-//            }
-//            completion()
-//            //print("inside function: \(tickets.count)")
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-//    }
+
 
     /*
     // MARK: - Navigation

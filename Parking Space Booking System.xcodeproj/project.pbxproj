@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790482199BDB300C6D4BF /* HomeViewController.swift */; };
 		2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */; };
+		2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */; };
+		2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B57904E2199FB4100C6D4BF /* TickeTableViewCell.xib */; };
+		2B579058219A05C400C6D4BF /* Visa Debit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579053219A05C300C6D4BF /* Visa Debit.png */; };
+		2B579059219A05C400C6D4BF /* PayPal.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579054219A05C300C6D4BF /* PayPal.png */; };
+		2B57905A219A05C400C6D4BF /* Visa Credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579055219A05C300C6D4BF /* Visa Credit.png */; };
+		2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579056219A05C300C6D4BF /* WeChat Pay.png */; };
+		2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579057219A05C400C6D4BF /* Ali Pay.png */; };
 		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
@@ -55,6 +62,13 @@
 		299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.release.xcconfig"; sourceTree = "<group>"; };
 		2B5790482199BDB300C6D4BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
+		2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickeTableViewCell.swift; sourceTree = "<group>"; };
+		2B57904E2199FB4100C6D4BF /* TickeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TickeTableViewCell.xib; sourceTree = "<group>"; };
+		2B579053219A05C300C6D4BF /* Visa Debit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Visa Debit.png"; sourceTree = "<group>"; };
+		2B579054219A05C300C6D4BF /* PayPal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PayPal.png; sourceTree = "<group>"; };
+		2B579055219A05C300C6D4BF /* Visa Credit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Visa Credit.png"; sourceTree = "<group>"; };
+		2B579056219A05C300C6D4BF /* WeChat Pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeChat Pay.png"; sourceTree = "<group>"; };
+		2B579057219A05C400C6D4BF /* Ali Pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ali Pay.png"; sourceTree = "<group>"; };
 		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
@@ -122,12 +136,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		2BA6D66F2191136B00B9B4C2 /* images */ = {
+		2B57904C2199FB0000C6D4BF /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */,
+				2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		2B579051219A03A800C6D4BF /* cars */ = {
 			isa = PBXGroup;
 			children = (
 				2BD802E921938018003445ED /* BMW.png */,
 				2BD802E821938018003445ED /* Mazda.png */,
 				2BD802E721938017003445ED /* Renault.png */,
+			);
+			path = cars;
+			sourceTree = "<group>";
+		};
+		2B579052219A03B600C6D4BF /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				2B579057219A05C400C6D4BF /* Ali Pay.png */,
+				2B579054219A05C300C6D4BF /* PayPal.png */,
+				2B579055219A05C300C6D4BF /* Visa Credit.png */,
+				2B579053219A05C300C6D4BF /* Visa Debit.png */,
+				2B579056219A05C300C6D4BF /* WeChat Pay.png */,
+			);
+			path = payment;
+			sourceTree = "<group>";
+		};
+		2BA6D66F2191136B00B9B4C2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				2B579052219A03B600C6D4BF /* payment */,
+				2B579051219A03A800C6D4BF /* cars */,
 				2BA6D6702191137800B9B4C2 /* splash_logo.png */,
 			);
 			path = images;
@@ -136,6 +180,7 @@
 		2BA6D674219144F600B9B4C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B57904E2199FB4100C6D4BF /* TickeTableViewCell.xib */,
 				3A0D7572218BCD7600960BC8 /* LaunchScreen.storyboard */,
 				3A0D756D218BCD7400960BC8 /* Main.storyboard */,
 			);
@@ -145,6 +190,7 @@
 		2BA6D6752191451100B9B4C2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2B57904C2199FB0000C6D4BF /* Report */,
 				3A0D756B218BCD7400960BC8 /* LoginViewController.swift */,
 				2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */,
 				2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */,
@@ -153,7 +199,6 @@
 				2B8401632198A8E400542305 /* LocationViewController.swift */,
 				2B8401652198C68F00542305 /* AddTicketViewController.swift */,
 				2B5790482199BDB300C6D4BF /* HomeViewController.swift */,
-				2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,12 +382,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B57905A219A05C400C6D4BF /* Visa Credit.png in Resources */,
 				2BD802EC21938018003445ED /* BMW.png in Resources */,
 				2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */,
 				3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */,
+				2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */,
+				2B579058219A05C400C6D4BF /* Visa Debit.png in Resources */,
+				2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */,
 				2BD802EB21938018003445ED /* Mazda.png in Resources */,
+				2B579059219A05C400C6D4BF /* PayPal.png in Resources */,
 				2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */,
 				2BD802EA21938018003445ED /* Renault.png in Resources */,
+				2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */,
 				3A0D7571218BCD7600960BC8 /* Assets.xcassets in Resources */,
 				3A0D756F218BCD7400960BC8 /* Main.storyboard in Resources */,
 			);
@@ -398,6 +449,7 @@
 				3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */,
 				2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */,
 				3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */,
+				2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */,
 				2B8401642198A8E400542305 /* LocationViewController.swift in Sources */,
 				2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */,
 				2BA6D6782191460F00B9B4C2 /* User.swift in Sources */,
