@@ -179,7 +179,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ft-kv-97l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645.5999999999999" y="-1045.5665024630541"/>
+            <point key="canvasLocation" x="1646" y="-950"/>
+        </scene>
+        <!--Report Table View Controller-->
+        <scene sceneID="QVX-tb-pdu">
+            <objects>
+                <tableViewController storyboardIdentifier="reportVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FSv-NL-U9T" customClass="ReportTableViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4DL-mu-9Io">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ctm-gC-3K6">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ctm-gC-3K6" id="IK3-x7-g47">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FSv-NL-U9T" id="lFS-aj-ps3"/>
+                            <outlet property="delegate" destination="FSv-NL-U9T" id="Q8j-CP-g4Z"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lPu-z0-Jr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2476" y="-950"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="5n4-SI-vJk">
