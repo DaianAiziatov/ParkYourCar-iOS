@@ -16,6 +16,7 @@ class ReportTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Report"
+        self.registerTableViewCells()
         tableView.delegate = self
         tableView.dataSource = self
         loadParkingTickets(completion: {self.tableView.reloadData()})
@@ -64,13 +65,29 @@ class ReportTableViewController: UITableViewController {
         return tickets.count
     }
     
-    
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ticketCell") as? TickeTableViewCell {
+            cell.manufacturerLabel.text = tickets[indexPath.row].carManufacturer
+            cell.modelLabel.text = tickets[indexPath.row].carModel
+            cell.colorLabel.text = tickets[indexPath.row].carColor
+            cell.plateLabel.text = tickets[indexPath.row].carPlate
+            cell.manufacturerLogo.image = UIImage(named: "\(tickets[indexPath.row].carManufacturer).png")
+            cell.slotLabel.text = tickets[indexPath.row].slotNumber
+            cell.spotLabel.text = tickets[indexPath.row].spotNumber
+            cell.timingLabel.text = tickets[indexPath.row].timing.description
+            cell.totalLabel.text = "$ \(tickets[indexPath.row].paymentAmount)"
+            cell.paymentLogo.image = UIImage(named: "\(tickets[indexPath.row].paymentMethod.description).png")
+            cell.dateLabel.text = tickets[indexPath.row].date.description
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ticketCell", for: indexPath)
         cell.textLabel!.text = tickets[indexPath.row].carManufacturer
         return cell
+    }
+    
+    func registerTableViewCells() {
+        let ticketCell = UINib(nibName: "TickeTableViewCell", bundle: nil)
+        self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
     }
     
 
