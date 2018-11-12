@@ -34,6 +34,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Sign Up"
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         munufacturerTextField.inputView = theCarPicker

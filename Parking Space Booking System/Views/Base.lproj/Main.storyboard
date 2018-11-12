@@ -104,6 +104,66 @@
             </objects>
             <point key="canvasLocation" x="727.20000000000005" y="82.758620689655174"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="vbn-Vm-l5D">
+            <objects>
+                <viewController storyboardIdentifier="homeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cCR-vb-pmk" customClass="HomeViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s0d-5u-zeS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEg-v3-D3Z">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-ft-MmH" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User email:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBA-jp-N3H">
+                                                <rect key="frame" x="8" y="342" width="359" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tickets total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7i-XG-UGM">
+                                                <rect key="frame" x="8" y="371" width="359" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="5jP-ft-MmH" firstAttribute="height" secondItem="kEg-v3-D3Z" secondAttribute="height" priority="250" id="0QN-TA-PdU"/>
+                                    <constraint firstItem="5jP-ft-MmH" firstAttribute="leading" secondItem="kEg-v3-D3Z" secondAttribute="leading" id="8T1-7T-O7S"/>
+                                    <constraint firstAttribute="trailing" secondItem="5jP-ft-MmH" secondAttribute="trailing" id="C9B-Nm-fYK"/>
+                                    <constraint firstItem="5jP-ft-MmH" firstAttribute="width" secondItem="kEg-v3-D3Z" secondAttribute="width" id="KBl-Dy-v4F"/>
+                                    <constraint firstItem="5jP-ft-MmH" firstAttribute="top" secondItem="kEg-v3-D3Z" secondAttribute="top" id="VFh-zn-52q"/>
+                                    <constraint firstAttribute="bottom" secondItem="5jP-ft-MmH" secondAttribute="bottom" id="YgQ-X4-oKn"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kEg-v3-D3Z" firstAttribute="leading" secondItem="iIN-6i-fnm" secondAttribute="leading" id="0zH-xL-FYs"/>
+                            <constraint firstItem="iIN-6i-fnm" firstAttribute="bottom" secondItem="kEg-v3-D3Z" secondAttribute="bottom" id="YSa-KC-Z4b"/>
+                            <constraint firstItem="kEg-v3-D3Z" firstAttribute="top" secondItem="iIN-6i-fnm" secondAttribute="top" id="j7B-eY-tvs"/>
+                            <constraint firstItem="iIN-6i-fnm" firstAttribute="trailing" secondItem="kEg-v3-D3Z" secondAttribute="trailing" id="u72-2S-se4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iIN-6i-fnm"/>
+                    </view>
+                    <connections>
+                        <outlet property="ticketsTotlaLabel" destination="N7i-XG-UGM" id="30L-gu-0TY"/>
+                        <outlet property="userEmailLabel" destination="zBA-jp-N3H" id="JNd-8Y-a0y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ft-kv-97l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1645.5999999999999" y="-1045.5665024630541"/>
+        </scene>
         <!--Main Menu-->
         <scene sceneID="5n4-SI-vJk">
             <objects>
@@ -267,7 +327,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zRc-NO-Sc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1647" y="-191"/>
+            <point key="canvasLocation" x="1646" y="-277"/>
         </scene>
         <!--Update Profile View Controller-->
         <scene sceneID="FWj-KO-hHN">
@@ -616,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTG-4l-kC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645.5999999999999" y="497.29064039408871"/>
+            <point key="canvasLocation" x="1646" y="403"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6rb-G6-ulv">

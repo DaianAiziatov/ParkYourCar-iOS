@@ -38,6 +38,7 @@ class AddTicketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Parking Ticket"
         dateLabel.text = currentTime.description
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()

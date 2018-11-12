@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Login"
         if Auth.auth().currentUser != nil {
             goToMainScreen()
         }

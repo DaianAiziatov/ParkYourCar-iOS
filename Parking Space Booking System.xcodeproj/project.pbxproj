@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790482199BDB300C6D4BF /* HomeViewController.swift */; };
 		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.release.xcconfig"; sourceTree = "<group>"; };
+		2B5790482199BDB300C6D4BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */,
 				2B8401632198A8E400542305 /* LocationViewController.swift */,
 				2B8401652198C68F00542305 /* AddTicketViewController.swift */,
+				2B5790482199BDB300C6D4BF /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
+				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
 				2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
