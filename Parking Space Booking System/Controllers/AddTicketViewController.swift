@@ -11,6 +11,8 @@ import Firebase
 
 class AddTicketViewController: UIViewController {
     
+    private var total: Double?
+    
     private let user = Auth.auth().currentUser!
     private var manufacturersDictionary = [String: Manufacturer]()
     private var userRef: DatabaseReference?
@@ -73,7 +75,7 @@ class AddTicketViewController: UIViewController {
         let slotNumber = self.parkingSlotTextField.text!
         let spotNumber = self.parkingSpotTextField.text!
         let payment = self.paymentMethodTextField.text!
-        let total = self.totalLabel.text!
+        let total = self.total!
         let userData =
             ["userEmail" : "\(email)",
                 "manufacturer": "\(manufacturerName)",
@@ -85,7 +87,7 @@ class AddTicketViewController: UIViewController {
                 "slotNumber": "\(slotNumber)",
                 "spotNumber": "\(spotNumber)",
                 "payment": "\(payment)",
-                "total": "\(total)"
+                "total": total
             ] as Any
         //let childUpdates = ["/users/\(key ?? "")/tickets/": userData]
         ticketsRef.setValue(userData) {
@@ -103,6 +105,17 @@ class AddTicketViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.string(from: date)
+    }
+    
+    private func getTotal() {
+        switch timingTextField.text {
+        case "30 min" : total = 3.0
+        case "1 hour": total = 7.0
+        case "2 hours": total = 15.0
+        case "3 hours": total = 25.0
+        case "Day Ends": total = 10.0
+        default: total = 0.0
+        }
     }
     
 
@@ -151,6 +164,8 @@ extension AddTicketViewController: UIPickerViewDataSource {
             }
         } else if pickerView.tag == 1 {
             timingTextField.text = ParkingTicket.Timing(rawValue: row)?.description
+            getTotal()
+            totalLabel.text = "Total: $\(total ?? 0.0)"
         } else {
             paymentMethodTextField.text = ParkingTicket.PaymentMethod(rawValue: row)?.description
         }

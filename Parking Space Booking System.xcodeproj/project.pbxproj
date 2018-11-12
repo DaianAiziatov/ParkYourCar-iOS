@@ -16,6 +16,7 @@
 		2B57905A219A05C400C6D4BF /* Visa Credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579055219A05C300C6D4BF /* Visa Credit.png */; };
 		2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579056219A05C300C6D4BF /* WeChat Pay.png */; };
 		2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579057219A05C400C6D4BF /* Ali Pay.png */; };
+		2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B57905D219A20B600C6D4BF /* Mastercard.png */; };
 		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
@@ -69,6 +70,7 @@
 		2B579055219A05C300C6D4BF /* Visa Credit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Visa Credit.png"; sourceTree = "<group>"; };
 		2B579056219A05C300C6D4BF /* WeChat Pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeChat Pay.png"; sourceTree = "<group>"; };
 		2B579057219A05C400C6D4BF /* Ali Pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ali Pay.png"; sourceTree = "<group>"; };
+		2B57905D219A20B600C6D4BF /* Mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mastercard.png; sourceTree = "<group>"; };
 		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		2B579052219A03B600C6D4BF /* payment */ = {
 			isa = PBXGroup;
 			children = (
+				2B57905D219A20B600C6D4BF /* Mastercard.png */,
 				2B579057219A05C400C6D4BF /* Ali Pay.png */,
 				2B579054219A05C300C6D4BF /* PayPal.png */,
 				2B579055219A05C300C6D4BF /* Visa Credit.png */,
@@ -389,6 +392,7 @@
 				2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */,
 				2B579058219A05C400C6D4BF /* Visa Debit.png in Resources */,
 				2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */,
+				2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */,
 				2BD802EB21938018003445ED /* Mazda.png in Resources */,
 				2B579059219A05C400C6D4BF /* PayPal.png in Resources */,
 				2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */,
