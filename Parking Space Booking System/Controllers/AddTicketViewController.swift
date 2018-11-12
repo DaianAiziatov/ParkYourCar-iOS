@@ -15,7 +15,6 @@ class AddTicketViewController: UIViewController {
     private var manufacturersDictionary = [String: Manufacturer]()
     private var userRef: DatabaseReference?
     
-    private var currentTime = Date()
     private var colors = ["red", "green", "blue"]
     private let theCarPicker = UIPickerView()
     private let theTimingPicker = UIPickerView()
@@ -38,7 +37,9 @@ class AddTicketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateLabel.text = currentTime.description
+        self.navigationItem.title = "Parking Ticket"
+        dateLabel.text = currentDate()
+        userEmailTextField.text = user.email ?? ""
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         carManufacturerTextField.inputView = theCarPicker
@@ -79,7 +80,7 @@ class AddTicketViewController: UIViewController {
                 "model": "\(modelName)",
                 "plate": "\(plateNumber)",
                 "color": "\(color)",
-                "date": "\(currentTime)",
+                "date": "\(currentDate())",
                 "timing": "\(timing)",
                 "slotNumber": "\(slotNumber)",
                 "spotNumber": "\(spotNumber)",
@@ -95,6 +96,13 @@ class AddTicketViewController: UIViewController {
                 print("Data saved successfully!")
             }
         }
+    }
+    
+    private func currentDate() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: date)
     }
     
 

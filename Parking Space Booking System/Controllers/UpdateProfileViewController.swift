@@ -34,12 +34,12 @@ class UpdateProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Update user profile"
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         munufacturerTextField.inputView = theCarPicker
         theCarPicker.delegate = self
         theCarPicker.dataSource = self
-        
         //add info where possible
         addInfoInTextFields()
     }
