@@ -38,9 +38,12 @@ class MainMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             switch indexPath.row {
+            //home
             case 0: goTo(screenidentifier: "homeVC")
             //add new ticket
             case 1: goTo(screenidentifier: "addticketVC")
+            //report
+            case 2: goTo(screenidentifier: "reportVC")
             //location
             case 3: goTo(screenidentifier: "locationVC")
             default:
