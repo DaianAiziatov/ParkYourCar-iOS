@@ -109,7 +109,7 @@ class AddTicketViewController: UIViewController {
     
     private func getTotal() {
         switch timingTextField.text {
-        case "30 min" : total = 3.0
+        case "30 mins" : total = 3.0
         case "1 hour": total = 7.0
         case "2 hours": total = 15.0
         case "3 hours": total = 25.0

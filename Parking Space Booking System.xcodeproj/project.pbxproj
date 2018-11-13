@@ -17,6 +17,8 @@
 		2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579056219A05C300C6D4BF /* WeChat Pay.png */; };
 		2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B579057219A05C400C6D4BF /* Ali Pay.png */; };
 		2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B57905D219A20B600C6D4BF /* Mastercard.png */; };
+		2B57909E219A554C00C6D4BF /* instruction.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B57909D219A554C00C6D4BF /* instruction.html */; };
+		2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57909F219A556E00C6D4BF /* InstructionViewController.swift */; };
 		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
@@ -71,6 +73,8 @@
 		2B579056219A05C300C6D4BF /* WeChat Pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WeChat Pay.png"; sourceTree = "<group>"; };
 		2B579057219A05C400C6D4BF /* Ali Pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ali Pay.png"; sourceTree = "<group>"; };
 		2B57905D219A20B600C6D4BF /* Mastercard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mastercard.png; sourceTree = "<group>"; };
+		2B57909D219A554C00C6D4BF /* instruction.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = instruction.html; sourceTree = "<group>"; };
+		2B57909F219A556E00C6D4BF /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				2B8401632198A8E400542305 /* LocationViewController.swift */,
 				2B8401652198C68F00542305 /* AddTicketViewController.swift */,
 				2B5790482199BDB300C6D4BF /* HomeViewController.swift */,
+				2B57909F219A556E00C6D4BF /* InstructionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				3A0D7570218BCD7600960BC8 /* Assets.xcassets */,
 				3A0D7575218BCD7600960BC8 /* Info.plist */,
 				2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */,
+				2B57909D219A554C00C6D4BF /* instruction.html */,
 			);
 			path = "Parking Space Booking System";
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 				2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */,
 				3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */,
 				2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */,
+				2B57909E219A554C00C6D4BF /* instruction.html in Resources */,
 				2B579058219A05C400C6D4BF /* Visa Debit.png in Resources */,
 				2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */,
 				2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */,
@@ -460,6 +467,7 @@
 				2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */,
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
+				2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */,
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
