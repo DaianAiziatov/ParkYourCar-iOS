@@ -12,7 +12,7 @@ import Firebase
 class SignUpViewController: UIViewController {
     
     //TODO: is user still neccessary?
-    private var user: User?
+    //private var user: User?
     private var manufacturersDictionary = [String: Manufacturer]()
     private var userRef: DatabaseReference?
     
@@ -61,7 +61,17 @@ class SignUpViewController: UIViewController {
                         let plateNumber = self.plateNumberTextField.text!
                         let color = self.colorTextField.text!
                         //adding user to realtime database
-                        self.userRef!.child("users").child("\(user.uid)").setValue(["firstName": "\(userName)", "lastName": "\(userSurname)", "email": "\(email)", "contactNumber": "\(contactNumber)", "cars" : [["manufacturer" : "\(manufacturerName)", "model": "\(modelName)", "plate": "\(plateNumber)", "color": "\(color)"]] ])
+                        self.userRef!.child("users").child(user.uid).setValue(
+                            ["firstName": "\(userName)",
+                                "lastName": "\(userSurname)",
+                                "email": "\(email)",
+                                "contactNumber": "\(contactNumber)"])
+                        //adding car for user to realtime database
+                        self.userRef!.child("user").child(user.uid).child("cars").childByAutoId().setValue(
+                                ["manufacturer" : "\(manufacturerName)",
+                                    "model": "\(modelName)",
+                                    "plate": "\(plateNumber)",
+                                    "color": "\(color)"])
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                     else{
