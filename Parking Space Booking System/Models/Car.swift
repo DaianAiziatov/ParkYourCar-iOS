@@ -10,7 +10,7 @@ import Foundation
 
 struct Car {
     
-    private(set) var carId: Int
+    private(set) var carId: String
     private(set) var manufacturer: String
     private(set) var model: String?
     private(set) var plateNumber: String
@@ -18,18 +18,11 @@ struct Car {
     
     static var manufacturers = Manufacturer.loadManufacturers()
     
-    init(manufacturerName: String, modelName: String, plateNumber: String, color: String) {
-        self.carId = Car.getUniqIdentifier()
+    init(carID: String, manufacturerName: String, modelName: String, plateNumber: String, color: String) {
+        self.carId = carID
         self.manufacturer = manufacturerName
         self.model = modelName
         self.plateNumber = plateNumber
         self.color = color
-    }
-    
-    private static var identifierFactory = 0;
-    
-    private static func getUniqIdentifier() -> Int {
-        identifierFactory += 1
-        return identifierFactory
     }
 }

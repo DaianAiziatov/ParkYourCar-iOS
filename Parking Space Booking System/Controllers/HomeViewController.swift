@@ -32,8 +32,6 @@ class HomeViewController: UIViewController {
         })
         carsListTableView.delegate = self
         carsListTableView.dataSource = self
-        //loadCarsList(completion: {self.carsListTableView.reloadData()})
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,18 +60,19 @@ class HomeViewController: UIViewController {
         userRef.child("users").child(user.uid).child("cars").observeSingleEvent(of: .value, with: { (snapshot) in
             for case let rest as DataSnapshot in snapshot.children {
                 let value = rest.value as? NSDictionary
+                let id = rest.key
                 let color = value?["color"] as? String
                 let manufacturer = value?["manufacturer"] as? String
                 let model = value?["model"] as? String
                 let plate = value?["plate"] as? String
-                self.cars!.append(Car(manufacturerName: manufacturer!, modelName: model!, plateNumber: plate!, color: color!))
+                self.cars!.append(Car(carID: id, manufacturerName: manufacturer!, modelName: model!, plateNumber: plate!, color: color!))
             }
             completion()
         }) { (error) in
             print(error.localizedDescription)
         }
     }
-
+    
 }
 
 extension HomeViewController: UITableViewDelegate {
@@ -90,6 +89,23 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert = UIAlertController(title: "Are you sure to delete this car?", message: "This action can't be undone", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+                self.userRef.child("users").child(self.user.uid).child("cars").child(self.cars![indexPath.row].carId).removeValue(completionBlock: { error, dbref  in
+                    if error == nil {
+                        self.cars?.remove(at: indexPath.row)
+                        self.carsListTableView.deleteRows(at: [indexPath], with: .automatic)
+                    } else {
+                        print(error!.localizedDescription)
+                    }
+                    })
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cars!.count
