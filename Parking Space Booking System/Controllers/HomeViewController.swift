@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
         })
         carsListTableView.delegate = self
         carsListTableView.dataSource = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +118,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = "\(cars![indexPath.row].plateNumber)"
         cell.imageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
+        //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         return cell
     }
     

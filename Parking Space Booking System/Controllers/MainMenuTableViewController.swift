@@ -98,7 +98,7 @@ class MainMenuTableViewController: UITableViewController {
     }
     
     private func makeCall(alert: UIAlertAction!) {
-        guard let number = URL(string: "tel://" + "1234567743") else { return }
+        guard let number = URL(string: "telprompt://" + "1234567743") else { return }
         UIApplication.shared.open(number)
     }
     
