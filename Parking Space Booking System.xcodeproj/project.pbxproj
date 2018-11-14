@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */; };
+		2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC7219C95FF00905411 /* login screen logo.png */; };
 		2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790482199BDB300C6D4BF /* HomeViewController.swift */; };
 		2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */; };
 		2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */; };
@@ -65,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.release.xcconfig"; sourceTree = "<group>"; };
+		2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedSwitch.swift; sourceTree = "<group>"; };
+		2B0A5BC7219C95FF00905411 /* login screen logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login screen logo.png"; sourceTree = "<group>"; };
 		2B5790482199BDB300C6D4BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickeTableViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +150,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2B0A5BC6219C95E300905411 /* logos */ = {
+			isa = PBXGroup;
+			children = (
+				2B0A5BC7219C95FF00905411 /* login screen logo.png */,
+				2BA6D6702191137800B9B4C2 /* splash_logo.png */,
+			);
+			path = logos;
+			sourceTree = "<group>";
+		};
 		2B57904C2199FB0000C6D4BF /* Report */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,9 +194,9 @@
 		2BA6D66F2191136B00B9B4C2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B0A5BC6219C95E300905411 /* logos */,
 				2B579052219A03B600C6D4BF /* payment */,
 				2B579051219A03A800C6D4BF /* cars */,
-				2BA6D6702191137800B9B4C2 /* splash_logo.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -258,6 +271,7 @@
 				2BA6D674219144F600B9B4C2 /* Views */,
 				2BA6D66F2191136B00B9B4C2 /* images */,
 				3A0D7569218BCD7400960BC8 /* AppDelegate.swift */,
+				2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */,
 				3A0D7570218BCD7600960BC8 /* Assets.xcassets */,
 				3A0D7575218BCD7600960BC8 /* Info.plist */,
 				2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */,
@@ -408,6 +422,7 @@
 				2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */,
 				2BD802EB21938018003445ED /* Mazda.png in Resources */,
 				2B579059219A05C400C6D4BF /* PayPal.png in Resources */,
+				2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */,
 				2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */,
 				2BD802EA21938018003445ED /* Renault.png in Resources */,
 				2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */,
@@ -480,6 +495,7 @@
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
 				2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */,
+				2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
