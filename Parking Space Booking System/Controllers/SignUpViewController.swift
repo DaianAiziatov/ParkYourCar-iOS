@@ -13,11 +13,7 @@ class SignUpViewController: UIViewController {
     
     //TODO: is user still neccessary?
     //private var user: User?
-    private var manufacturersDictionary = [String: Manufacturer]()
     private var userRef: DatabaseReference?
-    
-    private var colors = ["red", "green", "blue"]
-    private let theCarPicker = UIPickerView()
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userSurnameTextField: UITextField!
@@ -26,24 +22,27 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var checkPasswordTextField: UITextField!
     
-    @IBOutlet weak var munufacturerTextField: UITextField!
-    @IBOutlet weak var modelTextField: UITextField!
-    @IBOutlet weak var colorTextField: UITextField!
-    @IBOutlet weak var plateNumberTextField: UITextField!
-    @IBOutlet weak var logoImageView: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Sign Up"
         userRef = Database.database().reference()
-        manufacturersDictionary = Manufacturer.loadManufacturers()
-        munufacturerTextField.inputView = theCarPicker
-        theCarPicker.delegate = self
-        theCarPicker.dataSource = self
+        
+        //done button for pickerview
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
+        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
+        userNameTextField.inputAccessoryView = toolbar
+        userSurnameTextField.inputAccessoryView = toolbar
+        emailTextField.inputAccessoryView = toolbar
+        contactNumberTextField.inputAccessoryView = toolbar
+        passwordTextField.inputAccessoryView = toolbar
+        checkPasswordTextField.inputAccessoryView = toolbar
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        if isUserDetailsNotEmpty() && isCarDetailsNotEmpty() {
+        if isUserDetailsNotEmpty() {
             if isPasswordValid() {
                 let email =  emailTextField.text!
                 let password = passwordTextField.text!
@@ -55,23 +54,12 @@ class SignUpViewController: UIViewController {
                         let userName = self.userNameTextField.text!
                         let userSurname = self.userSurnameTextField.text!
                         let contactNumber = self.contactNumberTextField.text!
-                        //car
-                        let manufacturerName = self.munufacturerTextField.text!
-                        let modelName = self.modelTextField.text!
-                        let plateNumber = self.plateNumberTextField.text!
-                        let color = self.colorTextField.text!
                         //adding user to realtime database
                         self.userRef!.child("users").child(user.uid).setValue(
                             ["firstName": "\(userName)",
                                 "lastName": "\(userSurname)",
                                 "email": "\(email)",
                                 "contactNumber": "\(contactNumber)"])
-                        //adding car for user to realtime database
-                        self.userRef!.child("user").child(user.uid).child("cars").childByAutoId().setValue(
-                                ["manufacturer" : "\(manufacturerName)",
-                                    "model": "\(modelName)",
-                                    "plate": "\(plateNumber)",
-                                    "color": "\(color)"])
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                     else{
@@ -96,10 +84,6 @@ class SignUpViewController: UIViewController {
     }
     
     //validation methods
-    private func isCarDetailsNotEmpty() -> Bool {
-        return munufacturerTextField.hasText && modelTextField.hasText && colorTextField.hasText && plateNumberTextField.hasText
-    }
-    
     private func isPasswordValid() -> Bool {
         return passwordTextField.hasText && (passwordTextField.text == checkPasswordTextField.text)
     }
@@ -107,50 +91,9 @@ class SignUpViewController: UIViewController {
     private func isUserDetailsNotEmpty() -> Bool {
         return userNameTextField.hasText && userSurnameTextField.hasText && emailTextField.hasText && contactNumberTextField.hasText && passwordTextField.hasText && checkPasswordTextField.hasText
     }
+    
+    @objc private func doneTapped() {
+        view.endEditing(true)
+    }
 }
 
-extension SignUpViewController: UIPickerViewDelegate {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return manufacturersDictionary.count
-        } else if component == 1 {
-            return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models.count
-        } else {
-            return colors.count
-        }
-    }
-    
-}
-
-extension SignUpViewController: UIPickerViewDataSource {
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var rowInModels = 0
-        if component == 0 {
-            theCarPicker.reloadComponent(1)
-            munufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
-            modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[rowInModels]
-            logoImageView.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
-        } else if component == 1 {
-            rowInModels = row
-            modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
-        } else {
-            colorTextField.text = colors[row]
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-            return Array(manufacturersDictionary.keys)[row]
-        } else if component == 1 {
-            return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
-        } else {
-            return colors[row]
-        }
-    }
-}
