@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         loadNumberOfParkingTickets(completion: {
             self.ticketsTotlaLabel.text = "Tickets total: \(self.numberOftickets)"
         })
+        
         carsListTableView.delegate = self
         carsListTableView.dataSource = self
         
@@ -41,6 +42,12 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func addCar(_ sender: UIButton) {
+        let sb = UIStoryboard.init(name: "Main", bundle: nil)
+        let addcarVC = sb.instantiateViewController(withIdentifier: "addcarVC")
+        navigationController?.pushViewController(addcarVC, animated: true)
+    }
+    
+    @objc private func addTapped() {
         let sb = UIStoryboard.init(name: "Main", bundle: nil)
         let addcarVC = sb.instantiateViewController(withIdentifier: "addcarVC")
         navigationController?.pushViewController(addcarVC, animated: true)
@@ -80,6 +87,15 @@ extension HomeViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped))
+        toolbar.setItems([flexibleSpace ,addButton], animated: true)
+        return toolbar
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
