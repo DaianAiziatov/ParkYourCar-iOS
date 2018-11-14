@@ -35,8 +35,8 @@ struct User {
     
     static func loadUsers() -> [User] {
         var allUsers = [User]()
-        allUsers.append(User(name: "aaa", surname: "bbb", email: "a@b.com", password: "1234", contactNumber: "123", cars: [Car(manufacturerName: "Mazda", modelName: "RX8", plateNumber: "sbckbe", color: "black")]))
-        allUsers.append(User(name: "xxx", surname: "yyy", email: "x@y.com", password: "1234", contactNumber: "123", cars: [Car(manufacturerName: "BMW", modelName: "X6", plateNumber: "sbckbe", color: "red")]))
+        allUsers.append(User(name: "aaa", surname: "bbb", email: "a@b.com", password: "1234", contactNumber: "123", cars: [Car(carID: "poshelnah", manufacturerName: "Mazda", modelName: "RX8", plateNumber: "sbckbe", color: "black")]))
+        allUsers.append(User(name: "xxx", surname: "yyy", email: "x@y.com", password: "1234", contactNumber: "123", cars: [Car(carID: "poshelnah2", manufacturerName: "BMW", modelName: "X6", plateNumber: "sbckbe", color: "red")]))
         return allUsers
     }
     

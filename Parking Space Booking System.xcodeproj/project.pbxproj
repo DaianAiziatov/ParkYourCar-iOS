@@ -20,6 +20,7 @@
 		2B57909E219A554C00C6D4BF /* instruction.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B57909D219A554C00C6D4BF /* instruction.html */; };
 		2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57909F219A556E00C6D4BF /* InstructionViewController.swift */; };
 		2B5790A2219A5E4300C6D4BF /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */; };
+		2B5790C2219BE99500C6D4BF /* CarsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */; };
 		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
@@ -77,6 +78,7 @@
 		2B57909D219A554C00C6D4BF /* instruction.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = instruction.html; sourceTree = "<group>"; };
 		2B57909F219A556E00C6D4BF /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
+		2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListTableViewController.swift; sourceTree = "<group>"; };
 		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				2B5790482199BDB300C6D4BF /* HomeViewController.swift */,
 				2B57909F219A556E00C6D4BF /* InstructionViewController.swift */,
 				2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */,
+				2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 			files = (
 				2BA6D685219157CC00B9B4C2 /* SignUpViewController.swift in Sources */,
 				3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */,
+				2B5790C2219BE99500C6D4BF /* CarsListTableViewController.swift in Sources */,
 				2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */,
 				3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */,
 				2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */,

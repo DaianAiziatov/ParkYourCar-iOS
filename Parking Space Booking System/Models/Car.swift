@@ -10,33 +10,19 @@ import Foundation
 
 struct Car {
     
-    private var carId: Int
-    private var manufacturer: Manufacturer
-    private var model: String?
-    private var plateNumber: String
-    private var color: String
+    private(set) var carId: String
+    private(set) var manufacturer: String
+    private(set) var model: String?
+    private(set) var plateNumber: String
+    private(set) var color: String
     
     static var manufacturers = Manufacturer.loadManufacturers()
     
-    init(manufacturerName: String, modelName: String, plateNumber: String, color: String) {
-        self.carId = Car.getUniqIdentifier()
-        self.manufacturer = Car.manufacturers[manufacturerName]!
-        for model in self.manufacturer.models {
-            if model == modelName {
-                self.model = model
-                break
-            } else {
-                self.model = nil
-            }
-        }
+    init(carID: String, manufacturerName: String, modelName: String, plateNumber: String, color: String) {
+        self.carId = carID
+        self.manufacturer = manufacturerName
+        self.model = modelName
         self.plateNumber = plateNumber
         self.color = color
-    }
-    
-    private static var identifierFactory = 0;
-    
-    private static func getUniqIdentifier() -> Int {
-        identifierFactory += 1
-        return identifierFactory
     }
 }

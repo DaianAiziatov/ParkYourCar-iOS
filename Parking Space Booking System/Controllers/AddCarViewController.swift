@@ -26,7 +26,7 @@ class AddCarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Sign Up"
+        self.navigationItem.title = "Add Car"
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
         munufacturerTextField.inputView = theCarPicker
@@ -39,7 +39,10 @@ class AddCarViewController: UIViewController {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
         toolbar.setItems([flexibleSpace ,doneButton], animated: true)
-        theCarPicker.addSubview(toolbar)
+        munufacturerTextField.inputAccessoryView = toolbar
+        modelTextField.inputAccessoryView = toolbar
+        colorTextField.inputAccessoryView = toolbar
+        plateNumberTextField.inputAccessoryView = toolbar
     }
     
     @IBAction func addCar(_ sender: Any) {
@@ -60,6 +63,7 @@ class AddCarViewController: UIViewController {
                 print("Data could not be saved: \(error).")
             } else {
                 print("Data saved successfully!")
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
