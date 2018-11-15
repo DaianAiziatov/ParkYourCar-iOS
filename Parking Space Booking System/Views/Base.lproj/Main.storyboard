@@ -292,10 +292,11 @@
         <scene sceneID="QVX-tb-pdu">
             <objects>
                 <tableViewController storyboardIdentifier="reportVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FSv-NL-U9T" customClass="ReportTableViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4DL-mu-9Io">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4DL-mu-9Io">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="1" green="0.49957981480000002" blue="0.50788174249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ticketCell" textLabel="Iew-gC-EYU" style="IBUITableViewCellStyleDefault" id="ctm-gC-3K6">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
