@@ -2,6 +2,7 @@
 use_frameworks!
 platform :ios, '12.0'
 
+pod 'IQKeyboardManagerSwift', '6.0.4'
 pod 'SkyFloatingLabelTextField', '~> 3.0'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'

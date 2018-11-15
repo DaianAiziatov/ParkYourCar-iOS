@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SkyFloatingLabelTextField
 
 class AddTicketViewController: UIViewController {
     
@@ -32,26 +33,16 @@ class AddTicketViewController: UIViewController {
     @IBOutlet weak var parkingSlotTextField: UITextField!
     @IBOutlet weak var parkingSpotTextField: UITextField!
     @IBOutlet weak var paymentMethodTextField: UITextField!
+    @IBOutlet weak var getReceiptOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Parking Ticket"
+        self.registerTableViewCells()
         dateLabel.text = currentDate()
         userEmailTextField.text = user.email ?? ""
         manufacturersDictionary = Manufacturer.loadManufacturers()
-        
-        carsListTableView.delegate = self
-        carsListTableView.dataSource = self
-        
-        timingTextField.inputView = theTimingPicker
-        theTimingPicker.tag = 1
-        theTimingPicker.delegate = self
-        theTimingPicker.dataSource = self
-        
-        paymentMethodTextField.inputView = thePaymentPicker
-        thePaymentPicker.tag = 2
-        thePaymentPicker.delegate = self
-        thePaymentPicker.dataSource = self
+        prepareScreen()
         
     }
     
@@ -66,41 +57,52 @@ class AddTicketViewController: UIViewController {
         navigationController?.pushViewController(addcarVC, animated: true)
     }
     
-    @IBAction func getReceipt(_ sender: UIButton) {
-        let ticketsRef = userRef.child("users").child(user.uid).child("tickets").childByAutoId()
-        //user
-        let email = self.userEmailTextField.text!
-        //car
-        let manufacturerName = choosenCar!.manufacturer
-        let modelName = choosenCar!.model
-        let plateNumber = choosenCar!.plateNumber
-        let color = choosenCar!.color
-        let timing = self.timingTextField.text!
-        let slotNumber = self.parkingSlotTextField.text!
-        let spotNumber = self.parkingSpotTextField.text!
-        let payment = self.paymentMethodTextField.text!
-        let total = self.total!
-        let userData =
-            ["userEmail" : "\(email)",
-                "manufacturer": "\(manufacturerName)",
-                "model": "\(modelName ?? "")",
-                "plate": "\(plateNumber)",
-                "color": "\(color)",
-                "date": "\(currentDate())",
-                "timing": "\(timing)",
-                "slotNumber": "\(slotNumber)",
-                "spotNumber": "\(spotNumber)",
-                "payment": "\(payment)",
-                "total": total
-            ] as Any
-        ticketsRef.setValue(userData) {
-            (error:Error?, ref:DatabaseReference) in
-            if let error = error {
-                print("Data could not be saved: \(error).")
-            } else {
-                print("Data saved successfully!")
+    @IBAction func getReceiptButton(_ sender: UIButton) {
+        getReceipt()
+    }
+    
+    private func getReceipt() {
+        if isAllFieldsFilled() {
+            let ticketsRef = userRef.child("users").child(user.uid).child("tickets").childByAutoId()
+            //user
+            let email = self.userEmailTextField.text!
+            //car
+            let manufacturerName = choosenCar!.manufacturer
+            let modelName = choosenCar!.model
+            let plateNumber = choosenCar!.plateNumber
+            let color = choosenCar!.color
+            let timing = self.timingTextField.text!
+            let slotNumber = self.parkingSlotTextField.text!
+            let spotNumber = self.parkingSpotTextField.text!
+            let payment = self.paymentMethodTextField.text!
+            let total = self.total!
+            let userData =
+                ["userEmail" : "\(email)",
+                    "manufacturer": "\(manufacturerName)",
+                    "model": "\(modelName ?? "")",
+                    "plate": "\(plateNumber)",
+                    "color": "\(color)",
+                    "date": "\(currentDate())",
+                    "timing": "\(timing)",
+                    "slotNumber": "\(slotNumber)",
+                    "spotNumber": "\(spotNumber)",
+                    "payment": "\(payment)",
+                    "total": total
+                    ] as Any
+            ticketsRef.setValue(userData) {
+                (error:Error?, ref:DatabaseReference) in
+                if let error = error {
+                    print("Data could not be saved: \(error).")
+                } else {
+                    print("Data saved successfully!")
+                }
             }
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please fill all fields", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+        
     }
     
     private func currentDate() -> String {
@@ -137,9 +139,58 @@ class AddTicketViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
+    
+    private func registerTableViewCells() {
+        let ticketCell = UINib(nibName: "CarTableViewCell", bundle: nil)
+        self.carsListTableView.register(ticketCell, forCellReuseIdentifier: "carCell")
+    }
+    
+    private func isAllFieldsFilled() -> Bool {
+        return userEmailTextField.hasText && timingTextField.hasText && parkingSpotTextField.hasText && parkingSlotTextField.hasText && paymentMethodTextField.hasText
+    }
+    
+    private func prepareScreen() {
+        carsListTableView.delegate = self
+        carsListTableView.dataSource = self
+        
+        timingTextField.inputView = theTimingPicker
+        theTimingPicker.tag = 1
+        theTimingPicker.delegate = self
+        theTimingPicker.dataSource = self
+        
+        paymentMethodTextField.inputView = thePaymentPicker
+        thePaymentPicker.tag = 2
+        thePaymentPicker.delegate = self
+        thePaymentPicker.dataSource = self
+        
+        getReceiptOutlet.layer.cornerRadius = 5
+        getReceiptOutlet.layer.borderWidth = 1
+        //done button for pickerview
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
+        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
+        userEmailTextField.inputAccessoryView = toolbar
+        userEmailTextField.tag = 0
+        userEmailTextField.delegate = self
+        userEmailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        timingTextField.inputAccessoryView = toolbar
+        timingTextField.tag = 1
+        timingTextField.delegate = self
+        parkingSlotTextField.inputAccessoryView = toolbar
+        parkingSlotTextField.tag = 2
+        parkingSlotTextField.delegate = self
+        parkingSpotTextField.inputAccessoryView = toolbar
+        parkingSpotTextField.tag = 3
+        parkingSpotTextField.delegate = self
+        paymentMethodTextField.inputAccessoryView = toolbar
+        paymentMethodTextField.tag = 4
+        paymentMethodTextField.delegate = self
+    }
 
 }
-
+//MARK: PickerView Delegare
 extension AddTicketViewController: UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -156,7 +207,7 @@ extension AddTicketViewController: UIPickerViewDelegate {
     }
     
 }
-
+//MARK: PickerView DataSourse
 extension AddTicketViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -180,7 +231,7 @@ extension AddTicketViewController: UIPickerViewDataSource {
     }
 }
 
-
+//MARK: TableView Delegate
 extension AddTicketViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -192,7 +243,7 @@ extension AddTicketViewController: UITableViewDelegate {
     }
     
 }
-
+//MARK: TableView DataSourse
 extension AddTicketViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -218,13 +269,57 @@ extension AddTicketViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell")! as UITableViewCell
-        let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
-        cell.textLabel?.text = title
-        cell.detailTextLabel?.text = "\(cars![indexPath.row].plateNumber)"
-        cell.imageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
-        //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell {
+            let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
+            cell.titleLabel?.text = title
+            cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
+            cell.logoImageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
+            cell.selectionStyle = .blue
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
         return cell
     }
     
+    private func jumpTo(textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    
+    @objc private func doneTapped() {
+        view.endEditing(true)
+    }
+    
 }
+//MARK: TextField Delegate
+extension AddTicketViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 0: jumpTo(textField: timingTextField)
+        case 1: jumpTo(textField: parkingSlotTextField)
+        case 2: jumpTo(textField: parkingSpotTextField)
+        case 3: jumpTo(textField: paymentMethodTextField)
+        case 4: getReceipt()
+        default: print("no such field")
+        }
+        return true
+    }
+    
+    @objc func textFieldDidChange(_ textfield: UITextField) {
+        if let text = textfield.text {
+            if let floatingLabelTextField = textfield as? SkyFloatingLabelTextField {
+                if textfield.tag == 0 {
+                    if (text.count < 3 || !text.contains("@")) {
+                        floatingLabelTextField.errorMessage = "Invalid email"
+                    }
+                    else {
+                        // The error message will only disappear when we reset it to nil or empty string
+                        floatingLabelTextField.errorMessage = ""
+                    }
+                }
+            }
+        }
+    }
+    
+}
+

@@ -140,7 +140,6 @@ extension HomeViewController: UITableViewDataSource {
             cell.titleLabel?.text = title
             cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
             cell.logoImageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
-            //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
