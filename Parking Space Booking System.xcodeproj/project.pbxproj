@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */; };
+		2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC7219C95FF00905411 /* login screen logo.png */; };
+		2B478895219D272A000D63EF /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888D219D2727000D63EF /* home.png */; };
+		2B478896219D272A000D63EF /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888E219D2728000D63EF /* add.png */; };
+		2B478897219D272A000D63EF /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888F219D2728000D63EF /* logout.png */; };
+		2B478898219D272A000D63EF /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478890219D2728000D63EF /* help.png */; };
+		2B478899219D272A000D63EF /* update.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478891219D2728000D63EF /* update.png */; };
+		2B47889A219D272A000D63EF /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478892219D2728000D63EF /* report.png */; };
+		2B47889B219D272A000D63EF /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478893219D2729000D63EF /* location.png */; };
+		2B47889C219D272A000D63EF /* instruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478894219D2729000D63EF /* instruction.png */; };
 		2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790482199BDB300C6D4BF /* HomeViewController.swift */; };
 		2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */; };
 		2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */; };
@@ -20,7 +30,6 @@
 		2B57909E219A554C00C6D4BF /* instruction.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B57909D219A554C00C6D4BF /* instruction.html */; };
 		2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57909F219A556E00C6D4BF /* InstructionViewController.swift */; };
 		2B5790A2219A5E4300C6D4BF /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */; };
-		2B5790C2219BE99500C6D4BF /* CarsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */; };
 		2B8401642198A8E400542305 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401632198A8E400542305 /* LocationViewController.swift */; };
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
@@ -36,6 +45,9 @@
 		2BD802EC21938018003445ED /* BMW.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E921938018003445ED /* BMW.png */; };
 		2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */; };
 		2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */; };
+		2BEC431B219CFA06000D2BC9 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */; };
+		2BEC431C219CFA06000D2BC9 /* CarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC431A219CFA06000D2BC9 /* CarTableViewCell.xib */; };
+		2D6D794C3993BF148AC917AC /* Pods_Parking_Space_Booking_System.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */; };
 		3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7569218BCD7400960BC8 /* AppDelegate.swift */; };
 		3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D756B218BCD7400960BC8 /* LoginViewController.swift */; };
 		3A0D756F218BCD7400960BC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D756D218BCD7400960BC8 /* Main.storyboard */; };
@@ -43,7 +55,6 @@
 		3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D7572218BCD7600960BC8 /* LaunchScreen.storyboard */; };
 		3A0D757F218BCD7600960BC8 /* Parking_Space_Booking_SystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D757E218BCD7600960BC8 /* Parking_Space_Booking_SystemTests.swift */; };
 		3A0D758A218BCD7600960BC8 /* Parking_Space_Booking_SystemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7589218BCD7600960BC8 /* Parking_Space_Booking_SystemUITests.swift */; };
-		8A3CD5B6C23A843980A63827 /* libPods-Parking Space Booking System.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +76,16 @@
 
 /* Begin PBXFileReference section */
 		299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.release.xcconfig"; sourceTree = "<group>"; };
+		2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedSwitch.swift; sourceTree = "<group>"; };
+		2B0A5BC7219C95FF00905411 /* login screen logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login screen logo.png"; sourceTree = "<group>"; };
+		2B47888D219D2727000D63EF /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		2B47888E219D2728000D63EF /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		2B47888F219D2728000D63EF /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		2B478890219D2728000D63EF /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		2B478891219D2728000D63EF /* update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update.png; sourceTree = "<group>"; };
+		2B478892219D2728000D63EF /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
+		2B478893219D2729000D63EF /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		2B478894219D2729000D63EF /* instruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instruction.png; sourceTree = "<group>"; };
 		2B5790482199BDB300C6D4BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickeTableViewCell.swift; sourceTree = "<group>"; };
@@ -78,7 +99,6 @@
 		2B57909D219A554C00C6D4BF /* instruction.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = instruction.html; sourceTree = "<group>"; };
 		2B57909F219A556E00C6D4BF /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
-		2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListTableViewController.swift; sourceTree = "<group>"; };
 		2B8401632198A8E400542305 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
@@ -94,7 +114,8 @@
 		2BD802E921938018003445ED /* BMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BMW.png; sourceTree = "<group>"; };
 		2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
-		2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Parking Space Booking System.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
+		2BEC431A219CFA06000D2BC9 /* CarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarTableViewCell.xib; sourceTree = "<group>"; };
 		3A0D7566218BCD7400960BC8 /* Parking Space Booking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parking Space Booking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7569218BCD7400960BC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0D756B218BCD7400960BC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +130,7 @@
 		3A0D7589218BCD7600960BC8 /* Parking_Space_Booking_SystemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parking_Space_Booking_SystemUITests.swift; sourceTree = "<group>"; };
 		3A0D758B218BCD7600960BC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7BACB72882E9097EDA80C43 /* Pods-Parking Space Booking System.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.debug.xcconfig"; sourceTree = "<group>"; };
+		E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parking_Space_Booking_System.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3CD5B6C23A843980A63827 /* libPods-Parking Space Booking System.a in Frameworks */,
+				2D6D794C3993BF148AC917AC /* Pods_Parking_Space_Booking_System.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +166,23 @@
 				299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2B0A5BC6219C95E300905411 /* logos */ = {
+			isa = PBXGroup;
+			children = (
+				2B47888E219D2728000D63EF /* add.png */,
+				2B478890219D2728000D63EF /* help.png */,
+				2B47888D219D2727000D63EF /* home.png */,
+				2B478894219D2729000D63EF /* instruction.png */,
+				2B478893219D2729000D63EF /* location.png */,
+				2B47888F219D2728000D63EF /* logout.png */,
+				2B478892219D2728000D63EF /* report.png */,
+				2B478891219D2728000D63EF /* update.png */,
+				2B0A5BC7219C95FF00905411 /* login screen logo.png */,
+				2BA6D6702191137800B9B4C2 /* splash_logo.png */,
+			);
+			path = logos;
 			sourceTree = "<group>";
 		};
 		2B57904C2199FB0000C6D4BF /* Report */ = {
@@ -181,9 +220,9 @@
 		2BA6D66F2191136B00B9B4C2 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2B0A5BC6219C95E300905411 /* logos */,
 				2B579052219A03B600C6D4BF /* payment */,
 				2B579051219A03A800C6D4BF /* cars */,
-				2BA6D6702191137800B9B4C2 /* splash_logo.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -191,6 +230,7 @@
 		2BA6D674219144F600B9B4C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BEC431A219CFA06000D2BC9 /* CarTableViewCell.xib */,
 				2B57904E2199FB4100C6D4BF /* TickeTableViewCell.xib */,
 				3A0D7572218BCD7600960BC8 /* LaunchScreen.storyboard */,
 				3A0D756D218BCD7400960BC8 /* Main.storyboard */,
@@ -212,7 +252,7 @@
 				2B5790482199BDB300C6D4BF /* HomeViewController.swift */,
 				2B57909F219A556E00C6D4BF /* InstructionViewController.swift */,
 				2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */,
-				2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */,
+				2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -258,6 +298,7 @@
 				2BA6D674219144F600B9B4C2 /* Views */,
 				2BA6D66F2191136B00B9B4C2 /* images */,
 				3A0D7569218BCD7400960BC8 /* AppDelegate.swift */,
+				2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */,
 				3A0D7570218BCD7600960BC8 /* Assets.xcassets */,
 				3A0D7575218BCD7600960BC8 /* Info.plist */,
 				2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */,
@@ -287,7 +328,7 @@
 		72FFACB980900DDAFED44941 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */,
+				E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -303,6 +344,7 @@
 				3A0D7562218BCD7400960BC8 /* Sources */,
 				3A0D7563218BCD7400960BC8 /* Frameworks */,
 				3A0D7564218BCD7400960BC8 /* Resources */,
+				CBC7292DE6A61E1B0F80ECD4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -398,20 +440,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B57905A219A05C400C6D4BF /* Visa Credit.png in Resources */,
+				2B478899219D272A000D63EF /* update.png in Resources */,
+				2B47889C219D272A000D63EF /* instruction.png in Resources */,
 				2BD802EC21938018003445ED /* BMW.png in Resources */,
 				2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */,
+				2B478896219D272A000D63EF /* add.png in Resources */,
 				3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */,
 				2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */,
 				2B57909E219A554C00C6D4BF /* instruction.html in Resources */,
+				2BEC431C219CFA06000D2BC9 /* CarTableViewCell.xib in Resources */,
 				2B579058219A05C400C6D4BF /* Visa Debit.png in Resources */,
 				2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */,
 				2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */,
+				2B478897219D272A000D63EF /* logout.png in Resources */,
 				2BD802EB21938018003445ED /* Mazda.png in Resources */,
 				2B579059219A05C400C6D4BF /* PayPal.png in Resources */,
+				2B478895219D272A000D63EF /* home.png in Resources */,
+				2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */,
+				2B47889B219D272A000D63EF /* location.png in Resources */,
+				2B47889A219D272A000D63EF /* report.png in Resources */,
 				2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */,
 				2BD802EA21938018003445ED /* Renault.png in Resources */,
 				2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */,
 				3A0D7571218BCD7600960BC8 /* Assets.xcassets in Resources */,
+				2B478898219D272A000D63EF /* help.png in Resources */,
 				3A0D756F218BCD7400960BC8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +485,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CBC7292DE6A61E1B0F80ECD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E477CDAE4F072CA52D9945E7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,7 +548,6 @@
 			files = (
 				2BA6D685219157CC00B9B4C2 /* SignUpViewController.swift in Sources */,
 				3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */,
-				2B5790C2219BE99500C6D4BF /* CarsListTableViewController.swift in Sources */,
 				2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */,
 				3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */,
 				2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */,
@@ -476,10 +559,12 @@
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
 				2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */,
+				2BEC431B219CFA06000D2BC9 /* CarTableViewCell.swift in Sources */,
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
 				2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */,
+				2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

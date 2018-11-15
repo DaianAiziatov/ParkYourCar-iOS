@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SkyFloatingLabelTextField
 
 class SignUpViewController: UIViewController {
     
@@ -21,27 +22,20 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var contactNumberTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var checkPasswordTextField: UITextField!
+    @IBOutlet weak var signUpOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Sign Up"
         userRef = Database.database().reference()
-        
-        //done button for pickerview
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
-        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
-        userNameTextField.inputAccessoryView = toolbar
-        userSurnameTextField.inputAccessoryView = toolbar
-        emailTextField.inputAccessoryView = toolbar
-        contactNumberTextField.inputAccessoryView = toolbar
-        passwordTextField.inputAccessoryView = toolbar
-        checkPasswordTextField.inputAccessoryView = toolbar
+        screenPreparation()
     }
     
-    @IBAction func signUp(_ sender: UIButton) {
+    @IBAction func signUpButton(_ sender: UIButton) {
+        signUp()
+    }
+    
+    private func signUp() {
         if isUserDetailsNotEmpty() {
             if isPasswordValid() {
                 let email =  emailTextField.text!
@@ -80,7 +74,6 @@ class SignUpViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
     //validation methods
@@ -92,8 +85,87 @@ class SignUpViewController: UIViewController {
         return userNameTextField.hasText && userSurnameTextField.hasText && emailTextField.hasText && contactNumberTextField.hasText && passwordTextField.hasText && checkPasswordTextField.hasText
     }
     
+    private func jumpTo(textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    
     @objc private func doneTapped() {
         view.endEditing(true)
     }
+    
+//    func validateEmail(email: String) -> Bool {
+//        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+//        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+//    }
+    private func screenPreparation() {
+        signUpOutlet.layer.cornerRadius = 5
+        signUpOutlet.layer.borderWidth = 1
+        //done button for pickerview
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
+        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
+        userNameTextField.inputAccessoryView = toolbar
+        userNameTextField.tag = 0
+        userNameTextField.delegate = self
+        userSurnameTextField.inputAccessoryView = toolbar
+        userSurnameTextField.tag = 1
+        userSurnameTextField.delegate = self
+        emailTextField.inputAccessoryView = toolbar
+        emailTextField.tag = 2
+        emailTextField.delegate = self
+        emailTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        contactNumberTextField.inputAccessoryView = toolbar
+        contactNumberTextField.tag = 3
+        contactNumberTextField.delegate = self
+        passwordTextField.inputAccessoryView = toolbar
+        passwordTextField.tag = 4
+        passwordTextField.delegate = self
+        checkPasswordTextField.inputAccessoryView = toolbar
+        checkPasswordTextField.tag = 5
+        checkPasswordTextField.delegate = self
+        checkPasswordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
 }
 
+extension SignUpViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField.tag {
+        case 0: jumpTo(textField: userSurnameTextField)
+        case 1: jumpTo(textField: emailTextField)
+        case 2: jumpTo(textField: contactNumberTextField)
+        case 3: jumpTo(textField: passwordTextField)
+        case 4: jumpTo(textField: checkPasswordTextField)
+        case 5: signUp()
+        default: print("no such field")
+        }
+        return true
+    }
+    
+    @objc func textFieldDidChange(_ textfield: UITextField) {
+        if let text = textfield.text {
+            if let floatingLabelTextField = textfield as? SkyFloatingLabelTextField {
+                if textfield.tag == 2 {
+                    if (text.count < 3 || !text.contains("@")) {
+                        floatingLabelTextField.errorMessage = "Invalid email"
+                    }
+                    else {
+                        // The error message will only disappear when we reset it to nil or empty string
+                        floatingLabelTextField.errorMessage = ""
+                    }
+                } else if textfield.tag == 5 {
+                    let passwordtext = passwordTextField.text!
+                    if (text != passwordtext) {
+                        floatingLabelTextField.errorMessage = "Passwords are different"
+                    } else {
+                        floatingLabelTextField.errorMessage = ""
+                    }
+                }
+            }
+        }
+    }
+    
+}

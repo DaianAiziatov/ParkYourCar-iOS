@@ -18,37 +18,45 @@ class AddCarViewController: UIViewController {
     private var colors = ["red", "green", "blue"]
     private let theCarPicker = UIPickerView()
 
-    @IBOutlet weak var munufacturerTextField: UITextField!
+    @IBOutlet weak var manufacturerTextField: UITextField!
     @IBOutlet weak var modelTextField: UITextField!
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var plateNumberTextField: UITextField!
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var addOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Add Car"
         userRef = Database.database().reference()
         manufacturersDictionary = Manufacturer.loadManufacturers()
-        munufacturerTextField.inputView = theCarPicker
+        manufacturerTextField.inputView = theCarPicker
         theCarPicker.delegate = self
         theCarPicker.dataSource = self
         
+        addOutlet.layer.cornerRadius = 5
+        addOutlet.layer.borderWidth = 1
         //done button for pickerview
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
         toolbar.setItems([flexibleSpace ,doneButton], animated: true)
-        munufacturerTextField.inputAccessoryView = toolbar
+        manufacturerTextField.inputAccessoryView = toolbar
         modelTextField.inputAccessoryView = toolbar
         colorTextField.inputAccessoryView = toolbar
         plateNumberTextField.inputAccessoryView = toolbar
+        plateNumberTextField.delegate = self
     }
     
-    @IBAction func addCar(_ sender: Any) {
+    @IBAction func addCarButton(_ sender: Any) {
+        addCar()
+    }
+    
+    private func addCar() {
         let carsRef = userRef!.child("users").child(user.uid).child("cars").childByAutoId()
         //user
-        let manufacturerName = self.munufacturerTextField.text!
+        let manufacturerName = self.manufacturerTextField.text!
         let modelName = self.modelTextField.text!
         let plateNumber = self.plateNumberTextField.text!
         let color = self.colorTextField.text!
@@ -70,6 +78,14 @@ class AddCarViewController: UIViewController {
     
     @objc private func doneTapped() {
         view.endEditing(true)
+    }
+    
+    private func jumpTo(textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    
+    private func isAllFieldsFilled() -> Bool {
+        return modelTextField.hasText && plateNumberTextField.hasText && manufacturerTextField.hasText
     }
 
 }
@@ -98,7 +114,7 @@ extension AddCarViewController: UIPickerViewDataSource {
         var rowInModels = 0
         if component == 0 {
             theCarPicker.reloadComponent(1)
-            munufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
+            manufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
             modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[rowInModels]
             logoImageView.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
         } else if component == 1 {
@@ -117,5 +133,13 @@ extension AddCarViewController: UIPickerViewDataSource {
         } else {
             return colors[row]
         }
+    }
+}
+
+extension AddCarViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addCar()
+        return true
     }
 }

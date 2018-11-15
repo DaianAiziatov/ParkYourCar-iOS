@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
+        self.registerTableViewCells()
         let userDefault = UserDefaults.standard
         userEmailLabel.text = "User email: \(user.email ?? "")"
         lastLoginLabel.text = "Last login: \(userDefault.string(forKey: "logDate") ?? "")"
@@ -39,12 +40,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         cars = [Car]()
         loadCarsList(completion: {self.carsListTableView.reloadData()})
-    }
-    
-    @IBAction func addCar(_ sender: UIButton) {
-        let sb = UIStoryboard.init(name: "Main", bundle: nil)
-        let addcarVC = sb.instantiateViewController(withIdentifier: "addcarVC")
-        navigationController?.pushViewController(addcarVC, animated: true)
     }
     
     @objc private func addTapped() {
@@ -81,6 +76,11 @@ class HomeViewController: UIViewController {
         }
     }
     
+    private func registerTableViewCells() {
+        let ticketCell = UINib(nibName: "CarTableViewCell", bundle: nil)
+        self.carsListTableView.register(ticketCell, forCellReuseIdentifier: "carCell")
+    }
+    
 }
 
 extension HomeViewController: UITableViewDelegate {
@@ -92,9 +92,15 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        toolbar.backgroundColor = #colorLiteral(red: 1, green: 0.4995798148, blue: 0.5078817425, alpha: 1)
+        let text = UIBarButtonItem(title: "Cars:", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+        text.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont.init(name: "DIN Alternate", size: 17.0)!,
+            NSAttributedString.Key.foregroundColor : UIColor.black], for: UIControl.State.normal)
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped))
-        toolbar.setItems([flexibleSpace ,addButton], animated: true)
+        addButton.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        toolbar.setItems([text, flexibleSpace ,addButton], animated: true)
         return toolbar
     }
     
@@ -129,12 +135,14 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell")! as UITableViewCell
-        let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
-        cell.textLabel?.text = title
-        cell.detailTextLabel?.text = "\(cars![indexPath.row].plateNumber)"
-        cell.imageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
-        //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell {
+            let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
+            cell.titleLabel?.text = title
+            cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
+            cell.logoImageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
         return cell
     }
     
