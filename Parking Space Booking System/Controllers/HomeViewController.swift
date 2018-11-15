@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
+        self.registerTableViewCells()
         let userDefault = UserDefaults.standard
         userEmailLabel.text = "User email: \(user.email ?? "")"
         lastLoginLabel.text = "Last login: \(userDefault.string(forKey: "logDate") ?? "")"
@@ -73,6 +74,11 @@ class HomeViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    private func registerTableViewCells() {
+        let ticketCell = UINib(nibName: "CarTableViewCell", bundle: nil)
+        self.carsListTableView.register(ticketCell, forCellReuseIdentifier: "carCell")
     }
     
 }
@@ -129,12 +135,15 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell")! as UITableViewCell
-        let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
-        cell.textLabel?.text = title
-        cell.detailTextLabel?.text = "\(cars![indexPath.row].plateNumber)"
-        cell.imageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
-        //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell {
+            let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
+            cell.titleLabel?.text = title
+            cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
+            cell.logoImageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
+            //cell.imageView?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
         return cell
     }
     

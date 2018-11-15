@@ -85,7 +85,7 @@ class ReportTableViewController: UITableViewController {
         return cell
     }
     
-    func registerTableViewCells() {
+    private func registerTableViewCells() {
         let ticketCell = UINib(nibName: "TickeTableViewCell", bundle: nil)
         self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
     }

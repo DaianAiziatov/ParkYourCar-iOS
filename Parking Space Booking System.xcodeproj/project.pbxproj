@@ -38,6 +38,8 @@
 		2BD802EC21938018003445ED /* BMW.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E921938018003445ED /* BMW.png */; };
 		2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */; };
 		2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */; };
+		2BEC431B219CFA06000D2BC9 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */; };
+		2BEC431C219CFA06000D2BC9 /* CarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC431A219CFA06000D2BC9 /* CarTableViewCell.xib */; };
 		2D6D794C3993BF148AC917AC /* Pods_Parking_Space_Booking_System.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */; };
 		3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7569218BCD7400960BC8 /* AppDelegate.swift */; };
 		3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D756B218BCD7400960BC8 /* LoginViewController.swift */; };
@@ -98,6 +100,8 @@
 		2BD802E921938018003445ED /* BMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BMW.png; sourceTree = "<group>"; };
 		2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
+		2BEC431A219CFA06000D2BC9 /* CarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarTableViewCell.xib; sourceTree = "<group>"; };
 		3A0D7566218BCD7400960BC8 /* Parking Space Booking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parking Space Booking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7569218BCD7400960BC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0D756B218BCD7400960BC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 		2BA6D674219144F600B9B4C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BEC431A219CFA06000D2BC9 /* CarTableViewCell.xib */,
 				2B57904E2199FB4100C6D4BF /* TickeTableViewCell.xib */,
 				3A0D7572218BCD7600960BC8 /* LaunchScreen.storyboard */,
 				3A0D756D218BCD7400960BC8 /* Main.storyboard */,
@@ -226,6 +231,7 @@
 				2B57909F219A556E00C6D4BF /* InstructionViewController.swift */,
 				2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */,
 				2B5790C1219BE99500C6D4BF /* CarsListTableViewController.swift */,
+				2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */,
 				2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */,
 				2B57909E219A554C00C6D4BF /* instruction.html in Resources */,
+				2BEC431C219CFA06000D2BC9 /* CarTableViewCell.xib in Resources */,
 				2B579058219A05C400C6D4BF /* Visa Debit.png in Resources */,
 				2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */,
 				2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */,
@@ -522,6 +529,7 @@
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
 				2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */,
+				2BEC431B219CFA06000D2BC9 /* CarTableViewCell.swift in Sources */,
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
