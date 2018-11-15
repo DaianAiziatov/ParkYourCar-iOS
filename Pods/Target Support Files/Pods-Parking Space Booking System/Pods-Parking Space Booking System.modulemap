@@ -1,4 +1,4 @@
-module Pods_Parking_Space_Booking_System {
+framework module Pods_Parking_Space_Booking_System {
   umbrella header "Pods-Parking Space Booking System-umbrella.h"
 
   export *

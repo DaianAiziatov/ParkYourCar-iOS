@@ -41,12 +41,6 @@ class HomeViewController: UIViewController {
         loadCarsList(completion: {self.carsListTableView.reloadData()})
     }
     
-    @IBAction func addCar(_ sender: UIButton) {
-        let sb = UIStoryboard.init(name: "Main", bundle: nil)
-        let addcarVC = sb.instantiateViewController(withIdentifier: "addcarVC")
-        navigationController?.pushViewController(addcarVC, animated: true)
-    }
-    
     @objc private func addTapped() {
         let sb = UIStoryboard.init(name: "Main", bundle: nil)
         let addcarVC = sb.instantiateViewController(withIdentifier: "addcarVC")
@@ -92,9 +86,15 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        toolbar.backgroundColor = #colorLiteral(red: 1, green: 0.4995798148, blue: 0.5078817425, alpha: 1)
+        let text = UIBarButtonItem(title: "Cars:", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+        text.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont.init(name: "DIN Alternate", size: 17.0)!,
+            NSAttributedString.Key.foregroundColor : UIColor.black], for: UIControl.State.normal)
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addTapped))
-        toolbar.setItems([flexibleSpace ,addButton], animated: true)
+        addButton.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        toolbar.setItems([text, flexibleSpace ,addButton], animated: true)
         return toolbar
     }
     

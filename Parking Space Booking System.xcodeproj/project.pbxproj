@@ -38,6 +38,7 @@
 		2BD802EC21938018003445ED /* BMW.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E921938018003445ED /* BMW.png */; };
 		2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */; };
 		2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */; };
+		2D6D794C3993BF148AC917AC /* Pods_Parking_Space_Booking_System.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */; };
 		3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7569218BCD7400960BC8 /* AppDelegate.swift */; };
 		3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D756B218BCD7400960BC8 /* LoginViewController.swift */; };
 		3A0D756F218BCD7400960BC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D756D218BCD7400960BC8 /* Main.storyboard */; };
@@ -45,7 +46,6 @@
 		3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D7572218BCD7600960BC8 /* LaunchScreen.storyboard */; };
 		3A0D757F218BCD7600960BC8 /* Parking_Space_Booking_SystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D757E218BCD7600960BC8 /* Parking_Space_Booking_SystemTests.swift */; };
 		3A0D758A218BCD7600960BC8 /* Parking_Space_Booking_SystemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7589218BCD7600960BC8 /* Parking_Space_Booking_SystemUITests.swift */; };
-		8A3CD5B6C23A843980A63827 /* libPods-Parking Space Booking System.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +98,6 @@
 		2BD802E921938018003445ED /* BMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BMW.png; sourceTree = "<group>"; };
 		2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
-		2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Parking Space Booking System.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7566218BCD7400960BC8 /* Parking Space Booking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parking Space Booking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7569218BCD7400960BC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0D756B218BCD7400960BC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		3A0D7589218BCD7600960BC8 /* Parking_Space_Booking_SystemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parking_Space_Booking_SystemUITests.swift; sourceTree = "<group>"; };
 		3A0D758B218BCD7600960BC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7BACB72882E9097EDA80C43 /* Pods-Parking Space Booking System.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.debug.xcconfig"; sourceTree = "<group>"; };
+		E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parking_Space_Booking_System.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3CD5B6C23A843980A63827 /* libPods-Parking Space Booking System.a in Frameworks */,
+				2D6D794C3993BF148AC917AC /* Pods_Parking_Space_Booking_System.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +301,7 @@
 		72FFACB980900DDAFED44941 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F81F633E6DD9871434AA48D /* libPods-Parking Space Booking System.a */,
+				E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,6 +317,7 @@
 				3A0D7562218BCD7400960BC8 /* Sources */,
 				3A0D7563218BCD7400960BC8 /* Frameworks */,
 				3A0D7564218BCD7400960BC8 /* Resources */,
+				CBC7292DE6A61E1B0F80ECD4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -448,6 +449,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CBC7292DE6A61E1B0F80ECD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E477CDAE4F072CA52D9945E7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
