@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */; };
 		2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC7219C95FF00905411 /* login screen logo.png */; };
+		2B2527B4219F4C5700E7126D /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527B3219F4C5700E7126D /* ReceiptViewController.swift */; };
 		2B478895219D272A000D63EF /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888D219D2727000D63EF /* home.png */; };
 		2B478896219D272A000D63EF /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888E219D2728000D63EF /* add.png */; };
 		2B478897219D272A000D63EF /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888F219D2728000D63EF /* logout.png */; };
@@ -79,6 +80,7 @@
 		299962C2E404749E0A4451A7 /* Pods-Parking Space Booking System.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parking Space Booking System.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parking Space Booking System/Pods-Parking Space Booking System.release.xcconfig"; sourceTree = "<group>"; };
 		2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedSwitch.swift; sourceTree = "<group>"; };
 		2B0A5BC7219C95FF00905411 /* login screen logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login screen logo.png"; sourceTree = "<group>"; };
+		2B2527B3219F4C5700E7126D /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		2B47888D219D2727000D63EF /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		2B47888E219D2728000D63EF /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		2B47888F219D2728000D63EF /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				2B57909F219A556E00C6D4BF /* InstructionViewController.swift */,
 				2B5790A1219A5E4300C6D4BF /* AddCarViewController.swift */,
 				2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */,
+				2B2527B3219F4C5700E7126D /* ReceiptViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
+				2B2527B4219F4C5700E7126D /* ReceiptViewController.swift in Sources */,
 				2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */,
 				2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */,
 			);
