@@ -97,6 +97,7 @@ class AddTicketViewController: UIViewController {
                     print("Data could not be saved: \(error).")
                 } else {
                     print("Data saved successfully!")
+                    self.choosenCar = nil
                     self.goToReceipt()
                     
                 }
@@ -113,6 +114,7 @@ class AddTicketViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let receiptVC = sb.instantiateViewController(withIdentifier: "receiptVC") as! ReceiptViewController
         receiptVC.ticket = self.ticket
+        receiptVC.fromReport = false
         self.navigationController?.pushViewController(receiptVC, animated: true)
     }
     
@@ -157,7 +159,7 @@ class AddTicketViewController: UIViewController {
     }
     
     private func isAllFieldsFilled() -> Bool {
-        return userEmailTextField.hasText && timingTextField.hasText && parkingSpotTextField.hasText && parkingSlotTextField.hasText && paymentMethodTextField.hasText
+        return userEmailTextField.hasText && timingTextField.hasText && parkingSpotTextField.hasText && parkingSlotTextField.hasText && paymentMethodTextField.hasText && choosenCar != nil
     }
     
     private func prepareScreen() {

@@ -21,12 +21,16 @@ class ReceiptViewController: UIViewController {
     @IBOutlet weak var logoImageView: UIImageView!
     
     var ticket: ParkingTicket!
+    var fromReport = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        let backToMenuButton = UIBarButtonItem(title: "Main Menu", style: .plain, target: self, action: #selector(self.backToMenu(sender:)))
+        let backToMenuButton = UIBarButtonItem(title: "Back to menu", style: .plain, target: self, action: #selector(self.backToMenu(sender:)))
         self.navigationItem.leftBarButtonItem = backToMenuButton
+        if fromReport {
+            self.navigationItem.leftBarButtonItem?.title = "Back to report"
+        }
         applyZigZagEffect(givenView: receiptView)
         dateLabel.text = ticket.date.description
         manufacturerLabel.text = ticket.carManufacturer
@@ -39,12 +43,17 @@ class ReceiptViewController: UIViewController {
     }
     
     @objc func backToMenu(sender: UIBarButtonItem) {
-        for vc in (self.navigationController?.viewControllers ?? []) {
-            if vc is MainMenuTableViewController {
-                _ = self.navigationController?.popToViewController(vc, animated: true)
-                break
+        if !fromReport {
+            for vc in (self.navigationController?.viewControllers ?? []) {
+                if vc is MainMenuTableViewController {
+                    _ = self.navigationController?.popToViewController(vc, animated: true)
+                    break
+                }
             }
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
+        
     }
     
 

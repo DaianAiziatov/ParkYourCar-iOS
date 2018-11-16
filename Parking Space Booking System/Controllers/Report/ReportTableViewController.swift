@@ -108,6 +108,13 @@ class ReportTableViewController: UITableViewController {
         self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let receiptVC = sb.instantiateViewController(withIdentifier: "receiptVC") as! ReceiptViewController
+        receiptVC.ticket = tickets[indexPath.row]
+        receiptVC.fromReport = true
+        self.navigationController?.pushViewController(receiptVC, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
