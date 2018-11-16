@@ -15,6 +15,7 @@ class AddTicketViewController: UIViewController {
     private var total: Double?
     private var cars: [Car]?
     private var choosenCar: Car?
+    private var ticket: ParkingTicket?
     
     private let user = Auth.auth().currentUser!
     private var manufacturersDictionary = [String: Manufacturer]()
@@ -89,12 +90,16 @@ class AddTicketViewController: UIViewController {
                     "payment": "\(payment)",
                     "total": total
                     ] as Any
+            self.ticket = ParkingTicket(userEmail: email, carPlate: plateNumber, carManufacturer: manufacturerName, carModel: modelName!, carColor: color, timing: timing, date: currentDate(), slotNumber: slotNumber, spotNumber: spotNumber, paymentMethod: payment, total: total)
             ticketsRef.setValue(userData) {
                 (error:Error?, ref:DatabaseReference) in
                 if let error = error {
                     print("Data could not be saved: \(error).")
                 } else {
                     print("Data saved successfully!")
+                    self.choosenCar = nil
+                    self.goToReceipt()
+                    
                 }
             }
         } else {
@@ -103,6 +108,14 @@ class AddTicketViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
+    }
+    
+    private func goToReceipt() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let receiptVC = sb.instantiateViewController(withIdentifier: "receiptVC") as! ReceiptViewController
+        receiptVC.ticket = self.ticket
+        receiptVC.fromReport = false
+        self.navigationController?.pushViewController(receiptVC, animated: true)
     }
     
     private func currentDate() -> String {
@@ -146,7 +159,7 @@ class AddTicketViewController: UIViewController {
     }
     
     private func isAllFieldsFilled() -> Bool {
-        return userEmailTextField.hasText && timingTextField.hasText && parkingSpotTextField.hasText && parkingSlotTextField.hasText && paymentMethodTextField.hasText
+        return userEmailTextField.hasText && timingTextField.hasText && parkingSpotTextField.hasText && parkingSlotTextField.hasText && paymentMethodTextField.hasText && choosenCar != nil
     }
     
     private func prepareScreen() {
