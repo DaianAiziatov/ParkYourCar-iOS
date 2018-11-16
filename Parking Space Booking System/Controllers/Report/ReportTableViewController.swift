@@ -85,6 +85,24 @@ class ReportTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.backgroundColor =
+            UIColor.clear
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: cell.frame.size.width - 20, height: 140))
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 3.0
+        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        whiteRoundedView.layer.shadowOpacity = 0.5
+        whiteRoundedView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150.0
+    }
+    
     private func registerTableViewCells() {
         let ticketCell = UINib(nibName: "TickeTableViewCell", bundle: nil)
         self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
