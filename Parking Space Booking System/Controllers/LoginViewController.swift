@@ -22,9 +22,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Login"
-        if Auth.auth().currentUser != nil {
-            goToMainScreen()
-        }
         rememberMeSwitch.onTintColor = #colorLiteral(red: 1, green: 0.4995798148, blue: 0.5078817425, alpha: 1)
         signUpOutlet.layer.cornerRadius = 5
         signUpOutlet.layer.borderWidth = 1
