@@ -41,15 +41,14 @@ class LocationViewController: UIViewController {
         locationManager.startRangingBeacons(in: beaconRegion)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func changeMapType(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1: mapView.mapType = .hybrid
+        case 2: mapView.mapType = .satellite
+        default: mapView.mapType = .standard
+        }
     }
-    */
+    
 
 }
 

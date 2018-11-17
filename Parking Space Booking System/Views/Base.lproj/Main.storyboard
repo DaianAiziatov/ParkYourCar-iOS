@@ -774,9 +774,24 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tcy-Ud-cXu">
                                 <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                             </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g67-Jj-5XO">
+                                <rect key="frame" x="86" y="81" width="203" height="29"/>
+                                <segments>
+                                    <segment title="Standart"/>
+                                    <segment title="Hybrid"/>
+                                    <segment title="Satelite"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeMapType:" destination="L84-fa-dHi" eventType="valueChanged" id="mup-aN-X88"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="g67-Jj-5XO" firstAttribute="leading" secondItem="gp4-mt-WzB" secondAttribute="leading" constant="86" id="D0c-f6-stW"/>
+                            <constraint firstItem="gp4-mt-WzB" firstAttribute="trailing" secondItem="g67-Jj-5XO" secondAttribute="trailing" constant="86" id="X2d-qq-veV"/>
+                            <constraint firstItem="g67-Jj-5XO" firstAttribute="top" secondItem="gp4-mt-WzB" secondAttribute="top" constant="37" id="Yc7-Jp-hW0"/>
+                            <constraint firstItem="gp4-mt-WzB" firstAttribute="bottom" secondItem="g67-Jj-5XO" secondAttribute="bottom" priority="250" constant="669" id="d8Z-R5-UBR"/>
                             <constraint firstAttribute="trailing" secondItem="tcy-Ud-cXu" secondAttribute="trailing" id="eef-JU-NKO"/>
                             <constraint firstItem="tcy-Ud-cXu" firstAttribute="top" secondItem="gp4-mt-WzB" secondAttribute="top" id="kf2-pj-cj4"/>
                             <constraint firstItem="tcy-Ud-cXu" firstAttribute="leading" secondItem="p4Z-WT-cth" secondAttribute="leading" id="ljn-95-gjb"/>
