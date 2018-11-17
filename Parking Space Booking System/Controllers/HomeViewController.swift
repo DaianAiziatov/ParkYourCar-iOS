@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import KeychainAccess
 
 class HomeViewController: UIViewController {
 
@@ -25,9 +26,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
         self.registerTableViewCells()
-        let userDefault = UserDefaults.standard
+        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
         userEmailLabel.text = "User email: \(user.email ?? "")"
-        lastLoginLabel.text = "Last login: \(userDefault.string(forKey: "logDate") ?? "")"
+        lastLoginLabel.text = "Last login: \(keychain["logDate"] ?? "")"
         loadNumberOfParkingTickets(completion: {
             self.ticketsTotlaLabel.text = "Tickets total: \(self.numberOftickets)"
         })

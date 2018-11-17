@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import KeychainAccess
 
 class LoginViewController: UIViewController {
     
@@ -41,12 +42,11 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         userNameTextField.tag = 0
         passwordTextField.tag = 1
-//        let userDefault = UserDefaults.standard
-//        if userDefault.string(forKey: "userName") != nil {
-//            userNameTextField.text = userDefault.string(forKey: "userName")
-//            passwordTextField.text = userDefault.string(forKey: "password")
-//            goToMainScreen()
-//        }
+        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+        if keychain["username"] != nil {
+            userNameTextField.text = keychain["username"]
+            passwordTextField.text = keychain["password"]
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +58,15 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButton(_ sender: UIButton) {
-        login()
+        if areFieldsFilled() {
+            login()
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please fill login information", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func signUp(_ sender: Any) {
@@ -71,29 +79,29 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: userNameTextField.text!, password: passwordTextField.text!) {
             (user, error) in
             if error == nil {
-                let userDefault = UserDefaults.standard
-                userDefault.setValue(self.logDate(), forKey: "logDate")
+                let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+                if self.rememberMeSwitch.isOn {
+                    keychain["username"] = self.userNameTextField.text!
+                    keychain["password"] = self.passwordTextField.text!
+                } else {
+                    let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+                    keychain["username"] = nil
+                    keychain["password"] = nil
+                }
+                keychain["logdate"] = self.logDate()
                 self.goToMainScreen()
             }
             else{
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
             }
         }
     }
     
-    private func isUserValid() -> Bool {
-        var isValid = false;
-        for user in User.allUsers {
-            if userNameTextField.text == user.email && passwordTextField.text == user.password {
-                isValid = true
-                break
-            }
-        }
-        return isValid
+    private func areFieldsFilled() -> Bool {
+        return userNameTextField.hasText && passwordTextField.hasText
     }
     
     private func logDate() -> String {

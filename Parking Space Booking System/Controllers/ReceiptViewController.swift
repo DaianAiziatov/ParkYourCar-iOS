@@ -41,7 +41,7 @@ class ReceiptViewController: UIViewController {
         colorLabel.text = ticket.carColor
         plateLabel.text = ticket.carPlate
         paymentLabel.text = ticket.paymentMethod.description
-        totalLabel.text = "Totla: \(ticket.paymentAmount)"
+        totalLabel.text = "Totla: $\(ticket.paymentAmount)"
         logoImageView.image = UIImage(named: "\(ticket.carManufacturer).png")
     }
     
