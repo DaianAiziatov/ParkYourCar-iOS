@@ -10,6 +10,10 @@
 		2B0A5BC5219C93D900905411 /* AnimatedSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */; };
 		2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0A5BC7219C95FF00905411 /* login screen logo.png */; };
 		2B2527B4219F4C5700E7126D /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527B3219F4C5700E7126D /* ReceiptViewController.swift */; };
+		2B2527B6219F959600E7126D /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B2527B5219F959600E7126D /* invoice.html */; };
+		2B2527B8219F962900E7126D /* PDFComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527B7219F962900E7126D /* PDFComposer.swift */; };
+		2B2527BC219FA1BB00E7126D /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */; };
+		2B2527BE219FD71800E7126D /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2527BD219FD71700E7126D /* share.png */; };
 		2B478895219D272A000D63EF /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888D219D2727000D63EF /* home.png */; };
 		2B478896219D272A000D63EF /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888E219D2728000D63EF /* add.png */; };
 		2B478897219D272A000D63EF /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888F219D2728000D63EF /* logout.png */; };
@@ -18,7 +22,6 @@
 		2B47889A219D272A000D63EF /* report.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478892219D2728000D63EF /* report.png */; };
 		2B47889B219D272A000D63EF /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478893219D2729000D63EF /* location.png */; };
 		2B47889C219D272A000D63EF /* instruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B478894219D2729000D63EF /* instruction.png */; };
-		2B4E0BB3219E562100A327C7 /* zigzag.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B4E0BB2219E562100A327C7 /* zigzag.png */; };
 		2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5790482199BDB300C6D4BF /* HomeViewController.swift */; };
 		2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */; };
 		2B57904F2199FB4100C6D4BF /* TickeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */; };
@@ -81,6 +84,10 @@
 		2B0A5BC4219C93D800905411 /* AnimatedSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedSwitch.swift; sourceTree = "<group>"; };
 		2B0A5BC7219C95FF00905411 /* login screen logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login screen logo.png"; sourceTree = "<group>"; };
 		2B2527B3219F4C5700E7126D /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
+		2B2527B5219F959600E7126D /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
+		2B2527B7219F962900E7126D /* PDFComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFComposer.swift; sourceTree = "<group>"; };
+		2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
+		2B2527BD219FD71700E7126D /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B47888D219D2727000D63EF /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		2B47888E219D2728000D63EF /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		2B47888F219D2728000D63EF /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
@@ -89,7 +96,6 @@
 		2B478892219D2728000D63EF /* report.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = report.png; sourceTree = "<group>"; };
 		2B478893219D2729000D63EF /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		2B478894219D2729000D63EF /* instruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instruction.png; sourceTree = "<group>"; };
-		2B4E0BB2219E562100A327C7 /* zigzag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zigzag.png; sourceTree = "<group>"; };
 		2B5790482199BDB300C6D4BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		2B57904D2199FB4100C6D4BF /* TickeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickeTableViewCell.swift; sourceTree = "<group>"; };
@@ -224,7 +230,7 @@
 		2BA6D66F2191136B00B9B4C2 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				2B4E0BB2219E562100A327C7 /* zigzag.png */,
+				2B2527BD219FD71700E7126D /* share.png */,
 				2B0A5BC6219C95E300905411 /* logos */,
 				2B579052219A03B600C6D4BF /* payment */,
 				2B579051219A03A800C6D4BF /* cars */,
@@ -270,6 +276,8 @@
 				2BA6D67B2191483100B9B4C2 /* Car.swift */,
 				2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */,
 				2B8401672198CB5000542305 /* ParkingTicket.swift */,
+				2B2527B7219F962900E7126D /* PDFComposer.swift */,
+				2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,6 +317,7 @@
 				3A0D7575218BCD7600960BC8 /* Info.plist */,
 				2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */,
 				2B57909D219A554C00C6D4BF /* instruction.html */,
+				2B2527B5219F959600E7126D /* invoice.html */,
 			);
 			path = "Parking Space Booking System";
 			sourceTree = "<group>";
@@ -446,13 +455,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B57905A219A05C400C6D4BF /* Visa Credit.png in Resources */,
+				2B2527BE219FD71800E7126D /* share.png in Resources */,
 				2B478899219D272A000D63EF /* update.png in Resources */,
-				2B4E0BB3219E562100A327C7 /* zigzag.png in Resources */,
 				2B47889C219D272A000D63EF /* instruction.png in Resources */,
 				2BD802EC21938018003445ED /* BMW.png in Resources */,
 				2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */,
 				2B478896219D272A000D63EF /* add.png in Resources */,
 				3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */,
+				2B2527B6219F959600E7126D /* invoice.html in Resources */,
 				2B5790502199FB4100C6D4BF /* TickeTableViewCell.xib in Resources */,
 				2B57909E219A554C00C6D4BF /* instruction.html in Resources */,
 				2BEC431C219CFA06000D2BC9 /* CarTableViewCell.xib in Resources */,
@@ -566,8 +576,10 @@
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
 				2B5790A0219A556E00C6D4BF /* InstructionViewController.swift in Sources */,
+				2B2527BC219FA1BB00E7126D /* CustomPrintPageRenderer.swift in Sources */,
 				2BEC431B219CFA06000D2BC9 /* CarTableViewCell.swift in Sources */,
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
+				2B2527B8219F962900E7126D /* PDFComposer.swift in Sources */,
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
 				2B2527B4219F4C5700E7126D /* ReceiptViewController.swift in Sources */,

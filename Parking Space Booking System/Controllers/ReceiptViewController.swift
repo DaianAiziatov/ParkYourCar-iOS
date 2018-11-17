@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PDFKit
 
 class ReceiptViewController: UIViewController {
 
@@ -26,8 +27,10 @@ class ReceiptViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        let backToMenuButton = UIBarButtonItem(title: "Back to menu", style: .plain, target: self, action: #selector(self.backToMenu(sender:)))
+        let backToMenuButton = UIBarButtonItem(title: "Back to menu", style: .plain, target: self, action: #selector(self.back(sender:)))
         self.navigationItem.leftBarButtonItem = backToMenuButton
+        let actionButton = UIBarButtonItem.init(barButtonSystemItem: .action, target: self, action: #selector(self.pdf(sender:)))
+        self.navigationItem.rightBarButtonItem = actionButton
         if fromReport {
             self.navigationItem.leftBarButtonItem?.title = "Back to report"
         }
@@ -42,7 +45,17 @@ class ReceiptViewController: UIViewController {
         logoImageView.image = UIImage(named: "\(ticket.carManufacturer).png")
     }
     
-    @objc func backToMenu(sender: UIBarButtonItem) {
+    @objc func pdf(sender: UIBarButtonItem) {
+        if let ticketHTML = PDFComposer.renderInvoice(for: ticket!) {
+            if let document = PDFDocument(url: PDFComposer.exportHTMLContentToPDFAndGetPath(HTMLContent: ticketHTML)) {
+                guard let data = document.dataRepresentation() else { return }
+                let activityController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+                self.present(activityController, animated: true, completion: nil)
+            }
+        }
+    }
+
+    @objc func back(sender: UIBarButtonItem) {
         if !fromReport {
             for vc in (self.navigationController?.viewControllers ?? []) {
                 if vc is MainMenuTableViewController {
@@ -104,3 +117,4 @@ class ReceiptViewController: UIViewController {
     }
 
 }
+
