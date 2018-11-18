@@ -20,6 +20,7 @@ class AddTicketViewController: UIViewController {
     private let user = Auth.auth().currentUser!
     private var manufacturersDictionary = [String: Manufacturer]()
     private let userRef = Database.database().reference()
+    private let storageRef = Storage.storage().reference()
     
     private let theTimingPicker = UIPickerView()
     private let thePaymentPicker = UIPickerView()
@@ -150,6 +151,27 @@ class AddTicketViewController: UIViewController {
             completion()
         }) { (error) in
             print(error.localizedDescription)
+        }
+    }
+    
+    private func loadCarLogo(manufacturer: String, cellImageView: UIImageView, completion: @escaping () -> () ) {
+        let logoRef = storageRef.child("cars_logos/\(manufacturer).png")
+        logoRef.downloadURL { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                URLSession.shared.dataTask(with: url!) { data, response, error in
+                    guard
+                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                        let data = data, error == nil,
+                        let image = UIImage(data: data)
+                        else { return }
+                    DispatchQueue.main.async() {
+                        cellImageView.image = image
+                    }
+                    }.resume()
+            }
         }
     }
     
@@ -286,7 +308,9 @@ extension AddTicketViewController: UITableViewDataSource {
             let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
             cell.titleLabel?.text = title
             cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
-            cell.logoImageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
+            loadCarLogo(manufacturer: cars![indexPath.row].manufacturer, cellImageView: cell.logoImageView!, completion: {
+                print("LOAD")
+                })
             cell.selectionStyle = .blue
             return cell
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import PDFKit
 
 class ReceiptViewController: UIViewController {
@@ -23,6 +24,7 @@ class ReceiptViewController: UIViewController {
     
     var ticket: ParkingTicket!
     var fromReport = false
+    private let storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +44,9 @@ class ReceiptViewController: UIViewController {
         plateLabel.text = ticket.carPlate
         paymentLabel.text = ticket.paymentMethod.description
         totalLabel.text = "Totla: $\(ticket.paymentAmount)"
-        logoImageView.image = UIImage(named: "\(ticket.carManufacturer).png")
+        loadCarLogo {
+            print("load")
+        }
     }
     
     @objc func pdf(sender: UIBarButtonItem) {
@@ -67,6 +71,27 @@ class ReceiptViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
+    }
+    
+    private func loadCarLogo(completion: @escaping () -> () ) {
+        let logoRef = storageRef.child("cars_logos/\(ticket.carManufacturer ).png")
+        logoRef.downloadURL { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                URLSession.shared.dataTask(with: url!) { data, response, error in
+                    guard
+                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                        let data = data, error == nil,
+                        let image = UIImage(data: data)
+                        else { return }
+                    DispatchQueue.main.async() {
+                        self.logoImageView.image = image
+                    }
+                    }.resume()
+            }
+        }
     }
     
 

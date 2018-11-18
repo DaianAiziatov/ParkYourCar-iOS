@@ -11,9 +11,11 @@ import Firebase
 
 class ReportTableViewController: UITableViewController {
     
+    
     private var tickets = [ParkingTicket]()
     private var fileteredTicket = [ParkingTicket]()
     private let searchController = UISearchController(searchResultsController: nil)
+    private let storageRef = Storage.storage().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,27 @@ class ReportTableViewController: UITableViewController {
         }
     }
     
+    private func loadCarLogo(manufacturer: String, cellImageView: UIImageView, completion: @escaping () -> () ) {
+        let logoRef = storageRef.child("cars_logos/\(manufacturer).png")
+        logoRef.downloadURL { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                URLSession.shared.dataTask(with: url!) { data, response, error in
+                    guard
+                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                        let data = data, error == nil,
+                        let image = UIImage(data: data)
+                        else { return }
+                    DispatchQueue.main.async() {
+                        cellImageView.image = image
+                    }
+                    }.resume()
+            }
+        }
+    }
+    
     private func registerTableViewCells() {
         let ticketCell = UINib(nibName: "TickeTableViewCell", bundle: nil)
         self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
@@ -83,7 +106,7 @@ class ReportTableViewController: UITableViewController {
                 cell.modelLabel.text = fileteredTicket[indexPath.row].carModel
                 cell.colorLabel.text = fileteredTicket[indexPath.row].carColor
                 cell.plateLabel.text = fileteredTicket[indexPath.row].carPlate
-                cell.manufacturerLogo.image = UIImage(named: "\(fileteredTicket[indexPath.row].carManufacturer).png")
+                loadCarLogo(manufacturer: fileteredTicket[indexPath.row].carManufacturer, cellImageView: cell.manufacturerLogo, completion: {print("LOAD")})
                 cell.slotLabel.text = fileteredTicket[indexPath.row].slotNumber
                 cell.spotLabel.text = fileteredTicket[indexPath.row].spotNumber
                 cell.timingLabel.text = fileteredTicket[indexPath.row].timing.description
@@ -100,7 +123,7 @@ class ReportTableViewController: UITableViewController {
             cell.modelLabel.text = tickets[indexPath.row].carModel
             cell.colorLabel.text = tickets[indexPath.row].carColor
             cell.plateLabel.text = tickets[indexPath.row].carPlate
-            cell.manufacturerLogo.image = UIImage(named: "\(tickets[indexPath.row].carManufacturer).png")
+            loadCarLogo(manufacturer: tickets[indexPath.row].carManufacturer, cellImageView: cell.manufacturerLogo, completion: {print("LOAD")})
             cell.slotLabel.text = tickets[indexPath.row].slotNumber
             cell.spotLabel.text = tickets[indexPath.row].spotNumber
             cell.timingLabel.text = tickets[indexPath.row].timing.description
@@ -121,8 +144,8 @@ class ReportTableViewController: UITableViewController {
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         whiteRoundedView.layer.masksToBounds = false
         whiteRoundedView.layer.cornerRadius = 3.0
-        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        whiteRoundedView.layer.shadowOpacity = 0.5
+//        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+//        whiteRoundedView.layer.shadowOpacity = 0.5
         whiteRoundedView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)

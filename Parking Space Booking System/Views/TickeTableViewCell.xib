@@ -148,6 +148,7 @@
                     <constraint firstAttribute="trailing" secondItem="N0X-QL-Cgg" secondAttribute="trailing" constant="20" id="ufd-1f-27k"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="colorLabel" destination="R5H-gb-IB8" id="h4t-2x-8Mr"/>
