@@ -1064,9 +1064,9 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VOL-jV-RVS">
                                 <rect key="frame" x="172" y="511" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="1" green="0.1884786749" blue="0.1292175961" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="color" red="0.88945510790000004" green="0.23236771880000001" blue="0.19507114680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zx6-4g-x6q">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zx6-4g-x6q">
                                 <rect key="frame" x="67" y="264" width="240" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1638,9 +1638,9 @@
         <image name="instruction.png" width="50" height="50"/>
         <image name="location.png" width="50" height="50"/>
         <image name="login screen logo.png" width="1200" height="1200"/>
+        <image name="logo.png" width="950" height="203"/>
         <image name="logout.png" width="50" height="50"/>
         <image name="report.png" width="50" height="50"/>
-        <image name="splash_logo.png" width="423" height="60"/>
         <image name="update.png" width="50" height="50"/>
     </resources>
 </document>

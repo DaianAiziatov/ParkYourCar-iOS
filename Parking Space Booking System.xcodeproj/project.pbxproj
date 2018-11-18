@@ -13,6 +13,7 @@
 		2B2527B6219F959600E7126D /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B2527B5219F959600E7126D /* invoice.html */; };
 		2B2527B8219F962900E7126D /* PDFComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527B7219F962900E7126D /* PDFComposer.swift */; };
 		2B2527BC219FA1BB00E7126D /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */; };
+		2B2527C321A2299E00E7126D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2527C221A2299D00E7126D /* logo.png */; };
 		2B478895219D272A000D63EF /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888D219D2727000D63EF /* home.png */; };
 		2B478896219D272A000D63EF /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888E219D2728000D63EF /* add.png */; };
 		2B478897219D272A000D63EF /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888F219D2728000D63EF /* logout.png */; };
@@ -38,7 +39,6 @@
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
 		2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */; };
-		2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BA6D6702191137800B9B4C2 /* splash_logo.png */; };
 		2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */; };
 		2BA6D6782191460F00B9B4C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D6772191460F00B9B4C2 /* User.swift */; };
 		2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67B2191483100B9B4C2 /* Car.swift */; };
@@ -83,6 +83,7 @@
 		2B2527B5219F959600E7126D /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
 		2B2527B7219F962900E7126D /* PDFComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFComposer.swift; sourceTree = "<group>"; };
 		2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
+		2B2527C221A2299D00E7126D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2B47888D219D2727000D63EF /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		2B47888E219D2728000D63EF /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		2B47888F219D2728000D63EF /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
 		2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		2BA6D6702191137800B9B4C2 /* splash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_logo.png; sourceTree = "<group>"; };
 		2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewController.swift; sourceTree = "<group>"; };
 		2BA6D6772191460F00B9B4C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2BA6D67B2191483100B9B4C2 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
@@ -173,6 +173,7 @@
 		2B0A5BC6219C95E300905411 /* logos */ = {
 			isa = PBXGroup;
 			children = (
+				2B2527C221A2299D00E7126D /* logo.png */,
 				2B47888E219D2728000D63EF /* add.png */,
 				2B478890219D2728000D63EF /* help.png */,
 				2B47888D219D2727000D63EF /* home.png */,
@@ -182,7 +183,6 @@
 				2B478892219D2728000D63EF /* report.png */,
 				2B478891219D2728000D63EF /* update.png */,
 				2B0A5BC7219C95FF00905411 /* login screen logo.png */,
-				2BA6D6702191137800B9B4C2 /* splash_logo.png */,
 			);
 			path = logos;
 			sourceTree = "<group>";
@@ -453,8 +453,8 @@
 				2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */,
 				2B47889B219D272A000D63EF /* location.png in Resources */,
 				2B47889A219D272A000D63EF /* report.png in Resources */,
-				2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */,
 				2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */,
+				2B2527C321A2299E00E7126D /* logo.png in Resources */,
 				3A0D7571218BCD7600960BC8 /* Assets.xcassets in Resources */,
 				2B478898219D272A000D63EF /* help.png in Resources */,
 				3A0D756F218BCD7400960BC8 /* Main.storyboard in Resources */,
