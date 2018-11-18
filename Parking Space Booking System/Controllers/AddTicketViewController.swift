@@ -234,9 +234,9 @@ extension AddTicketViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 1 {
-            return ParkingTicket.Timing.allCases.count
+            return ParkingTicket.Timing.allCases.count + 1
         } else {
-            return ParkingTicket.PaymentMethod.allCases.count
+            return ParkingTicket.PaymentMethod.allCases.count + 1
         }
         
     }
@@ -247,11 +247,11 @@ extension AddTicketViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 && row > 0 {
-            timingTextField.text = ParkingTicket.Timing(rawValue: row)?.description
+            timingTextField.text = ParkingTicket.Timing(rawValue: row - 1)?.description
             getTotal()
             totalLabel.text = "Total: $\(total ?? 0.0)"
         } else if pickerView.tag == 2 && row > 0 {
-            paymentMethodTextField.text = ParkingTicket.PaymentMethod(rawValue: row)?.description
+            paymentMethodTextField.text = ParkingTicket.PaymentMethod(rawValue: row - 1)?.description
         }
         
     }
@@ -261,13 +261,13 @@ extension AddTicketViewController: UIPickerViewDataSource {
             if row == 0 {
                 return "Timing"
             } else {
-                return ParkingTicket.Timing(rawValue: row)?.description
+                return ParkingTicket.Timing(rawValue: row - 1)?.description
             }
         } else {
             if row == 0 {
                 return "Payment"
             } else {
-                return ParkingTicket.PaymentMethod(rawValue: row)?.description
+                return ParkingTicket.PaymentMethod(rawValue: row - 1)?.description
             }
         }
         

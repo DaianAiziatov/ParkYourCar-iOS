@@ -17,7 +17,7 @@ class AddCarViewController: UIViewController {
     private let storageRef = Storage.storage().reference()
     private var logoImage: UIImage?
     
-    private var colors = ["Color"]
+    private var colors = [String]()
     private let theCarPicker = UIPickerView()
 
     @IBOutlet weak var manufacturerTextField: UITextField!
@@ -166,11 +166,16 @@ extension AddCarViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
-            return manufacturersDictionary.count
+            return manufacturersDictionary.count + 1
         } else if component == 1 {
-            return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models.count
+            if theCarPicker.selectedRow(inComponent: 0) > 0 {
+                return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0) - 1]]!.models.count
+            } else {
+                return manufacturersDictionary[Array(manufacturersDictionary.keys)[0]]!.models.count
+            }
+            
         } else {
-            return colors.count
+            return colors.count + 1
         }
     }
     
@@ -181,28 +186,36 @@ extension AddCarViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 && row > 0{
             theCarPicker.reloadComponent(1)
-            manufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
+            manufacturerTextField.text = Array(manufacturersDictionary.keys)[row - 1]
             loadCarLogo {
                 print("LOAD IMAGE")
             }
         } else if component == 1 && row > 0{
-            modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
+            modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
         } else if component == 2 && row > 0 {
-            colorTextField.text = colors[row]
+            colorTextField.text = colors[row - 1]
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             if row == 0 {
-                return "Company"
+                return "Brand"
             } else {
-                return Array(manufacturersDictionary.keys)[row]
+                return Array(manufacturersDictionary.keys)[row - 1]
             }
         } else if component == 1 {
-            return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
+            if row != 0 && theCarPicker.selectedRow(inComponent: 0) > 0 {
+                return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
+            } else {
+                return manufacturersDictionary[Array(manufacturersDictionary.keys)[0]]!.models[row]
+            }
         } else {
-            return colors[row]
+            if row == 0 {
+                return "Colors"
+            } else {
+                return colors[row - 1]
+            }
         }
     }
 }
