@@ -18,18 +18,18 @@ class ReportTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Report"
+        // register custom cell for table and table view preparation
         self.registerTableViewCells()
         tableView.delegate = self
         tableView.dataSource = self
+        // load list from firebase
         loadParkingTickets(completion: {self.tableView.reloadData()})
-//        let searchButton = UIBarButtonItem.init(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
-//        self.navigationItem.rightBarButtonItem = searchButton
-        searchController.searchResultsUpdater = self
+        //search controller preparation
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search by car plate"
+        searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
-        //self.navigationController!.navigationItem.searchController = searchController
         tableView.tableHeaderView = searchController.searchBar
     }
 
@@ -58,26 +58,10 @@ class ReportTableViewController: UITableViewController {
         }
     }
     
-    @objc func searchTapped(_ sender: UIBarButtonItem) {
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search by car plate"
-        present(searchController, animated: true, completion: nil)
-    }
-    
     private func registerTableViewCells() {
         let ticketCell = UINib(nibName: "TickeTableViewCell", bundle: nil)
         self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
     }
-    
-    func filterContentForSearchText(_ searchText: String, scope: String = "All")  {
-        fileteredTicket = tickets.filter({ (item) -> Bool in
-            let value: NSString = item.carPlate as NSString
-            return (value.range(of: searchText, options: .caseInsensitive).location != NSNotFound)
-        })
-        tableView.reloadData()
-    }
-    
     
     // MARK: - Table view data source
 
@@ -158,12 +142,12 @@ class ReportTableViewController: UITableViewController {
             receiptVC.ticket = tickets[indexPath.row]
         }
         receiptVC.fromReport = true
-        //tableView.reloadData()
         self.navigationController?.pushViewController(receiptVC, animated: true)
     }
 
 }
 
+// MARK: - Searchbar delegate
 extension ReportTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -175,11 +159,6 @@ extension ReportTableViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
-//        tableView.reloadData()
-//    }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.text = ""
         tableView.reloadData()
@@ -187,11 +166,4 @@ extension ReportTableViewController: UISearchBarDelegate {
     
 }
 
-extension ReportTableViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    
-}
+
