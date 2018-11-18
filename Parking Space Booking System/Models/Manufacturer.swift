@@ -10,23 +10,12 @@ import Foundation
 
 struct Manufacturer {
     
-    var manufacturerId: Int
-    var name: String
-    var logo: String
-    var models = [String]()
+    private(set) var name: String
+    private(set) var models = [String]()
     
     init(name: String, models: [String]) {
-        self.manufacturerId = Manufacturer.getUniqIdentifier()
         self.name = name
-        self.logo = "\(name).png"
         self.models = models
-    }
-    
-    private static var identifierFactory = 0;
-    
-    private static func getUniqIdentifier() -> Int {
-        identifierFactory += 1
-        return identifierFactory
     }
     
     static func loadManufacturers() -> [String: Manufacturer]{

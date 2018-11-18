@@ -13,7 +13,6 @@
 		2B2527B6219F959600E7126D /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B2527B5219F959600E7126D /* invoice.html */; };
 		2B2527B8219F962900E7126D /* PDFComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527B7219F962900E7126D /* PDFComposer.swift */; };
 		2B2527BC219FA1BB00E7126D /* CustomPrintPageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */; };
-		2B2527BE219FD71800E7126D /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B2527BD219FD71700E7126D /* share.png */; };
 		2B478895219D272A000D63EF /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888D219D2727000D63EF /* home.png */; };
 		2B478896219D272A000D63EF /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888E219D2728000D63EF /* add.png */; };
 		2B478897219D272A000D63EF /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B47888F219D2728000D63EF /* logout.png */; };
@@ -45,9 +44,6 @@
 		2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67B2191483100B9B4C2 /* Car.swift */; };
 		2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */; };
 		2BA6D685219157CC00B9B4C2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */; };
-		2BD802EA21938018003445ED /* Renault.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E721938017003445ED /* Renault.png */; };
-		2BD802EB21938018003445ED /* Mazda.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E821938018003445ED /* Mazda.png */; };
-		2BD802EC21938018003445ED /* BMW.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BD802E921938018003445ED /* BMW.png */; };
 		2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */; };
 		2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */; };
 		2BEC431B219CFA06000D2BC9 /* CarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */; };
@@ -87,7 +83,6 @@
 		2B2527B5219F959600E7126D /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
 		2B2527B7219F962900E7126D /* PDFComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFComposer.swift; sourceTree = "<group>"; };
 		2B2527BB219FA1BB00E7126D /* CustomPrintPageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPrintPageRenderer.swift; sourceTree = "<group>"; };
-		2B2527BD219FD71700E7126D /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		2B47888D219D2727000D63EF /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		2B47888E219D2728000D63EF /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		2B47888F219D2728000D63EF /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
@@ -119,9 +114,6 @@
 		2BA6D67B2191483100B9B4C2 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manufacturer.swift; sourceTree = "<group>"; };
 		2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		2BD802E721938017003445ED /* Renault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Renault.png; sourceTree = "<group>"; };
-		2BD802E821938018003445ED /* Mazda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mazda.png; sourceTree = "<group>"; };
-		2BD802E921938018003445ED /* BMW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BMW.png; sourceTree = "<group>"; };
 		2BD8030F2194B8C3003445ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		2BEC4319219CFA06000D2BC9 /* CarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,16 +196,6 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
-		2B579051219A03A800C6D4BF /* cars */ = {
-			isa = PBXGroup;
-			children = (
-				2BD802E921938018003445ED /* BMW.png */,
-				2BD802E821938018003445ED /* Mazda.png */,
-				2BD802E721938017003445ED /* Renault.png */,
-			);
-			path = cars;
-			sourceTree = "<group>";
-		};
 		2B579052219A03B600C6D4BF /* payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,10 +212,8 @@
 		2BA6D66F2191136B00B9B4C2 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				2B2527BD219FD71700E7126D /* share.png */,
 				2B0A5BC6219C95E300905411 /* logos */,
 				2B579052219A03B600C6D4BF /* payment */,
-				2B579051219A03A800C6D4BF /* cars */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -455,10 +435,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B57905A219A05C400C6D4BF /* Visa Credit.png in Resources */,
-				2B2527BE219FD71800E7126D /* share.png in Resources */,
 				2B478899219D272A000D63EF /* update.png in Resources */,
 				2B47889C219D272A000D63EF /* instruction.png in Resources */,
-				2BD802EC21938018003445ED /* BMW.png in Resources */,
 				2BD803102194B8C3003445ED /* GoogleService-Info.plist in Resources */,
 				2B478896219D272A000D63EF /* add.png in Resources */,
 				3A0D7574218BCD7600960BC8 /* LaunchScreen.storyboard in Resources */,
@@ -470,14 +448,12 @@
 				2B57905C219A05C400C6D4BF /* Ali Pay.png in Resources */,
 				2B57905E219A20B600C6D4BF /* Mastercard.png in Resources */,
 				2B478897219D272A000D63EF /* logout.png in Resources */,
-				2BD802EB21938018003445ED /* Mazda.png in Resources */,
 				2B579059219A05C400C6D4BF /* PayPal.png in Resources */,
 				2B478895219D272A000D63EF /* home.png in Resources */,
 				2B0A5BC8219C95FF00905411 /* login screen logo.png in Resources */,
 				2B47889B219D272A000D63EF /* location.png in Resources */,
 				2B47889A219D272A000D63EF /* report.png in Resources */,
 				2BA6D6712191137800B9B4C2 /* splash_logo.png in Resources */,
-				2BD802EA21938018003445ED /* Renault.png in Resources */,
 				2B57905B219A05C400C6D4BF /* WeChat Pay.png in Resources */,
 				3A0D7571218BCD7600960BC8 /* Assets.xcassets in Resources */,
 				2B478898219D272A000D63EF /* help.png in Resources */,

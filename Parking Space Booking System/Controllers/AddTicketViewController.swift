@@ -246,11 +246,11 @@ extension AddTicketViewController: UIPickerViewDelegate {
 extension AddTicketViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 1 {
+        if pickerView.tag == 1 && row > 0 {
             timingTextField.text = ParkingTicket.Timing(rawValue: row)?.description
             getTotal()
             totalLabel.text = "Total: $\(total ?? 0.0)"
-        } else {
+        } else if pickerView.tag == 2 && row > 0 {
             paymentMethodTextField.text = ParkingTicket.PaymentMethod(rawValue: row)?.description
         }
         
@@ -258,9 +258,17 @@ extension AddTicketViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {
-            return ParkingTicket.Timing(rawValue: row)?.description
+            if row == 0 {
+                return "Timing"
+            } else {
+                return ParkingTicket.Timing(rawValue: row)?.description
+            }
         } else {
-            return ParkingTicket.PaymentMethod(rawValue: row)?.description
+            if row == 0 {
+                return "Payment"
+            } else {
+                return ParkingTicket.PaymentMethod(rawValue: row)?.description
+            }
         }
         
     }

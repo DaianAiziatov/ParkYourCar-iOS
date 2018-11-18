@@ -17,7 +17,7 @@ class AddCarViewController: UIViewController {
     private let storageRef = Storage.storage().reference()
     private var logoImage: UIImage?
     
-    private var colors = [String]()
+    private var colors = ["Color"]
     private let theCarPicker = UIPickerView()
 
     @IBOutlet weak var manufacturerTextField: UITextField!
@@ -31,7 +31,6 @@ class AddCarViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Add Car"
         userRef = Database.database().reference()
-        
         //manufacturersDictionary = Manufacturer.loadManufacturers()
         manufacturerTextField.inputView = theCarPicker
         theCarPicker.delegate = self
@@ -60,7 +59,14 @@ class AddCarViewController: UIViewController {
     }
     
     @IBAction func addCarButton(_ sender: Any) {
-        addCar()
+        if areAllFieldsFilled() {
+            addCar()
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Please fill all fields", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true)
+        }
     }
     
     private func addCar() {
@@ -130,7 +136,7 @@ class AddCarViewController: UIViewController {
                 let value = rest.value as? NSDictionary
                 let company = value?["name"] as? String
                 let models = (value?["models"] as? String)?.split(separator: ",")
-                var modelsStringArray = [String]()
+                var modelsStringArray = ["Models"]
                 for model in models! {
                     modelsStringArray.append(String(model))
                 }
@@ -146,8 +152,8 @@ class AddCarViewController: UIViewController {
         textField.becomeFirstResponder()
     }
     
-    private func isAllFieldsFilled() -> Bool {
-        return modelTextField.hasText && plateNumberTextField.hasText && manufacturerTextField.hasText
+    private func areAllFieldsFilled() -> Bool {
+        return modelTextField.hasText && plateNumberTextField.hasText && manufacturerTextField.hasText && colorTextField.hasText
     }
 
 }
@@ -173,26 +179,26 @@ extension AddCarViewController: UIPickerViewDelegate {
 extension AddCarViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var rowInModels = 0
-        if component == 0 {
+        if component == 0 && row > 0{
             theCarPicker.reloadComponent(1)
             manufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
-            modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[rowInModels]
-            //logoImageView.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
             loadCarLogo {
                 print("LOAD IMAGE")
             }
-        } else if component == 1 {
-            rowInModels = row
+        } else if component == 1 && row > 0{
             modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
-        } else {
+        } else if component == 2 && row > 0 {
             colorTextField.text = colors[row]
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return Array(manufacturersDictionary.keys)[row]
+            if row == 0 {
+                return "Company"
+            } else {
+                return Array(manufacturersDictionary.keys)[row]
+            }
         } else if component == 1 {
             return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
         } else {
