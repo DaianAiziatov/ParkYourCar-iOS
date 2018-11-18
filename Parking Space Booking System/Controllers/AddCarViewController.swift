@@ -14,6 +14,8 @@ class AddCarViewController: UIViewController {
     private var manufacturersDictionary = [String: Manufacturer]()
     private var userRef: DatabaseReference?
     private let user = Auth.auth().currentUser!
+    private let storageRef = Storage.storage().reference()
+    private var logoImage: UIImage?
     
     private var colors = [String]()
     private let theCarPicker = UIPickerView()
@@ -52,6 +54,7 @@ class AddCarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCarsAndColors {
+            //self.manufacturersDictionary = self.manufacturersDictionary.sorted(by: {$0.key < $1.key})
             self.theCarPicker.reloadAllComponents()
         }
     }
@@ -86,6 +89,28 @@ class AddCarViewController: UIViewController {
     @objc private func doneTapped() {
         view.endEditing(true)
     }
+    
+    private func loadCarLogo(completion: @escaping () -> () ) {
+        let logoRef = storageRef.child("cars_logos/\(manufacturerTextField.text ?? "Citroen.png").png")
+        logoRef.downloadURL { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                URLSession.shared.dataTask(with: url!) { data, response, error in
+                    guard
+                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                        let data = data, error == nil,
+                        let image = UIImage(data: data)
+                        else { return }
+                    DispatchQueue.main.async() {
+                        self.logoImageView.image = image
+                    }
+                    }.resume()
+            }
+        }
+    }
+    
     
     private func loadCarsAndColors(completion: @escaping () -> () ) {
         let userRef = Database.database().reference()
@@ -153,7 +178,10 @@ extension AddCarViewController: UIPickerViewDataSource {
             theCarPicker.reloadComponent(1)
             manufacturerTextField.text = Array(manufacturersDictionary.keys)[row]
             modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[rowInModels]
-            logoImageView.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
+            //logoImageView.image = UIImage.init(named: manufacturersDictionary[Array(manufacturersDictionary.keys)[row]]!.logo)
+            loadCarLogo {
+                print("LOAD IMAGE")
+            }
         } else if component == 1 {
             rowInModels = row
             modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0)]]!.models[row]
