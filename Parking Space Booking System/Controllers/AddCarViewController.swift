@@ -12,6 +12,7 @@ import Firebase
 class AddCarViewController: UIViewController {
     
     private var manufacturersDictionary = [String: Manufacturer]()
+    private var manufacturersNameArray: [String]?
     private var userRef: DatabaseReference?
     private let user = Auth.auth().currentUser!
     private let storageRef = Storage.storage().reference()
@@ -31,6 +32,7 @@ class AddCarViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Add Car"
         userRef = Database.database().reference()
+        
         //manufacturersDictionary = Manufacturer.loadManufacturers()
         manufacturerTextField.inputView = theCarPicker
         theCarPicker.delegate = self
@@ -53,7 +55,7 @@ class AddCarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCarsAndColors {
-            //self.manufacturersDictionary = self.manufacturersDictionary.sorted(by: {$0.key < $1.key})
+            self.manufacturersNameArray = Array(self.manufacturersDictionary.keys).sorted(by: {$0 < $1})
             self.theCarPicker.reloadAllComponents()
         }
     }
@@ -169,9 +171,9 @@ extension AddCarViewController: UIPickerViewDelegate {
             return manufacturersDictionary.count + 1
         } else if component == 1 {
             if theCarPicker.selectedRow(inComponent: 0) > 0 {
-                return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0) - 1]]!.models.count
+                return manufacturersDictionary[manufacturersNameArray![theCarPicker.selectedRow(inComponent: 0) - 1]]!.models.count
             } else {
-                return manufacturersDictionary[Array(manufacturersDictionary.keys)[0]]!.models.count
+                return manufacturersDictionary[manufacturersNameArray![0]]!.models.count
             }
             
         } else {
@@ -186,12 +188,12 @@ extension AddCarViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 && row > 0{
             theCarPicker.reloadComponent(1)
-            manufacturerTextField.text = Array(manufacturersDictionary.keys)[row - 1]
+            manufacturerTextField.text = manufacturersNameArray![row - 1]
             loadCarLogo {
                 print("LOAD IMAGE")
             }
         } else if component == 1 && row > 0{
-            modelTextField.text = manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
+            modelTextField.text = manufacturersDictionary[manufacturersNameArray![theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
         } else if component == 2 && row > 0 {
             colorTextField.text = colors[row - 1]
         }
@@ -202,13 +204,13 @@ extension AddCarViewController: UIPickerViewDataSource {
             if row == 0 {
                 return "Brand"
             } else {
-                return Array(manufacturersDictionary.keys)[row - 1]
+                return manufacturersNameArray![row - 1]
             }
         } else if component == 1 {
             if row != 0 && theCarPicker.selectedRow(inComponent: 0) > 0 {
-                return manufacturersDictionary[Array(manufacturersDictionary.keys)[theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
+                return manufacturersDictionary[manufacturersNameArray![theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
             } else {
-                return manufacturersDictionary[Array(manufacturersDictionary.keys)[0]]!.models[row]
+                return manufacturersDictionary[manufacturersNameArray![0]]!.models[row]
             }
         } else {
             if row == 0 {
