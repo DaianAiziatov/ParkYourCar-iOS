@@ -15,7 +15,7 @@ class AddCarViewController: UIViewController {
     private var userRef: DatabaseReference?
     private let user = Auth.auth().currentUser!
     
-    private var colors = ["red", "green", "blue"]
+    private var colors = [String]()
     private let theCarPicker = UIPickerView()
 
     @IBOutlet weak var manufacturerTextField: UITextField!
@@ -29,7 +29,8 @@ class AddCarViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Add Car"
         userRef = Database.database().reference()
-        manufacturersDictionary = Manufacturer.loadManufacturers()
+        
+        //manufacturersDictionary = Manufacturer.loadManufacturers()
         manufacturerTextField.inputView = theCarPicker
         theCarPicker.delegate = self
         theCarPicker.dataSource = self
@@ -47,6 +48,12 @@ class AddCarViewController: UIViewController {
         colorTextField.inputAccessoryView = toolbar
         plateNumberTextField.inputAccessoryView = toolbar
         plateNumberTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadCarsAndColors {
+            self.theCarPicker.reloadAllComponents()
+        }
     }
     
     @IBAction func addCarButton(_ sender: Any) {
@@ -78,6 +85,36 @@ class AddCarViewController: UIViewController {
     
     @objc private func doneTapped() {
         view.endEditing(true)
+    }
+    
+    private func loadCarsAndColors(completion: @escaping () -> () ) {
+        let userRef = Database.database().reference()
+        //read colors list
+        userRef.child("colors").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let colors = (value?["colors"] as? String)?.split(separator: ",")
+            for color in colors! {
+                self.colors.append(String(color))
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        //read models + company
+        userRef.child("cars_models").observeSingleEvent(of: .value, with: { (snapshot) in
+            for case let rest as DataSnapshot in snapshot.children {
+                let value = rest.value as? NSDictionary
+                let company = value?["name"] as? String
+                let models = (value?["models"] as? String)?.split(separator: ",")
+                var modelsStringArray = [String]()
+                for model in models! {
+                    modelsStringArray.append(String(model))
+                }
+                self.manufacturersDictionary[company!] = Manufacturer(name: company!, models: modelsStringArray)
+            }
+            completion()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     private func jumpTo(textField: UITextField) {

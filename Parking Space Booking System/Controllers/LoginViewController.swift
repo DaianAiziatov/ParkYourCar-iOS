@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Login"
-        rememberMeSwitch.onTintColor = #colorLiteral(red: 1, green: 0.4995798148, blue: 0.5078817425, alpha: 1)
+        rememberMeSwitch.onTintColor = #colorLiteral(red: 0.8894551079, green: 0.2323677188, blue: 0.1950711468, alpha: 1)
         signUpOutlet.layer.cornerRadius = 5
         signUpOutlet.layer.borderWidth = 1
         loginOutlet.layer.cornerRadius = 5

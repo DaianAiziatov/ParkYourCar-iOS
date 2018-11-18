@@ -8,6 +8,7 @@ pod 'SkyFloatingLabelTextField', '~> 3.0'
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|

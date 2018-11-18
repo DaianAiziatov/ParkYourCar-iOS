@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07922D67F413430BD64C63B707BAABC3"
+               BlueprintIdentifier = "5465CE4409BBD2828BAEB6B503572E45"
                BuildableName = "Pods_Parking_Space_Booking_System.framework"
                BlueprintName = "Pods-Parking Space Booking System"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07922D67F413430BD64C63B707BAABC3"
+            BlueprintIdentifier = "5465CE4409BBD2828BAEB6B503572E45"
             BuildableName = "Pods_Parking_Space_Booking_System.framework"
             BlueprintName = "Pods-Parking Space Booking System"
             ReferencedContainer = "container:Pods.xcodeproj">

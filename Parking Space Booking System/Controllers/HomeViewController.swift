@@ -93,7 +93,7 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        toolbar.backgroundColor = #colorLiteral(red: 1, green: 0.4995798148, blue: 0.5078817425, alpha: 1)
+        toolbar.backgroundColor = #colorLiteral(red: 0.8894551079, green: 0.2323677188, blue: 0.1950711468, alpha: 1)
         let text = UIBarButtonItem(title: "Cars:", style: UIBarButtonItem.Style.plain, target: self, action: nil)
         text.setTitleTextAttributes([
             NSAttributedString.Key.font : UIFont.init(name: "DIN Alternate", size: 17.0)!,

@@ -23,7 +23,7 @@
                                 <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="1" green="0.49957981480977365" blue="0.50788174254479057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.88945510790000004" green="0.23236771880000001" blue="0.19507114680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="startRadius">
                                         <real key="value" value="1"/>
@@ -217,7 +217,7 @@
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" indicatorStyle="black" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zxi-B5-eFY">
                                                 <rect key="frame" x="0.0" y="124" width="375" height="610"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="separatorColor" red="1" green="0.49957981480000002" blue="0.50788174249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="separatorColor" red="0.88945510790000004" green="0.23236771880000001" blue="0.19507114680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="carCell" textLabel="Ncf-IF-gxh" detailTextLabel="69X-MI-iTc" style="IBUITableViewCellStyleSubtitle" id="Zn1-qE-6dH">
                                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -335,7 +335,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="separatorColor" red="1" green="0.49957981480000002" blue="0.50788174249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.88945510790000004" green="0.23236771880000001" blue="0.19507114680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -781,6 +781,7 @@
                                     <segment title="Hybrid"/>
                                     <segment title="Satelite"/>
                                 </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="changeMapType:" destination="L84-fa-dHi" eventType="valueChanged" id="mup-aN-X88"/>
                                 </connections>
@@ -1040,7 +1041,7 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="1" green="0.49957981480000002" blue="0.50788174249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.88945510786802029" green="0.23236771877272286" blue="0.1950711467831229" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1434,7 +1435,7 @@
                                                 <rect key="frame" x="273" y="369.66666666666669" width="65" height="32"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                                 <state key="normal" title="Add New">
-                                                    <color key="titleColor" red="1" green="0.49957981480000002" blue="0.50788174249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" red="0.88945510790000004" green="0.23236771880000001" blue="0.19507114680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="addCar:" destination="7GM-iF-Kfv" eventType="touchUpInside" id="tru-Ta-oqd"/>
