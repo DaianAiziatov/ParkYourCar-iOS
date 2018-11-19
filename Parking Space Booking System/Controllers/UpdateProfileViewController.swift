@@ -52,8 +52,7 @@ class UpdateProfileViewController: UIViewController {
         let contactNumber = self.contactNumberTextField.text!
         //car
         let userData = ["firstName": "\(userName)", "lastName": "\(userSurname)", "email": "\(user.email ?? "")", "contactNumber": "\(contactNumber)"] as [String : Any]
-        let childUpdates = ["/users/\(key ?? "")": userData]
-        userRef.updateChildValues(childUpdates) {
+        userRef.child("users/\(key!)").updateChildValues(userData) {
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
                 print("Data could not be saved: \(error).")
