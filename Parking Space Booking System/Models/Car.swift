@@ -16,8 +16,6 @@ struct Car {
     private(set) var plateNumber: String
     private(set) var color: String
     
-    static var manufacturers = Manufacturer.loadManufacturers()
-    
     init(carID: String, manufacturerName: String, modelName: String, plateNumber: String, color: String) {
         self.carId = carID
         self.manufacturer = manufacturerName

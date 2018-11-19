@@ -1061,17 +1061,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VOL-jV-RVS">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VOL-jV-RVS">
                                 <rect key="frame" x="172" y="511" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.88945510790000004" green="0.23236771880000001" blue="0.19507114680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zx6-4g-x6q">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zx6-4g-x6q">
                                 <rect key="frame" x="67" y="264" width="240" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2KZ-0b-HyL"/>
+                                    <constraint firstAttribute="width" constant="240" id="Jjo-ZI-2bh"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VOL-jV-RVS" firstAttribute="leading" secondItem="ykw-iN-Ywf" secondAttribute="leading" constant="172" id="3Db-v5-EQa"/>
+                            <constraint firstItem="VOL-jV-RVS" firstAttribute="top" relation="lessThanOrEqual" secondItem="Zx6-4g-x6q" secondAttribute="bottom" constant="187" id="RMA-1T-slZ"/>
+                            <constraint firstItem="ykw-iN-Ywf" firstAttribute="trailing" secondItem="VOL-jV-RVS" secondAttribute="trailing" constant="166" id="hIq-9x-rWd"/>
+                            <constraint firstItem="ykw-iN-Ywf" firstAttribute="bottom" secondItem="VOL-jV-RVS" secondAttribute="bottom" constant="230" id="ldH-e2-cDu"/>
+                            <constraint firstItem="ykw-iN-Ywf" firstAttribute="trailing" secondItem="Zx6-4g-x6q" secondAttribute="trailing" constant="68" id="rRa-i6-hcJ"/>
+                            <constraint firstItem="Zx6-4g-x6q" firstAttribute="top" secondItem="ykw-iN-Ywf" secondAttribute="top" constant="220" id="tOA-pC-BY3"/>
+                            <constraint firstItem="Zx6-4g-x6q" firstAttribute="leading" secondItem="ykw-iN-Ywf" secondAttribute="leading" constant="67" id="wq6-ia-Vvz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ykw-iN-Ywf"/>
                     </view>
                 </viewController>

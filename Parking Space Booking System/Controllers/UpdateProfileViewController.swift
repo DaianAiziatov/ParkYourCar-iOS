@@ -27,9 +27,9 @@ class UpdateProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Update user profile"
-        screenPreparation()
-        //add info where possible
-        addInfoInTextFields()
+        initialization()
+        
+        
     }
     
     @IBAction func updateButton(_ sender: UIButton) {
@@ -46,7 +46,6 @@ class UpdateProfileViewController: UIViewController {
     
     private func update() {
         let key = userRef.child("users").child(user.uid).key
-        print(key!)
         //user
         let userName = self.userNameTextField.text!
         let userSurname = self.userSurnameTextField.text!
@@ -106,10 +105,12 @@ class UpdateProfileViewController: UIViewController {
         return oldPasswordTextField.hasText && newPasswordTextField.hasText && (newPasswordTextField.text == checkPasswordTextField.text)
     }
     
-    private func screenPreparation() {
+    // MARK: -Initialization
+    private func initialization() {
+        //round buttons; corners
         updateOutlet.layer.cornerRadius = 5
         updateOutlet.layer.borderWidth = 1
-        //done button for pickerview
+        //done button for pickerview and textfields
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -134,6 +135,8 @@ class UpdateProfileViewController: UIViewController {
         checkPasswordTextField.tag = 5
         checkPasswordTextField.delegate = self
         checkPasswordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        //add info where possible
+        addInfoInTextFields()
     }
     
     @objc private func doneTapped() {
@@ -146,8 +149,10 @@ class UpdateProfileViewController: UIViewController {
     
 }
 
+// MARK: -TextField Delegate
 extension UpdateProfileViewController: UITextFieldDelegate {
     
+    //return button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
         case 0: jumpTo(textField: userSurnameTextField)
@@ -161,6 +166,7 @@ extension UpdateProfileViewController: UITextFieldDelegate {
         return true
     }
     
+    //password validation
     @objc func textFieldDidChange(_ textfield: UITextField) {
         if let text = textfield.text {
             if let floatingLabelTextField = textfield as? SkyFloatingLabelTextField {

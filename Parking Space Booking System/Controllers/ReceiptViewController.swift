@@ -22,12 +22,17 @@ class ReceiptViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var logoImageView: UIImageView!
     
+    // Fetch data from previous screen
     var ticket: ParkingTicket!
     var fromReport = false
     private let storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialization()
+    }
+    
+    private func initialization() {
         self.navigationItem.hidesBackButton = true
         let backToMenuButton = UIBarButtonItem(title: "Back to menu", style: .plain, target: self, action: #selector(self.back(sender:)))
         self.navigationItem.leftBarButtonItem = backToMenuButton
@@ -49,6 +54,7 @@ class ReceiptViewController: UIViewController {
         }
     }
     
+    //generate pdf and share function
     @objc func pdf(sender: UIBarButtonItem) {
         if let ticketHTML = PDFComposer.renderInvoice(for: ticket!) {
             if let document = PDFDocument(url: PDFComposer.exportHTMLContentToPDFAndGetPath(HTMLContent: ticketHTML)) {
@@ -59,6 +65,7 @@ class ReceiptViewController: UIViewController {
         }
     }
 
+    //back button depends on from which screen user came
     @objc func back(sender: UIBarButtonItem) {
         if !fromReport {
             for vc in (self.navigationController?.viewControllers ?? []) {
@@ -95,6 +102,7 @@ class ReceiptViewController: UIViewController {
     }
     
 
+    //zigzag corners for ticket view
     private func applyZigZagEffect(givenView: UIView) {
         let width = givenView.frame.size.width
         let height = givenView.frame.size.height

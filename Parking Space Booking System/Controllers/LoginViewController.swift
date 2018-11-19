@@ -14,36 +14,13 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    //TODO: figure out how to proceed with firebase and rememberMe switchs
     @IBOutlet weak var rememberMeSwitch: UISwitch!
     @IBOutlet weak var signUpOutlet: UIButton!
     @IBOutlet weak var loginOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Login"
-        rememberMeSwitch.onTintColor = #colorLiteral(red: 0.8894551079, green: 0.2323677188, blue: 0.1950711468, alpha: 1)
-        signUpOutlet.layer.cornerRadius = 5
-        signUpOutlet.layer.borderWidth = 1
-        loginOutlet.layer.cornerRadius = 5
-        loginOutlet.layer.borderWidth = 1
-        
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
-        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
-        userNameTextField.inputAccessoryView = toolbar
-        passwordTextField.inputAccessoryView = toolbar
-        userNameTextField.delegate = self
-        passwordTextField.delegate = self
-        userNameTextField.tag = 0
-        passwordTextField.tag = 1
-        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
-        if keychain["username"] != nil {
-            userNameTextField.text = keychain["username"]
-            passwordTextField.text = keychain["password"]
-        }
+        initialization()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +73,35 @@ class LoginViewController: UIViewController {
             }
         }
     }
+
+    // MARK: -Initialization
+    private func initialization() {
+        self.navigationItem.title = "Login"
+        rememberMeSwitch.onTintColor = #colorLiteral(red: 0.8894551079, green: 0.2323677188, blue: 0.1950711468, alpha: 1)
+        //round buttons
+        signUpOutlet.layer.cornerRadius = 5
+        signUpOutlet.layer.borderWidth = 1
+        loginOutlet.layer.cornerRadius = 5
+        loginOutlet.layer.borderWidth = 1
+        //toolbar with "done" button for keyboard
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
+        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
+        userNameTextField.inputAccessoryView = toolbar
+        passwordTextField.inputAccessoryView = toolbar
+        userNameTextField.delegate = self
+        passwordTextField.delegate = self
+        userNameTextField.tag = 0
+        passwordTextField.tag = 1
+        //remember me
+        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+        if keychain["username"] != nil {
+            userNameTextField.text = keychain["username"]
+            passwordTextField.text = keychain["password"]
+        }
+    }
     
     private func areFieldsFilled() -> Bool {
         return userNameTextField.hasText && passwordTextField.hasText
@@ -124,6 +130,7 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: -TextFiel Delegate
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

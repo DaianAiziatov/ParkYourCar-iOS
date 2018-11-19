@@ -11,30 +11,22 @@ import Firebase
 
 class ReportTableViewController: UITableViewController {
     
-    
     private var tickets = [ParkingTicket]()
-    private var fileteredTicket = [ParkingTicket]()
+    private var fileteredTicket = [ParkingTicket]()  // for search
     private let searchController = UISearchController(searchResultsController: nil)
     private let storageRef = Storage.storage().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Report"
-        // register custom cell for table and table view preparation
-        self.registerTableViewCells()
-        tableView.delegate = self
-        tableView.dataSource = self
+        initialization()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // load list from firebase
         loadParkingTickets(completion: {self.tableView.reloadData()})
-        //search controller preparation
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search by car plate"
-        searchController.obscuresBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
     }
-
+    
+    // MARK: -Load parkingtickets from firebase
     private func loadParkingTickets(completion: @escaping () -> () ) {
         let user = Auth.auth().currentUser!
         let userRef = Database.database().reference()
@@ -60,6 +52,7 @@ class ReportTableViewController: UITableViewController {
         }
     }
     
+    // MARK: -Load carlogo from firebase
     private func loadCarLogo(manufacturer: String, cellImageView: UIImageView, completion: @escaping () -> () ) {
         let logoRef = storageRef.child("cars_logos/\(manufacturer).png")
         logoRef.downloadURL { url, error in
@@ -86,6 +79,22 @@ class ReportTableViewController: UITableViewController {
         self.tableView.register(ticketCell, forCellReuseIdentifier: "ticketCell")
     }
     
+    // MARK: -Initialization
+    private func initialization() {
+        self.navigationItem.title = "Report"
+        // register custom cell for table and table view preparation
+        self.registerTableViewCells()
+        tableView.delegate = self
+        tableView.dataSource = self
+        //search controller preparation
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search by car plate"
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,6 +109,7 @@ class ReportTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // for search results
         if searchController.isActive == true && searchController.searchBar.text != "" {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ticketCell") as? TickeTableViewCell {
                 cell.manufacturerLabel.text = fileteredTicket[indexPath.row].carManufacturer
@@ -115,9 +125,7 @@ class ReportTableViewController: UITableViewController {
                 cell.dateLabel.text = fileteredTicket[indexPath.row].date.description
                 return cell
             }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ticketCell", for: indexPath)
-            cell.textLabel!.text = fileteredTicket[indexPath.row].carManufacturer
-            return cell
+        // for original list
         } else if let cell = tableView.dequeueReusableCell(withIdentifier: "ticketCell") as? TickeTableViewCell {
             cell.manufacturerLabel.text = tickets[indexPath.row].carManufacturer
             cell.modelLabel.text = tickets[indexPath.row].carModel
@@ -132,11 +140,13 @@ class ReportTableViewController: UITableViewController {
             cell.dateLabel.text = tickets[indexPath.row].date.description
             return cell
         }
+        // default
         let cell = tableView.dequeueReusableCell(withIdentifier: "ticketCell", for: indexPath)
         cell.textLabel!.text = tickets[indexPath.row].carManufacturer
         return cell
     }
     
+    // MARK: -Design for each cells
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.backgroundColor =
             UIColor.clear
@@ -144,8 +154,6 @@ class ReportTableViewController: UITableViewController {
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         whiteRoundedView.layer.masksToBounds = false
         whiteRoundedView.layer.cornerRadius = 3.0
-//        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//        whiteRoundedView.layer.shadowOpacity = 0.5
         whiteRoundedView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubviewToBack(whiteRoundedView)
@@ -154,7 +162,6 @@ class ReportTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150.0
     }
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)

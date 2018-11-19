@@ -24,7 +24,6 @@ class PDFComposer: NSObject {
         do {
             // Load the invoice HTML template code into a String variable.
             var HTMLContent = try String(contentsOfFile: pathToInvoiceHTMLTemplate!)
-            
             // Replace all the placeholders with real values except for the items.
             // The logo image.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#LOGO_IMAGE#", with: logoImageURL)
@@ -43,7 +42,6 @@ class PDFComposer: NSObject {
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TIMING#", with: ticket.timing.description)
             // Total amount.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TOTAL_AMOUNT#", with: "\(ticket.paymentAmount)")
-            
             return HTMLContent
         }
         catch {

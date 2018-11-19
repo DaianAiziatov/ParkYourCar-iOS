@@ -53,7 +53,6 @@ struct ParkingTicket {
             }
         }
         self.paymentAmount = total
-        //print("ticket added to list")
     }
     
     enum Timing: Int, CaseIterable {

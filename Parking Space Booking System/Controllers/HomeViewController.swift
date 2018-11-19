@@ -106,6 +106,7 @@ class HomeViewController: UIViewController {
     
 }
 
+// MARK: -TableView Delegate
 extension HomeViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -130,6 +131,7 @@ extension HomeViewController: UITableViewDelegate {
     
 }
 
+// MARK: -TableView DataSource
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

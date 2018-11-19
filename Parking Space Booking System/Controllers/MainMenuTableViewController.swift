@@ -17,12 +17,6 @@ class MainMenuTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -126,6 +120,7 @@ class MainMenuTableViewController: UITableViewController {
 
 }
 
+// MARK: -Message Delegate
 extension MainMenuTableViewController: MFMessageComposeViewControllerDelegate {
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
@@ -135,7 +130,7 @@ extension MainMenuTableViewController: MFMessageComposeViewControllerDelegate {
     
 }
 
-// MARK: Mail
+// MARK: -Mail Delegate
 extension MainMenuTableViewController: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

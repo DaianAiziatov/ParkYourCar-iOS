@@ -12,8 +12,6 @@ import SkyFloatingLabelTextField
 
 class SignUpViewController: UIViewController {
     
-    //TODO: is user still neccessary?
-    //private var user: User?
     private var userRef: DatabaseReference?
     
     @IBOutlet weak var userNameTextField: UITextField!
@@ -28,7 +26,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Sign Up"
         userRef = Database.database().reference()
-        screenPreparation()
+        initialization()
     }
     
     @IBAction func signUpButton(_ sender: UIButton) {
@@ -59,13 +57,12 @@ class SignUpViewController: UIViewController {
                     else{
                         let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        
                         alertController.addAction(defaultAction)
                         self.present(alertController, animated: true, completion: nil)
                     }
                 }
             } else {
-                let alert = UIAlertController(title: "Password do not match", message: "Please check passwords fields", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Password does not match", message: "Please check passwords fields", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -76,7 +73,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    //validation methods
+    // MARK: -Validation methods
     private func isPasswordValid() -> Bool {
         return passwordTextField.hasText && (passwordTextField.text == checkPasswordTextField.text)
     }
@@ -93,14 +90,12 @@ class SignUpViewController: UIViewController {
         view.endEditing(true)
     }
     
-//    func validateEmail(email: String) -> Bool {
-//        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-//        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
-//    }
-    private func screenPreparation() {
+    //MARK: -Initialization
+    private func initialization() {
+        //round buttons' corners
         signUpOutlet.layer.cornerRadius = 5
         signUpOutlet.layer.borderWidth = 1
-        //done button for pickerview
+        //done button for pickerview and textview
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -130,8 +125,10 @@ class SignUpViewController: UIViewController {
     
 }
 
+// MARK: -TextField Delegate
 extension SignUpViewController: UITextFieldDelegate {
     
+    //return button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
         case 0: jumpTo(textField: userSurnameTextField)
@@ -145,6 +142,7 @@ extension SignUpViewController: UITextFieldDelegate {
         return true
     }
     
+    //fields validation
     @objc func textFieldDidChange(_ textfield: UITextField) {
         if let text = textfield.text {
             if let floatingLabelTextField = textfield as? SkyFloatingLabelTextField {

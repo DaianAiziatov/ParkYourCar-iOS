@@ -18,7 +18,6 @@ class AddTicketViewController: UIViewController {
     private var ticket: ParkingTicket?
     
     private let user = Auth.auth().currentUser!
-    private var manufacturersDictionary = [String: Manufacturer]()
     private let userRef = Database.database().reference()
     private let storageRef = Storage.storage().reference()
     
@@ -39,12 +38,8 @@ class AddTicketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Parking Ticket"
-        self.registerTableViewCells()
-        dateLabel.text = currentDate()
-        userEmailTextField.text = user.email ?? ""
-        manufacturersDictionary = Manufacturer.loadManufacturers()
-        prepareScreen()
+        
+        initialization()
         
     }
     
@@ -100,7 +95,6 @@ class AddTicketViewController: UIViewController {
                     print("Data saved successfully!")
                     self.choosenCar = nil
                     self.goToReceipt()
-                    
                 }
             }
         } else {
@@ -184,7 +178,13 @@ class AddTicketViewController: UIViewController {
         return userEmailTextField.hasText && timingTextField.hasText && parkingSpotTextField.hasText && parkingSlotTextField.hasText && paymentMethodTextField.hasText && choosenCar != nil
     }
     
-    private func prepareScreen() {
+    // MARK: -Initialization
+    private func initialization() {
+        self.navigationItem.title = "Parking Ticket"
+        self.registerTableViewCells()
+        dateLabel.text = currentDate()
+        userEmailTextField.text = user.email ?? ""
+        
         carsListTableView.delegate = self
         carsListTableView.dataSource = self
         
@@ -225,7 +225,8 @@ class AddTicketViewController: UIViewController {
     }
 
 }
-//MARK: PickerView Delegare
+
+//MARK: -PickerView Delegare
 extension AddTicketViewController: UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -242,7 +243,7 @@ extension AddTicketViewController: UIPickerViewDelegate {
     }
     
 }
-//MARK: PickerView DataSourse
+//MARK: -PickerView DataSourse
 extension AddTicketViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -274,7 +275,7 @@ extension AddTicketViewController: UIPickerViewDataSource {
     }
 }
 
-//MARK: TableView Delegate
+//MARK: -TableView Delegate
 extension AddTicketViewController: UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -335,7 +336,8 @@ extension AddTicketViewController: UITableViewDataSource {
     }
     
 }
-//MARK: TextField Delegate
+
+//MARK: -TextField Delegate
 extension AddTicketViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

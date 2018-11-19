@@ -11,13 +11,12 @@ import Firebase
 
 class AddCarViewController: UIViewController {
     
-    private var manufacturersDictionary = [String: Manufacturer]()
-    private var manufacturersNameArray: [String]?
-    private var userRef: DatabaseReference?
+    private var userRef = Database.database().reference()
     private let user = Auth.auth().currentUser!
     private let storageRef = Storage.storage().reference()
-    private var logoImage: UIImage?
     
+    private var manufacturersDictionary = [String: Manufacturer]()
+    private var manufacturersNameArray: [String]?
     private var colors = [String]()
     private let theCarPicker = UIPickerView()
 
@@ -31,26 +30,7 @@ class AddCarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Add Car"
-        userRef = Database.database().reference()
-        
-        //manufacturersDictionary = Manufacturer.loadManufacturers()
-        manufacturerTextField.inputView = theCarPicker
-        theCarPicker.delegate = self
-        theCarPicker.dataSource = self
-        
-        addOutlet.layer.cornerRadius = 5
-        addOutlet.layer.borderWidth = 1
-        //done button for pickerview
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
-        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
-        manufacturerTextField.inputAccessoryView = toolbar
-        modelTextField.inputAccessoryView = toolbar
-        colorTextField.inputAccessoryView = toolbar
-        plateNumberTextField.inputAccessoryView = toolbar
-        plateNumberTextField.delegate = self
+        initialization()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +52,7 @@ class AddCarViewController: UIViewController {
     }
     
     private func addCar() {
-        let carsRef = userRef!.child("users").child(user.uid).child("cars").childByAutoId()
+        let carsRef = userRef.child("users").child(user.uid).child("cars").childByAutoId()
         //user
         let manufacturerName = self.manufacturerTextField.text!
         let modelName = self.modelTextField.text!
@@ -99,7 +79,7 @@ class AddCarViewController: UIViewController {
     }
     
     private func loadCarLogo(completion: @escaping () -> () ) {
-        let logoRef = storageRef.child("cars_logos/\(manufacturerTextField.text ?? "Citroen.png").png")
+        let logoRef = storageRef.child("cars_logos/\(manufacturerTextField.text ?? "Citroen").png")
         logoRef.downloadURL { url, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -157,9 +137,31 @@ class AddCarViewController: UIViewController {
     private func areAllFieldsFilled() -> Bool {
         return modelTextField.hasText && plateNumberTextField.hasText && manufacturerTextField.hasText && colorTextField.hasText
     }
+    
+    // MARK: -Initialization
+    private func initialization() {
+        manufacturerTextField.inputView = theCarPicker
+        theCarPicker.delegate = self
+        theCarPicker.dataSource = self
+        
+        addOutlet.layer.cornerRadius = 5
+        addOutlet.layer.borderWidth = 1
+        //done button for pickerview
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
+        toolbar.setItems([flexibleSpace ,doneButton], animated: true)
+        manufacturerTextField.inputAccessoryView = toolbar
+        modelTextField.inputAccessoryView = toolbar
+        colorTextField.inputAccessoryView = toolbar
+        plateNumberTextField.inputAccessoryView = toolbar
+        plateNumberTextField.delegate = self
+    }
 
 }
 
+// MARK: -PickerView Delegate
 extension AddCarViewController: UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -183,6 +185,7 @@ extension AddCarViewController: UIPickerViewDelegate {
     
 }
 
+// MARK: -PickerView DataSource
 extension AddCarViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -222,6 +225,7 @@ extension AddCarViewController: UIPickerViewDataSource {
     }
 }
 
+// MARK: -TextField Delegate
 extension AddCarViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

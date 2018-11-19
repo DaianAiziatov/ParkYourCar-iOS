@@ -18,12 +18,4 @@ struct Manufacturer {
         self.models = models
     }
     
-    static func loadManufacturers() -> [String: Manufacturer]{
-        var manufacturers = [String: Manufacturer]()
-        manufacturers["Mazda"] = Manufacturer(name: "Mazda", models: ["RX7", "RX8"])
-        manufacturers["BMW"] = Manufacturer(name: "BMW", models: ["X6", "X8"])
-        manufacturers["Renault"] = Manufacturer(name: "Renault", models: ["Megan", "Logan"])
-        return manufacturers
-    }
-    
 }

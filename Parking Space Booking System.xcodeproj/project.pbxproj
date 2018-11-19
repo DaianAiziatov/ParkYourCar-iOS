@@ -40,7 +40,6 @@
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
 		2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */; };
 		2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */; };
-		2BA6D6782191460F00B9B4C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D6772191460F00B9B4C2 /* User.swift */; };
 		2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67B2191483100B9B4C2 /* Car.swift */; };
 		2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */; };
 		2BA6D685219157CC00B9B4C2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */; };
@@ -110,7 +109,6 @@
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
 		2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewController.swift; sourceTree = "<group>"; };
-		2BA6D6772191460F00B9B4C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2BA6D67B2191483100B9B4C2 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manufacturer.swift; sourceTree = "<group>"; };
 		2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 		2BA6D6762191453700B9B4C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2BA6D6772191460F00B9B4C2 /* User.swift */,
 				2BA6D67B2191483100B9B4C2 /* Car.swift */,
 				2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */,
 				2B8401672198CB5000542305 /* ParkingTicket.swift */,
@@ -549,7 +546,6 @@
 				2B5790A2219A5E4300C6D4BF /* AddCarViewController.swift in Sources */,
 				2B8401642198A8E400542305 /* LocationViewController.swift in Sources */,
 				2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */,
-				2BA6D6782191460F00B9B4C2 /* User.swift in Sources */,
 				2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */,
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */,
