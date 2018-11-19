@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         self.registerTableViewCells()
         let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
         userEmailLabel.text = "User email: \(user.email ?? "")"
-        lastLoginLabel.text = "Last login: \(keychain["logDate"] ?? "")"
+        lastLoginLabel.text = "Last login: \(keychain["logdate"] ?? "")"
         loadNumberOfParkingTickets(completion: {
             self.ticketsTotlaLabel.text = "Tickets total: \(self.numberOftickets)"
         })
