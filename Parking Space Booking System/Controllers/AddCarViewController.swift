@@ -141,6 +141,8 @@ class AddCarViewController: UIViewController {
     // MARK: -Initialization
     private func initialization() {
         manufacturerTextField.inputView = theCarPicker
+        modelTextField.inputView = theCarPicker
+        colorTextField.inputView = theCarPicker
         theCarPicker.delegate = self
         theCarPicker.dataSource = self
         
