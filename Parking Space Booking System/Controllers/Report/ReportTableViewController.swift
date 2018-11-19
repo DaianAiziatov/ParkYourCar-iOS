@@ -21,11 +21,6 @@ class ReportTableViewController: UITableViewController {
         initialization()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // load list from firebase
-        loadParkingTickets(completion: {self.tableView.reloadData()})
-    }
-    
     // MARK: -Load parkingtickets from firebase
     private func loadParkingTickets(completion: @escaping () -> () ) {
         let user = Auth.auth().currentUser!
@@ -93,6 +88,8 @@ class ReportTableViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        // load list from firebase
+        loadParkingTickets(completion: {self.tableView.reloadData()})
     }
     
     // MARK: - Table view data source
