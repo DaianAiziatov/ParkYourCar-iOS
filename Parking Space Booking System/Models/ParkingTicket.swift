@@ -11,8 +11,6 @@ import Firebase
 
 struct ParkingTicket {
     
-    
-    
     private(set) var userEmail: String
     private(set) var carPlate: String
     private(set) var carManufacturer: String
@@ -31,6 +29,36 @@ struct ParkingTicket {
         self.carManufacturer = carManufacturer
         self.carModel = carModel
         self.carColor = carColor
+        switch timing {
+        case "30 mins": self.timing = Timing.halfAHour
+        case "1 hour": self.timing = Timing.oneHour
+        case "2 hours": self.timing = Timing.twoHour
+        case "3 hours": self.timing = Timing.threeHour
+        case "Day Ends": self.timing = Timing.dayEnds
+        default: self.timing = Timing.halfAHour
+        }
+        //TODO: Error handling
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        self.date = dateFormatter.date(from: date)!
+        self.slotNumber = slotNumber
+        self.spotNumber = spotNumber
+        self.paymentMethod = PaymentMethod.visaDebit //default
+        for payment in PaymentMethod.allCases {
+            if paymentMethod == payment.description {
+                self.paymentMethod = payment
+                break
+            }
+        }
+        self.paymentAmount = total
+    }
+    
+    init(userEmail: String, car: Car, timing: String, date: String, slotNumber: String, spotNumber: String, paymentMethod: String, total: Double) {
+        self.userEmail = userEmail
+        self.carPlate = car.plateNumber
+        self.carManufacturer = car.manufacturer
+        self.carModel = car.model!
+        self.carColor = car.color
         switch timing {
         case "30 mins": self.timing = Timing.halfAHour
         case "1 hour": self.timing = Timing.oneHour

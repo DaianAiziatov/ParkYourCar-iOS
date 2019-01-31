@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddCarViewController: UIViewController {
+class AddCarViewController: UIViewController, AlertDisplayable {
     
     private var userRef = Database.database().reference()
     private let user = Auth.auth().currentUser!
@@ -34,41 +34,27 @@ class AddCarViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadCarsAndColors {
-            self.manufacturersNameArray = Array(self.manufacturersDictionary.keys).sorted(by: {$0 < $1})
-            self.theCarPicker.reloadAllComponents()
-        }
+        loadCarsAndColors()
     }
     
     @IBAction func addCarButton(_ sender: Any) {
         if areAllFieldsFilled() {
             addCar()
         } else {
-            let alert = UIAlertController(title: "Error", message: "Please fill all fields", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true)
+            displayAlert(with: "Error", message: "Please fill all fields")
         }
     }
     
     private func addCar() {
-        let carsRef = userRef.child("users").child(user.uid).child("cars").childByAutoId()
-        //user
         let manufacturerName = self.manufacturerTextField.text!
         let modelName = self.modelTextField.text!
         let plateNumber = self.plateNumberTextField.text!
         let color = self.colorTextField.text!
-        let userData =
-            ["manufacturer" : "\(manufacturerName)",
-                "model": "\(modelName)",
-                "plate": "\(plateNumber)",
-                "color": "\(color)"] as Any
-        carsRef.setValue(userData) {
-            (error:Error?, ref:DatabaseReference) in
+        let car = Car(carID: nil, manufacturerName: manufacturerName, modelName: modelName, plateNumber: plateNumber, color: color)
+        FirebaseManager.sharedInstance().add(new: car) { error in
             if let error = error {
-                print("Data could not be saved: \(error).")
+                self.displayAlert(with: "Error", message: error.localizedDescription)
             } else {
-                print("Data saved successfully!")
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -78,55 +64,24 @@ class AddCarViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func loadCarLogo(completion: @escaping () -> () ) {
-        let logoRef = storageRef.child("cars_logos/\(manufacturerTextField.text ?? "Citroen").png")
-        logoRef.downloadURL { url, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                URLSession.shared.dataTask(with: url!) { data, response, error in
-                    guard
-                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                        let data = data, error == nil,
-                        let image = UIImage(data: data)
-                        else { return }
-                    DispatchQueue.main.async() {
-                        self.logoImageView.image = image
-                    }
-                    }.resume()
+    private func loadCarsAndColors() {
+        FirebaseManager.sharedInstance().loadColorsList { result in
+            switch result {
+            case .failure(let error): print("Error occured while load colors list: \(error.localizedDescription)")
+            case .success(let colors):
+                self.colors += colors
+                self.theCarPicker.reloadAllComponents()
             }
         }
-    }
-    
-    
-    private func loadCarsAndColors(completion: @escaping () -> () ) {
-        let userRef = Database.database().reference()
-        //read colors list
-        userRef.child("colors").observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let colors = (value?["colors"] as? String)?.split(separator: ",")
-            for color in colors! {
-                self.colors.append(String(color))
+        
+        FirebaseManager.sharedInstance().loadModelsList { result in
+            switch result {
+            case .failure(let error): print("Error occured while load models list: \(error.localizedDescription)")
+            case .success(let modelDict):
+                self.manufacturersDictionary = modelDict
+                self.manufacturersNameArray = Array(self.manufacturersDictionary.keys).sorted(by: {$0 < $1})
+                self.theCarPicker.reloadAllComponents()
             }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-        //read models + company
-        userRef.child("cars_models").observeSingleEvent(of: .value, with: { (snapshot) in
-            for case let rest as DataSnapshot in snapshot.children {
-                let value = rest.value as? NSDictionary
-                let company = value?["name"] as? String
-                let models = (value?["models"] as? String)?.split(separator: ",")
-                var modelsStringArray = ["Models"]
-                for model in models! {
-                    modelsStringArray.append(String(model))
-                }
-                self.manufacturersDictionary[company!] = Manufacturer(name: company!, models: modelsStringArray)
-            }
-            completion()
-        }) { (error) in
-            print(error.localizedDescription)
         }
     }
     
@@ -163,7 +118,7 @@ class AddCarViewController: UIViewController {
 
 }
 
-// MARK: -PickerView Delegate
+// MARK: - PickerView Delegate
 extension AddCarViewController: UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -187,18 +142,23 @@ extension AddCarViewController: UIPickerViewDelegate {
     
 }
 
-// MARK: -PickerView DataSource
+// MARK: - PickerView DataSource
 extension AddCarViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 && row > 0{
             theCarPicker.reloadComponent(1)
             manufacturerTextField.text = manufacturersNameArray![row - 1]
-            loadCarLogo {
-                print("LOAD IMAGE")
+            FirebaseManager.sharedInstance().loadImageURL(for: manufacturerTextField.text!) { result in
+                switch result {
+                case .failure(let error): print("Error occurred while fetching carlogoURL: \(error.localizedDescription)")
+                case .success(let url): self.logoImageView.downloaded(from: url, contentMode: .scaleAspectFit)
+                }
+                
             }
         } else if component == 1 && row > 0{
-            modelTextField.text = manufacturersDictionary[manufacturersNameArray![theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
+            modelTextField.text
+                = manufacturersDictionary[manufacturersNameArray![theCarPicker.selectedRow(inComponent: 0) - 1]]!.models[row]
         } else if component == 2 && row > 0 {
             colorTextField.text = colors[row - 1]
         }

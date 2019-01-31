@@ -11,8 +11,6 @@ import MessageUI
 import Firebase
 
 class MainMenuTableViewController: UITableViewController {
-
-    var tickets = [ParkingTicket]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

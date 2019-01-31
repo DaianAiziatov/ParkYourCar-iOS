@@ -8,40 +8,127 @@
 
 import UIKit
 import Firebase
+import MessageUI
 import KeychainAccess
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AlertDisplayable {
 
     @IBOutlet weak var carsListTableView: UITableView!
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var ticketsTotlaLabel: UILabel!
     @IBOutlet weak var lastLoginLabel: UILabel!
     
-    private let user = Auth.auth().currentUser!
-    private let userRef = Database.database().reference()
-    private let storageRef = Storage.storage().reference()
-    private var numberOftickets = 0
-    private var cars: [Car]?
+    private var numberOftickets: Int? {
+        didSet {
+            self.ticketsTotlaLabel.text = "Tickets total: \(self.numberOftickets!)"
+        }
+    }
+    private var cars = [Car]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Home"
         self.registerTableViewCells()
         let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
-        userEmailLabel.text = "User email: \(user.email ?? "")"
+        FirebaseManager.sharedInstance().getUserInfo { result in
+            switch result {
+            case .failure(let error): print("Error occurred while fetching user info from firebase: \(error.localizedDescription)")
+            case .success(let appuser): self.userEmailLabel.text = "User email: \(appuser.email ?? "")"
+            }
+        }
         lastLoginLabel.text = "Last login: \(keychain["logdate"] ?? "")"
-        loadNumberOfParkingTickets(completion: {
-            self.ticketsTotlaLabel.text = "Tickets total: \(self.numberOftickets)"
-        })
-        
         carsListTableView.delegate = self
         carsListTableView.dataSource = self
         
+        let updateButton = UIButton(type: .custom)
+        updateButton.setImage(UIImage(named: "update.png"), for: .normal)
+        updateButton.addTarget(self, action: #selector(self.updateProfie(sender:)), for: .touchUpInside)
+        //updateButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let updateBarButton = UIBarButtonItem(customView: updateButton)
+//        updateBarButton.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+//        updateBarButton.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        let contactsButton = UIButton(type: .custom)
+        contactsButton.setImage(UIImage(named: "help.png"), for: .normal)
+        contactsButton.addTarget(self, action: #selector(self.contacts(sender:)), for: .touchUpInside)
+        //contactsButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let contactsBarButton = UIBarButtonItem(customView: contactsButton)
+//        contactsBarButton.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+//        contactsBarButton.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//
+        self.navigationItem.rightBarButtonItems = [updateBarButton, contactsBarButton]
+        
+        let logoutButton = UIButton(type: .custom)
+        logoutButton.setImage(UIImage(named: "logout.png"), for: .normal)
+        logoutButton.addTarget(self, action: #selector(self.logoutPressed(sender:)), for: .touchUpInside)
+        //logoutButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let logoutBarButton = UIBarButtonItem(customView: logoutButton)
+//        logoutBarButton.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+//        logoutBarButton.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        self.navigationItem.leftBarButtonItem = logoutBarButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
         cars = [Car]()
-        loadCarsList(completion: {self.carsListTableView.reloadData()})
+        loadCarsList()
+    }
+    
+    @objc func contacts(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Need help?", message: "Contact us:", preferredStyle: UIAlertController.Style.alert)
+        //sending SMS
+        alert.addAction(UIAlertAction(title: "SMS", style: .default, handler: sendSMS))
+        //sending Email
+        alert.addAction(UIAlertAction(title: "Email", style: .default, handler: sendEmail))
+        //calling for help
+        alert.addAction(UIAlertAction(title: "Call", style: .default, handler: makeCall))
+        //cancel
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func makeCall(alert: UIAlertAction!) {
+        guard let number = URL(string: "telprompt://" + "1234567743") else { return }
+        UIApplication.shared.open(number)
+    }
+    
+    private func sendEmail(alert: UIAlertAction!) {
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        composeVC.setToRecipients(["parking@lambton.com"])
+        composeVC.setMessageBody("<p>My question is: </p>", isHTML: true)
+        if MFMailComposeViewController.canSendMail() {
+            self.present(composeVC, animated: true)
+        }
+    }
+    
+    private func sendSMS(alert: UIAlertAction!) {
+        let composeVC = MFMessageComposeViewController()
+        composeVC.messageComposeDelegate = self
+        // Configure the fields of the interface.
+        composeVC.recipients = ["13142026521"]
+        composeVC.body = "My question is:"
+        // Present the view controller modally.
+        if MFMessageComposeViewController.canSendText() {
+            self.present(composeVC, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func logoutPressed(sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            let userDefault = UserDefaults.standard
+            userDefault.setValue("", forKey: "logDate")
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        navigationController?.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc func updateProfie(sender: UIBarButtonItem) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let updateVC = sb.instantiateViewController(withIdentifier: "updateVC")
+        navigationController?.pushViewController(updateVC, animated: true)
     }
     
     @objc private func addTapped() {
@@ -50,51 +137,22 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(addcarVC, animated: true)
     }
     
-    private func loadNumberOfParkingTickets(completion: @escaping () -> () ) {
-        userRef.child("users").child(user.uid).child("tickets").observeSingleEvent(of: .value, with: { (snapshot) in
-            for case _ as DataSnapshot in snapshot.children {
-                self.numberOftickets += 1
+    private func loadNumberOfParkingTickets() {
+        FirebaseManager.sharedInstance().loadParkingTickets { result in
+            switch result {
+            case .failure(let error): print("Error occured while fetching cars from firebase: \(error.localizedDescription)")
+            case .success(let tickets): self.numberOftickets = tickets.count
             }
-            completion()
-        }) { (error) in
-            print(error.localizedDescription)
         }
     }
     
-    private func loadCarsList(completion: @escaping () -> () ) {
-        userRef.child("users").child(user.uid).child("cars").observeSingleEvent(of: .value, with: { (snapshot) in
-            for case let rest as DataSnapshot in snapshot.children {
-                let value = rest.value as? NSDictionary
-                let id = rest.key
-                let color = value?["color"] as? String
-                let manufacturer = value?["manufacturer"] as? String
-                let model = value?["model"] as? String
-                let plate = value?["plate"] as? String
-                self.cars!.append(Car(carID: id, manufacturerName: manufacturer!, modelName: model!, plateNumber: plate!, color: color!))
-            }
-            completion()
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func loadCarLogo(manufacturer: String, cellImageView: UIImageView, completion: @escaping () -> () ) {
-        let logoRef = storageRef.child("cars_logos/\(manufacturer).png")
-        logoRef.downloadURL { url, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                URLSession.shared.dataTask(with: url!) { data, response, error in
-                    guard
-                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                        let data = data, error == nil,
-                        let image = UIImage(data: data)
-                        else { return }
-                    DispatchQueue.main.async() {
-                        cellImageView.image = image
-                    }
-                    }.resume()
+    private func loadCarsList() {
+        FirebaseManager.sharedInstance().loadCars { result in
+            switch result {
+            case .failure(let error): self.displayAlert(with: "Error", message: error.localizedDescription)
+            case .success(let cars):
+                self.cars += cars
+                self.carsListTableView.reloadData()
             }
         }
     }
@@ -103,7 +161,6 @@ class HomeViewController: UIViewController {
         let ticketCell = UINib(nibName: "CarTableViewCell", bundle: nil)
         self.carsListTableView.register(ticketCell, forCellReuseIdentifier: "carCell")
     }
-    
 }
 
 // MARK: -TableView Delegate
@@ -136,39 +193,50 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Are you sure to delete this car?", message: "This action can't be undone", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
-                self.userRef.child("users").child(self.user.uid).child("cars").child(self.cars![indexPath.row].carId).removeValue(completionBlock: { error, dbref  in
-                    if error == nil {
-                        self.cars?.remove(at: indexPath.row)
-                        self.carsListTableView.deleteRows(at: [indexPath], with: .automatic)
+            let confirm = UIAlertAction(title: "Confirm", style: .default, handler: ({ action in
+                FirebaseManager.sharedInstance().deleteCar(with: self.cars[indexPath.row].carId!) { error in
+                    if let error = error {
+                        print("Error occured while deleting car from firebase: \(error.localizedDescription)")
                     } else {
-                        print(error!.localizedDescription)
+                        self.cars.remove(at: indexPath.row)
+                        self.carsListTableView.deleteRows(at: [indexPath], with: .automatic)
                     }
-                    })
+                }
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            displayAlert(with: "Are you sure to delete this car?", message: "This action can't be undone", actions: [confirm, cancel])
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cars!.count
+        return cars.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell {
-            let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
-            cell.titleLabel?.text = title
-            cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
-            loadCarLogo(manufacturer: cars![indexPath.row].manufacturer, cellImageView: cell.logoImageView! , completion: {
-                print("LOAD")
-                })
-            //cell.logoImageView?.image = UIImage(named: "\(cars![indexPath.row].manufacturer).png")
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell  else {
+            fatalError("No cell with id carCell")
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
+        cell.configure(with: cars[indexPath.row])
         return cell
+    }
+    
+}
+
+// MARK: - Message Delegate
+extension HomeViewController: MFMessageComposeViewControllerDelegate {
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+}
+
+// MARK: - Mail Delegate
+extension HomeViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true)
     }
     
 }

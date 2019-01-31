@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import KeychainAccess
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, AlertDisplayable {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -26,19 +26,12 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
 
     @IBAction func loginButton(_ sender: UIButton) {
         if areFieldsFilled() {
             login()
         } else {
-            let alert = UIAlertController(title: "Error", message: "Please fill login information", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
+            displayAlert(with: "Error", message:  "Please fill login information")
         }
         
     }
@@ -50,26 +43,21 @@ class LoginViewController: UIViewController {
     }
     
     private func login() {
-        Auth.auth().signIn(withEmail: userNameTextField.text!, password: passwordTextField.text!) {
-            (user, error) in
-            if error == nil {
-                let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+        FirebaseManager.sharedInstance().login(with: userNameTextField.text!, password: passwordTextField.text!) { error in
+            if let error = error {
+                self.displayAlert(with: "Error", message:  error.localizedDescription)
+            } else {
+                let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System")
                 if self.rememberMeSwitch.isOn {
                     keychain["username"] = self.userNameTextField.text!
                     keychain["password"] = self.passwordTextField.text!
                 } else {
-                    let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+                    let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System")
                     keychain["username"] = nil
                     keychain["password"] = nil
                 }
                 keychain["logdate"] = self.logDate()
                 self.goToMainScreen()
-            }
-            else{
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
@@ -117,7 +105,7 @@ class LoginViewController: UIViewController {
     
     private func goToMainScreen() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = sb.instantiateViewController(withIdentifier: "mainVC")
+        let mainVC = sb.instantiateViewController(withIdentifier: "tabVC")
         navigationController?.pushViewController(mainVC, animated: true)
     }
     

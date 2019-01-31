@@ -10,10 +10,10 @@ import UIKit
 import Firebase
 import SkyFloatingLabelTextField
 
-class AddTicketViewController: UIViewController {
+class AddTicketViewController: UIViewController, AlertDisplayable {
     
     private var total: Double?
-    private var cars: [Car]?
+    private var cars = [Car]()
     private var choosenCar: Car?
     private var ticket: ParkingTicket?
     
@@ -38,14 +38,12 @@ class AddTicketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialization()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadCarsList()
         cars = [Car]()
-        loadCarsList(completion: {self.carsListTableView.reloadData()})
     }
     
     @IBAction func addCar(_ sender: Any) {
@@ -59,65 +57,34 @@ class AddTicketViewController: UIViewController {
     }
     
     private func getReceipt() {
-        if isAllFieldsFilled() {
-            let ticketsRef = userRef.child("users").child(user.uid).child("tickets").childByAutoId()
-            //user
-            let email = self.userEmailTextField.text!
-            //car
-            let manufacturerName = choosenCar!.manufacturer
-            let modelName = choosenCar!.model
-            let plateNumber = choosenCar!.plateNumber
-            let color = choosenCar!.color
-            let timing = self.timingTextField.text!
-            let slotNumber = self.parkingSlotTextField.text!
-            let spotNumber = self.parkingSpotTextField.text!
-            let payment = self.paymentMethodTextField.text!
-            let total = self.total!
-            let userData =
-                ["userEmail" : "\(email)",
-                    "manufacturer": "\(manufacturerName)",
-                    "model": "\(modelName ?? "")",
-                    "plate": "\(plateNumber)",
-                    "color": "\(color)",
-                    "date": "\(currentDate())",
-                    "timing": "\(timing)",
-                    "slotNumber": "\(slotNumber)",
-                    "spotNumber": "\(spotNumber)",
-                    "payment": "\(payment)",
-                    "total": total
-                    ] as Any
-            self.ticket = ParkingTicket(userEmail: email, carPlate: plateNumber, carManufacturer: manufacturerName, carModel: modelName!, carColor: color, timing: timing, date: currentDate(), slotNumber: slotNumber, spotNumber: spotNumber, paymentMethod: payment, total: total)
-            ticketsRef.setValue(userData) {
-                (error:Error?, ref:DatabaseReference) in
-                if let error = error {
-                    print("Data could not be saved: \(error).")
-                } else {
-                    print("Data saved successfully!")
-                    self.choosenCar = nil
-                    self.goToReceipt()
-                }
-            }
-        } else {
-            let alert = UIAlertController(title: "Error", message: "Please fill all fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        guard isAllFieldsFilled() else {
+            displayAlert(with: "Error", message: "Please fill all fields")
+            return
         }
-        
+        let email = self.userEmailTextField.text!
+        let timing = self.timingTextField.text!
+        let slotNumber = self.parkingSlotTextField.text!
+        let spotNumber = self.parkingSpotTextField.text!
+        let payment = self.paymentMethodTextField.text!
+        let total = self.total!
+        let ticket = ParkingTicket(userEmail: email, car: choosenCar!, timing: timing, date: Date.currentDate(),
+                                   slotNumber: slotNumber, spotNumber: spotNumber, paymentMethod: payment, total: total)
+        self.ticket = ticket
+        FirebaseManager.sharedInstance().save(ticket: ticket) { error in
+            if let error = error {
+                self.displayAlert(with: "Error", message: error.localizedDescription)
+            } else {
+                self.choosenCar = nil
+                self.goToReceipt()
+            }
+        }
     }
     
     private func goToReceipt() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let receiptVC = sb.instantiateViewController(withIdentifier: "receiptVC") as! ReceiptViewController
         receiptVC.ticket = self.ticket
-        receiptVC.fromReport = false
         self.navigationController?.pushViewController(receiptVC, animated: true)
-    }
-    
-    private func currentDate() -> String {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return dateFormatter.string(from: date)
     }
     
     private func getTotal() {
@@ -131,40 +98,13 @@ class AddTicketViewController: UIViewController {
         }
     }
     
-    private func loadCarsList(completion: @escaping () -> () ) {
-        userRef.child("users").child(user.uid).child("cars").observeSingleEvent(of: .value, with: { (snapshot) in
-            for case let rest as DataSnapshot in snapshot.children {
-                let value = rest.value as? NSDictionary
-                let id = rest.key
-                let color = value?["color"] as? String
-                let manufacturer = value?["manufacturer"] as? String
-                let model = value?["model"] as? String
-                let plate = value?["plate"] as? String
-                self.cars!.append(Car(carID: id, manufacturerName: manufacturer!, modelName: model!, plateNumber: plate!, color: color!))
-            }
-            completion()
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func loadCarLogo(manufacturer: String, cellImageView: UIImageView, completion: @escaping () -> () ) {
-        let logoRef = storageRef.child("cars_logos/\(manufacturer).png")
-        logoRef.downloadURL { url, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                URLSession.shared.dataTask(with: url!) { data, response, error in
-                    guard
-                        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                        let data = data, error == nil,
-                        let image = UIImage(data: data)
-                        else { return }
-                    DispatchQueue.main.async() {
-                        cellImageView.image = image
-                    }
-                    }.resume()
+    private func loadCarsList() {
+        FirebaseManager.sharedInstance().loadCars { result in
+            switch result {
+            case .failure(let error): self.displayAlert(with: "Error", message: error.localizedDescription)
+            case .success(let cars):
+                self.cars += cars
+                self.carsListTableView.reloadData()
             }
         }
     }
@@ -182,7 +122,7 @@ class AddTicketViewController: UIViewController {
     private func initialization() {
         self.navigationItem.title = "Parking Ticket"
         self.registerTableViewCells()
-        dateLabel.text = currentDate()
+        dateLabel.text = Date.currentDate()
         userEmailTextField.text = user.email ?? ""
         
         carsListTableView.delegate = self
@@ -283,7 +223,7 @@ extension AddTicketViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        choosenCar = cars![indexPath.row]
+        choosenCar = cars[indexPath.row]
     }
     
 }
@@ -292,38 +232,30 @@ extension AddTicketViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Are you sure to delete this car?", message: "This action can't be undone", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
-                self.userRef.child("users").child(self.user.uid).child("cars").child(self.cars![indexPath.row].carId).removeValue(completionBlock: { error, dbref  in
-                    if error == nil {
-                        self.cars?.remove(at: indexPath.row)
-                        self.carsListTableView.deleteRows(at: [indexPath], with: .automatic)
+            let confirm = UIAlertAction(title: "Confirm", style: .default, handler: ({ action in
+                FirebaseManager.sharedInstance().deleteCar(with: self.cars[indexPath.row].carId!) { error in
+                    if let error = error {
+                        print("Error occured while deleting car from firebase: \(error.localizedDescription)")
                     } else {
-                        print(error!.localizedDescription)
+                        self.cars.remove(at: indexPath.row)
+                        self.carsListTableView.deleteRows(at: [indexPath], with: .automatic)
                     }
-                })
+                }
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            displayAlert(with: "Are you sure to delete this car?", message: "This action can't be undone", actions: [confirm, cancel])
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cars!.count
+        return cars.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell {
-            let title = "\(cars![indexPath.row].color) \(cars![indexPath.row].manufacturer) \(cars![indexPath.row].model ?? "")"
-            cell.titleLabel?.text = title
-            cell.plateLabel?.text = "\(cars![indexPath.row].plateNumber)"
-            loadCarLogo(manufacturer: cars![indexPath.row].manufacturer, cellImageView: cell.logoImageView!, completion: {
-                print("LOAD")
-                })
-            cell.selectionStyle = .blue
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath) as? CarTableViewCell  else {
+            fatalError("No cell with id carCell")
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
+        cell.configure(with: cars[indexPath.row])
         return cell
     }
     
@@ -337,7 +269,7 @@ extension AddTicketViewController: UITableViewDataSource {
     
 }
 
-//MARK: -TextField Delegate
+//MARK: - TextField Delegate
 extension AddTicketViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -353,17 +285,19 @@ extension AddTicketViewController: UITextFieldDelegate {
     }
     
     @objc func textFieldDidChange(_ textfield: UITextField) {
-        if let text = textfield.text {
-            if let floatingLabelTextField = textfield as? SkyFloatingLabelTextField {
-                if textfield.tag == 0 {
-                    if (text.count < 3 || !text.contains("@")) {
-                        floatingLabelTextField.errorMessage = "Invalid email"
-                    }
-                    else {
-                        // The error message will only disappear when we reset it to nil or empty string
-                        floatingLabelTextField.errorMessage = ""
-                    }
-                }
+        guard let text = textfield.text else {
+            return
+        }
+        guard let floatingLabelTextField = textfield as? SkyFloatingLabelTextField else {
+            return
+        }
+        if textfield.tag == 0 {
+            if (text.count < 3 || !text.contains("@")) {
+                floatingLabelTextField.errorMessage = "Invalid email"
+            }
+            else {
+                // The error message will only disappear when we reset it to nil or empty string
+                floatingLabelTextField.errorMessage = ""
             }
         }
     }

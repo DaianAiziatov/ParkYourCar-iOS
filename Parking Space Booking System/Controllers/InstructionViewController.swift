@@ -13,7 +13,7 @@ class InstructionViewController: UIViewController {
     
     let js = "javascript:function listenForLoad(){var url = window.location.pathname;var isLoaded = false;var loadReq;if (url === '/' && !isLoaded) {loadReq = window.requestAnimationFrame(listenForLoad);} else {isLoaded = true;var content = document.getElementsByClassName('container info-page');for(var i = 0; i < content.length; i++){content[i].style.top = '0px';}var header = document.getElementsByClassName('header');while(header.length > 0){header[0].parentNode.removeChild(header[0]);}var footer = document.getElementById('footer'); footer.parentNode.removeChild(footer);while(footer.length > 0){footer[0].parentNode.removeChild(footer[0]);}return;}}listenForLoad();"
 
-    var webView:WKWebView? = nil
+    var webView: WKWebView? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         loadFromFile()

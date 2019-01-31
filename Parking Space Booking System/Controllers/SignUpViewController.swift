@@ -10,9 +10,7 @@ import UIKit
 import Firebase
 import SkyFloatingLabelTextField
 
-class SignUpViewController: UIViewController {
-    
-    private var userRef: DatabaseReference?
+class SignUpViewController: UIViewController, AlertDisplayable {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userSurnameTextField: UITextField!
@@ -24,8 +22,8 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = "Sign Up"
-        userRef = Database.database().reference()
         initialization()
     }
     
@@ -34,42 +32,26 @@ class SignUpViewController: UIViewController {
     }
     
     private func signUp() {
-        if isUserDetailsNotEmpty() {
-            if isPasswordValid() {
-                let email =  emailTextField.text!
-                let password = passwordTextField.text!
-                //creating user for firebase auth
-                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                    if error == nil {
-                        //user
-                        let user = Auth.auth().currentUser!
-                        let userName = self.userNameTextField.text!
-                        let userSurname = self.userSurnameTextField.text!
-                        let contactNumber = self.contactNumberTextField.text!
-                        //adding user to realtime database
-                        self.userRef!.child("users").child(user.uid).setValue(
-                            ["firstName": "\(userName)",
-                                "lastName": "\(userSurname)",
-                                "email": "\(email)",
-                                "contactNumber": "\(contactNumber)"])
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                    else{
-                        let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        alertController.addAction(defaultAction)
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                }
+        guard isUserDetailsNotEmpty() else {
+            displayAlert(with: "Empty fields", message: "Please fill all User Details Field")
+            return
+        }
+        
+        guard isPasswordValid() else {
+            displayAlert(with: "Password does not match", message: "Please check passwords fields")
+            return
+        }
+        let password = passwordTextField.text!
+        let appuser = AppUser(firstName: userNameTextField.text!,
+                              lastName: userSurnameTextField.text!,
+                              email: emailTextField.text!,
+                              contactNumber: contactNumberTextField.text!)
+        FirebaseManager.sharedInstance().signUp(appuser: appuser, with: password) { error in
+            if let error = error {
+                self.displayAlert(with: "Error", message: error.localizedDescription)
             } else {
-                let alert = UIAlertController(title: "Password does not match", message: "Please check passwords fields", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
             }
-        } else {
-            let alert = UIAlertController(title: "Empty fields", message: "Please fill all User Details Field", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -79,7 +61,9 @@ class SignUpViewController: UIViewController {
     }
     
     private func isUserDetailsNotEmpty() -> Bool {
-        return userNameTextField.hasText && userSurnameTextField.hasText && emailTextField.hasText && contactNumberTextField.hasText && passwordTextField.hasText && checkPasswordTextField.hasText
+        return userNameTextField.hasText && userSurnameTextField.hasText
+            && emailTextField.hasText && contactNumberTextField.hasText
+            && passwordTextField.hasText && checkPasswordTextField.hasText
     }
     
     private func jumpTo(textField: UITextField) {
@@ -144,24 +128,26 @@ extension SignUpViewController: UITextFieldDelegate {
     
     //fields validation
     @objc func textFieldDidChange(_ textfield: UITextField) {
-        if let text = textfield.text {
-            if let floatingLabelTextField = textfield as? SkyFloatingLabelTextField {
-                if textfield.tag == 2 {
-                    if (text.count < 3 || !text.contains("@")) {
-                        floatingLabelTextField.errorMessage = "Invalid email"
-                    }
-                    else {
-                        // The error message will only disappear when we reset it to nil or empty string
-                        floatingLabelTextField.errorMessage = ""
-                    }
-                } else if textfield.tag == 5 {
-                    let passwordtext = passwordTextField.text!
-                    if (text != passwordtext) {
-                        floatingLabelTextField.errorMessage = "Passwords are different"
-                    } else {
-                        floatingLabelTextField.errorMessage = ""
-                    }
-                }
+        guard let text = textfield.text else {
+            return
+        }
+        guard let floatingLabelTextField = textfield as? SkyFloatingLabelTextField else {
+            return
+        }
+        if textfield.tag == 2 {
+            if (text.count < 3 || !text.contains("@")) {
+                floatingLabelTextField.errorMessage = "Invalid email"
+            }
+            else {
+                // The error message will only disappear when we reset it to nil or empty string
+                floatingLabelTextField.errorMessage = ""
+            }
+        } else if textfield.tag == 5 {
+            let passwordtext = passwordTextField.text!
+            if (text != passwordtext) {
+                floatingLabelTextField.errorMessage = "Passwords are different"
+            } else {
+                floatingLabelTextField.errorMessage = ""
             }
         }
     }

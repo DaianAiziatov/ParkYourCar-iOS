@@ -10,13 +10,13 @@ import Foundation
 
 struct Car {
     
-    private(set) var carId: String
+    private(set) var carId: String?
     private(set) var manufacturer: String
     private(set) var model: String?
     private(set) var plateNumber: String
     private(set) var color: String
     
-    init(carID: String, manufacturerName: String, modelName: String, plateNumber: String, color: String) {
+    init(carID: String?, manufacturerName: String, modelName: String, plateNumber: String, color: String) {
         self.carId = carID
         self.manufacturer = manufacturerName
         self.model = modelName

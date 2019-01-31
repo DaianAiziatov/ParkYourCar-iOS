@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="88.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LjD-oc-CQ2">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login screen logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="LjD-oc-CQ2">
                         <rect key="frame" x="16" y="11" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="M8y-zH-GEX"/>
@@ -62,4 +62,7 @@
             <point key="canvasLocation" x="137.59999999999999" y="174.06296851574214"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="login screen logo.png" width="1200" height="1200"/>
+    </resources>
 </document>
