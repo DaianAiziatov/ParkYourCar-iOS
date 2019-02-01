@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class InstructionViewController: UIViewController {
+class InstructionViewController: UIViewController, LoadingDisplayable, AlertDisplayable {
     
     let js = "javascript:function listenForLoad(){var url = window.location.pathname;var isLoaded = false;var loadReq;if (url === '/' && !isLoaded) {loadReq = window.requestAnimationFrame(listenForLoad);} else {isLoaded = true;var content = document.getElementsByClassName('container info-page');for(var i = 0; i < content.length; i++){content[i].style.top = '0px';}var header = document.getElementsByClassName('header');while(header.length > 0){header[0].parentNode.removeChild(header[0]);}var footer = document.getElementById('footer'); footer.parentNode.removeChild(footer);while(footer.length > 0){footer[0].parentNode.removeChild(footer[0]);}return;}}listenForLoad();"
 
@@ -20,6 +20,7 @@ class InstructionViewController: UIViewController {
     }
     
     func loadFromFile() {
+        startLoading()
         let config = WKWebViewConfiguration()
         
          // Inject custom JS
@@ -35,7 +36,22 @@ class InstructionViewController: UIViewController {
         
         // Load page
         webView = WKWebView(frame: view.bounds, configuration: config)
+        webView!.navigationDelegate = self
         webView!.load(URLRequest(url: URL(string: "https://www.planyo.com/tutorial-prices.php")!))
         
-        self.view.addSubview(webView!)    }
+        self.view.addSubview(webView!)
+    }
+}
+
+extension InstructionViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        stopLoading {}
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        stopLoading {
+            self.displayAlert(with: "Error", message: error.localizedDescription)
+        }
+        
+    }
 }

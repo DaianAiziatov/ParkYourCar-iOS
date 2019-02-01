@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SkyFloatingLabelTextField
 
-class SignUpViewController: UIViewController, AlertDisplayable {
+class SignUpViewController: UIViewController, AlertDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userSurnameTextField: UITextField!
@@ -41,6 +41,7 @@ class SignUpViewController: UIViewController, AlertDisplayable {
             displayAlert(with: "Password does not match", message: "Please check passwords fields")
             return
         }
+        startLoading()
         let password = passwordTextField.text!
         let appuser = AppUser(firstName: userNameTextField.text!,
                               lastName: userSurnameTextField.text!,
@@ -48,9 +49,13 @@ class SignUpViewController: UIViewController, AlertDisplayable {
                               contactNumber: contactNumberTextField.text!)
         FirebaseManager.sharedInstance().signUp(appuser: appuser, with: password) { error in
             if let error = error {
-                self.displayAlert(with: "Error", message: error.localizedDescription)
+                self.stopLoading {
+                    self.displayAlert(with: "Error", message: error.localizedDescription)
+                }
             } else {
-                self.navigationController?.popToRootViewController(animated: true)
+                self.stopLoading {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             }
         }
     }

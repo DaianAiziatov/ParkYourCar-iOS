@@ -38,7 +38,6 @@
 		2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401652198C68F00542305 /* AddTicketViewController.swift */; };
 		2B8401682198CB5000542305 /* ParkingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8401672198CB5000542305 /* ParkingTicket.swift */; };
 		2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */; };
-		2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */; };
 		2BA6D67C2191483100B9B4C2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67B2191483100B9B4C2 /* Car.swift */; };
 		2BA6D67E219148CF00B9B4C2 /* Manufacturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */; };
 		2BA6D685219157CC00B9B4C2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */; };
@@ -59,6 +58,7 @@
 		2BFD444E2202C09800762012 /* reportTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFD444D2202C09800762012 /* reportTab.png */; };
 		2BFD44502202C0CA00762012 /* locationTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFD444F2202C0CA00762012 /* locationTab.png */; };
 		2BFD44522202C0E700762012 /* instructionTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFD44512202C0E700762012 /* instructionTab.png */; };
+		2BFD4454220403E500762012 /* LoadingDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFD4453220403E500762012 /* LoadingDisplayable.swift */; };
 		2D6D794C3993BF148AC917AC /* Pods_Parking_Space_Booking_System.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F702327B223B170FD6184F /* Pods_Parking_Space_Booking_System.framework */; };
 		3A0D756A218BCD7400960BC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D7569218BCD7400960BC8 /* AppDelegate.swift */; };
 		3A0D756C218BCD7400960BC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D756B218BCD7400960BC8 /* LoginViewController.swift */; };
@@ -119,7 +119,6 @@
 		2B8401652198C68F00542305 /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		2B8401672198CB5000542305 /* ParkingTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingTicket.swift; sourceTree = "<group>"; };
 		2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTableViewController.swift; sourceTree = "<group>"; };
 		2BA6D67B2191483100B9B4C2 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		2BA6D67D219148CF00B9B4C2 /* Manufacturer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manufacturer.swift; sourceTree = "<group>"; };
 		2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		2BFD444D2202C09800762012 /* reportTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportTab.png; sourceTree = "<group>"; };
 		2BFD444F2202C0CA00762012 /* locationTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationTab.png; sourceTree = "<group>"; };
 		2BFD44512202C0E700762012 /* instructionTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructionTab.png; sourceTree = "<group>"; };
+		2BFD4453220403E500762012 /* LoadingDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDisplayable.swift; sourceTree = "<group>"; };
 		3A0D7566218BCD7400960BC8 /* Parking Space Booking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parking Space Booking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D7569218BCD7400960BC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0D756B218BCD7400960BC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				2B0F4D0621FFDA4D00BEA41B /* AlertDisplayable.swift */,
+				2BFD4453220403E500762012 /* LoadingDisplayable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -294,7 +295,6 @@
 				2B57904A2199F34300C6D4BF /* ReportTableViewController.swift */,
 				3A0D756B218BCD7400960BC8 /* LoginViewController.swift */,
 				2BA6D66D219111CD00B9B4C2 /* SplashViewController.swift */,
-				2BA6D6722191168D00B9B4C2 /* MainMenuTableViewController.swift */,
 				2BA6D684219157CC00B9B4C2 /* SignUpViewController.swift */,
 				2BD803112194FE4F003445ED /* UpdateProfileViewController.swift */,
 				2B8401632198A8E400542305 /* LocationViewController.swift */,
@@ -621,7 +621,6 @@
 				2B0F4D0421FFD5AF00BEA41B /* Result.swift in Sources */,
 				2B0F4D0021FFCECF00BEA41B /* UIImageView.swift in Sources */,
 				2B8401642198A8E400542305 /* LocationViewController.swift in Sources */,
-				2BA6D6732191168D00B9B4C2 /* MainMenuTableViewController.swift in Sources */,
 				2B8401662198C68F00542305 /* AddTicketViewController.swift in Sources */,
 				2BD803122194FE4F003445ED /* UpdateProfileViewController.swift in Sources */,
 				2B0F4D0D220151AA00BEA41B /* UIView.swift in Sources */,
@@ -633,6 +632,7 @@
 				2BA6D66E219111CD00B9B4C2 /* SplashViewController.swift in Sources */,
 				2B2527B8219F962900E7126D /* PDFComposer.swift in Sources */,
 				2B57904B2199F34300C6D4BF /* ReportTableViewController.swift in Sources */,
+				2BFD4454220403E500762012 /* LoadingDisplayable.swift in Sources */,
 				2B5790492199BDB300C6D4BF /* HomeViewController.swift in Sources */,
 				2B2527B4219F4C5700E7126D /* ReceiptViewController.swift in Sources */,
 				2B0F4D0221FFCF3D00BEA41B /* FirebaseManager.swift in Sources */,

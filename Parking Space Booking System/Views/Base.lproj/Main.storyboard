@@ -182,11 +182,11 @@
             <objects>
                 <viewController storyboardIdentifier="homeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cCR-vb-pmk" customClass="HomeViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s0d-5u-zeS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEg-v3-D3Z">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jP-ft-MmH" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
@@ -294,7 +294,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="reportVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FSv-NL-U9T" customClass="ReportTableViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4DL-mu-9Io">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" red="1" green="0.49957981480000002" blue="0.50788174249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -569,11 +569,11 @@
             <objects>
                 <viewController storyboardIdentifier="locationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L84-fa-dHi" customClass="LocationViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="p4Z-WT-cth">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tcy-Ud-cXu">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g67-Jj-5XO">
                                 <rect key="frame" x="86" y="81" width="203" height="29"/>
@@ -601,7 +601,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gp4-mt-WzB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Location" image="location.png" selectedImage="locationTab.png" id="Tq7-gq-5uZ"/>
+                    <tabBarItem key="tabBarItem" title="Location" image="locationTab.png" selectedImage="location.png" id="Tq7-gq-5uZ"/>
                     <connections>
                         <outlet property="mapView" destination="tcy-Ud-cXu" id="NUI-wp-4jg"/>
                     </connections>
@@ -810,12 +810,12 @@
             <objects>
                 <viewController storyboardIdentifier="instructionVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PHQ-hu-fOx" customClass="InstructionViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I6r-WY-MF6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tw6-KU-Vaf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Instruction" image="instruction.png" selectedImage="instructionTab.png" id="EWA-Jo-a1T">
+                    <tabBarItem key="tabBarItem" title="Instruction" image="instructionTab.png" selectedImage="location.png" id="EWA-Jo-a1T">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="GTY-VR-YMT"/>
@@ -1042,11 +1042,11 @@
             <objects>
                 <viewController storyboardIdentifier="addticketVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7GM-iF-Kfv" customClass="AddTicketViewController" customModule="Parking_Space_Booking_System" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pKX-U8-rdo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-mF-BQY">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-4I-dwZ" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="795.66666666666663"/>
@@ -1438,7 +1438,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="tabVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jUG-mr-d2P" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" itemPositioning="fill" id="lPO-hG-tYY">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="fill" id="lPO-hG-tYY">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1461,9 +1461,9 @@
         <scene sceneID="cl1-bO-UbF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AlV-uf-I5l" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Report" image="report.png" selectedImage="reportTab.png" id="eAl-Wr-Pnv"/>
+                    <tabBarItem key="tabBarItem" title="Report" image="reportTab.png" selectedImage="report.png" id="eAl-Wr-Pnv"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bcy-vn-2Px">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Bcy-vn-2Px">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1482,11 +1482,11 @@
         <scene sceneID="oxo-wV-IlP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EwJ-Q5-1UT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home.png" selectedImage="homeTab.png" id="aOR-RF-GBd">
+                    <tabBarItem key="tabBarItem" title="Home" image="homeTab.png" selectedImage="home.png" id="aOR-RF-GBd">
                         <color key="badgeColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AAl-rf-Ck4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="AAl-rf-Ck4">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1505,9 +1505,9 @@
         <scene sceneID="S4l-3L-apu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vhH-6k-ndG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Add" image="add.png" selectedImage="addTab.png" id="PRb-p6-G01"/>
+                    <tabBarItem key="tabBarItem" title="Add" image="addTab.png" selectedImage="add.png" id="PRb-p6-G01"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="h0T-DQ-p5e">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="h0T-DQ-p5e">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1528,7 +1528,6 @@
         <image name="addTab.png" width="30" height="30"/>
         <image name="home.png" width="30" height="30"/>
         <image name="homeTab.png" width="30" height="30"/>
-        <image name="instruction.png" width="30" height="30"/>
         <image name="instructionTab.png" width="30" height="30"/>
         <image name="location.png" width="30" height="30"/>
         <image name="locationTab.png" width="30" height="30"/>

@@ -109,7 +109,6 @@ extension ReportTableViewController: UISearchBarDelegate {
         searchController.searchBar.text = ""
         tableView.reloadData()
     }
-    
 }
 
 

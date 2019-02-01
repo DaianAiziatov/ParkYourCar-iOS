@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SkyFloatingLabelTextField
 
-class UpdateProfileViewController: UIViewController, AlertDisplayable {
+class UpdateProfileViewController: UIViewController, AlertDisplayable, LoadingDisplayable {
 
     @IBOutlet weak var emailTextLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -36,13 +36,16 @@ class UpdateProfileViewController: UIViewController, AlertDisplayable {
     }
     
     private func update() {
+        startLoading()
         let appuser = AppUser(firstName: userNameTextField.text!,
                               lastName: userSurnameTextField.text!,
                               email: nil,
                               contactNumber: contactNumberTextField.text!)
         FirebaseManager.sharedInstance().updateInfo(with: appuser) { error in
             if let error = error {
-                self.displayAlert(with: "Error", message: error.localizedDescription)
+                self.stopLoading {
+                    self.displayAlert(with: "Error", message: error.localizedDescription)
+                }
             } else {
                 self.updatePassword()
             }
@@ -51,16 +54,22 @@ class UpdateProfileViewController: UIViewController, AlertDisplayable {
     
     private func updatePassword() {
         guard isPasswordValid() else {
-            self.navigationController?.popViewController(animated: true)
+            self.stopLoading {
+                self.navigationController?.popViewController(animated: true)
+            }
             return
         }
         
         FirebaseManager.sharedInstance().update(oldPassword: oldPasswordTextField.text!, with: newPasswordTextField.text!) {
             error in
             if let error = error {
-                self.displayAlert(with: "Error", message: error.localizedDescription)
+                self.stopLoading {
+                    self.displayAlert(with: "Error", message: error.localizedDescription)
+                }
             } else {
-                self.navigationController?.popViewController(animated: true)
+                self.stopLoading {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }

@@ -27,9 +27,19 @@ class HomeViewController: UIViewController, AlertDisplayable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initilization()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        cars = [Car]()
+        loadCarsList()
+    }
+    
+    private func initilization() {
         self.navigationItem.title = "Home"
         self.registerTableViewCells()
-        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+        loadNumberOfParkingTickets()
+        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System")
         FirebaseManager.sharedInstance().getUserInfo { result in
             switch result {
             case .failure(let error): print("Error occurred while fetching user info from firebase: \(error.localizedDescription)")
@@ -43,34 +53,27 @@ class HomeViewController: UIViewController, AlertDisplayable {
         let updateButton = UIButton(type: .custom)
         updateButton.setImage(UIImage(named: "update.png"), for: .normal)
         updateButton.addTarget(self, action: #selector(self.updateProfie(sender:)), for: .touchUpInside)
-        //updateButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         let updateBarButton = UIBarButtonItem(customView: updateButton)
-//        updateBarButton.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
-//        updateBarButton.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         let contactsButton = UIButton(type: .custom)
         contactsButton.setImage(UIImage(named: "help.png"), for: .normal)
         contactsButton.addTarget(self, action: #selector(self.contacts(sender:)), for: .touchUpInside)
-        //contactsButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         let contactsBarButton = UIBarButtonItem(customView: contactsButton)
-//        contactsBarButton.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
-//        contactsBarButton.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//
+        
         self.navigationItem.rightBarButtonItems = [updateBarButton, contactsBarButton]
         
         let logoutButton = UIButton(type: .custom)
         logoutButton.setImage(UIImage(named: "logout.png"), for: .normal)
         logoutButton.addTarget(self, action: #selector(self.logoutPressed(sender:)), for: .touchUpInside)
-        //logoutButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         let logoutBarButton = UIBarButtonItem(customView: logoutButton)
-//        logoutBarButton.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
-//        logoutBarButton.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
         self.navigationItem.leftBarButtonItem = logoutBarButton
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        cars = [Car]()
-        loadCarsList()
+    // MARK: RightBarItems: update profile, contacts
+    @objc func updateProfie(sender: UIBarButtonItem) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let updateVC = sb.instantiateViewController(withIdentifier: "updateVC")
+        navigationController?.pushViewController(updateVC, animated: true)
     }
     
     @objc func contacts(sender: UIBarButtonItem) {
@@ -113,7 +116,9 @@ class HomeViewController: UIViewController, AlertDisplayable {
         }
     }
     
-    @objc func logoutPressed(sender: UIBarButtonItem) {
+    // MARK: - LeftBarItem: Logout
+    @objc
+    private func logoutPressed(sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
             let userDefault = UserDefaults.standard
@@ -125,13 +130,8 @@ class HomeViewController: UIViewController, AlertDisplayable {
         navigationController?.navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func updateProfie(sender: UIBarButtonItem) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let updateVC = sb.instantiateViewController(withIdentifier: "updateVC")
-        navigationController?.pushViewController(updateVC, animated: true)
-    }
-    
-    @objc private func addTapped() {
+    @objc
+    private func addTapped() {
         let sb = UIStoryboard.init(name: "Main", bundle: nil)
         let addcarVC = sb.instantiateViewController(withIdentifier: "addcarVC")
         navigationController?.pushViewController(addcarVC, animated: true)
@@ -228,8 +228,6 @@ extension HomeViewController: MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
 // MARK: - Mail Delegate
@@ -238,5 +236,4 @@ extension HomeViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: true)
     }
-    
 }

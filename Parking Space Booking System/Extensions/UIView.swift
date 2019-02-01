@@ -55,5 +55,4 @@ extension UIView {
         shapeLayer.path = zigZagPath.cgPath
         self.layer.mask = shapeLayer
     }
-    
 }

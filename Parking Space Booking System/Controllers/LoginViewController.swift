@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import KeychainAccess
 
-class LoginViewController: UIViewController, AlertDisplayable {
+class LoginViewController: UIViewController, AlertDisplayable, LoadingDisplayable {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -43,9 +43,12 @@ class LoginViewController: UIViewController, AlertDisplayable {
     }
     
     private func login() {
+        startLoading()
         FirebaseManager.sharedInstance().login(with: userNameTextField.text!, password: passwordTextField.text!) { error in
             if let error = error {
-                self.displayAlert(with: "Error", message:  error.localizedDescription)
+                self.stopLoading {
+                    self.displayAlert(with: "Error", message:  error.localizedDescription)
+                }
             } else {
                 let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System")
                 if self.rememberMeSwitch.isOn {
@@ -57,7 +60,9 @@ class LoginViewController: UIViewController, AlertDisplayable {
                     keychain["password"] = nil
                 }
                 keychain["logdate"] = self.logDate()
-                self.goToMainScreen()
+                self.stopLoading {
+                    self.goToMainScreen()
+                }
             }
         }
     }
@@ -84,7 +89,7 @@ class LoginViewController: UIViewController, AlertDisplayable {
         userNameTextField.tag = 0
         passwordTextField.tag = 1
         //remember me
-        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System-Group4")
+        let keychain = Keychain(service: "com.lambton.Parking-Space-Booking-System")
         if keychain["username"] != nil {
             userNameTextField.text = keychain["username"]
             passwordTextField.text = keychain["password"]
@@ -113,7 +118,8 @@ class LoginViewController: UIViewController, AlertDisplayable {
         self.passwordTextField.becomeFirstResponder()
     }
     
-    @objc private func doneTapped() {
+    @objc
+    private func doneTapped() {
         view.endEditing(true)
     }
 }
