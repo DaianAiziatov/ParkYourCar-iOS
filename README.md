@@ -22,12 +22,15 @@ During creation of this app I've learned a plenty of new technology and dived in
 ### Demos
 
 - SignUp screen
+
 ![signup](Demos/signup.gif)
 
 - Login screen
+
 ![signin](Demos/signin.gif)
 
 - Update profile - taping "edit profile" button on home screen
+
 ![update](Demos/updateprofile.gif)
 
 - Add new ticket - during creating new ticket user can choose car from personal lsit or add new car to list
