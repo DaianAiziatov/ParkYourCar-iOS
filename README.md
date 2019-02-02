@@ -1,4 +1,4 @@
-<img src="/Parking Space Booking System⁩/Assets.xcassets⁩/⁨AppIcon.appiconset⁩/Icon-180.png" align="right"/>
+<img src="https://github.com/DaianAiziatov/ParkYourCar-iOS/blob/master/Parking%20Space%20Booking%20System/Assets.xcassets/AppIcon.appiconset/Icon-180.png?raw=true" align="right"/>
 
 ## ParkYourCar - Demo application for iOS
 
@@ -22,34 +22,34 @@ During creation of this app I've learned a plenty of new technology and dived in
 ### Demos
 
 - SignUp screen
-[signup](Demos/signup.gif)
+![signup](Demos/signup.gif)
 
 - Login screen
-[signin](Demos/signin.gif)
+![signin](Demos/signin.gif)
 
 - Update profile - taping "edit profile" button on home screen
-[update](Demos/updateprofile.gif)
+![update](Demos/updateprofile.gif)
 
 - Add new ticket - during creating new ticket user can choose car from personal lsit or add new car to list
 
-[add](Demos/addnewticket.gif)
+![add](Demos/addnewticket.gif)
 
 - Edit cars list - user can add new car into the list as well as delete one from there
 
-[edit](Demos/editcarlist.gif)
+![edit](Demos/editcarlist.gif)
 
 - Report screen - list of all created tickets by user. They can be filetered by plate number
 
-[report](Demos/report.gif)
+![report](Demos/report.gif)
 
 - Ticket - generating PDF file from parking ticket
 
-[pdf](Demos/receipt-generatepdf)
+![pdf](Demos/receipt-generatepdf.gif)
 
 - Contact - taping help button on home screen
 
-[contacts](Demos/contact.gif)
+![contacts](Demos/contacts.gif)
 
 - Instruction - I've just got this instruction from third party parking website. I use JavaScript code to crop webpage for proper format.
 
-[instruction](Demos/instruction.gif)
+![instruction](Demos/instruction.gif)
