@@ -2,7 +2,7 @@
 
 ## ParkYourCar - Demo application for iOS
 
-Originally this application was part of the final project for college's iOS course, however I decided to expand it functionality in order to learn new technology and to implement them into current app. I've added Firebase authentication, Firebase datebase for storing user data and Firebase storage to store images.
+Originally this application was part of the final project for college's iOS course, however I decided to expand it functionality in order to learn new technology and to implement them into current app. I've added Firebase authentication, Firebase database for storing user data and Firebase storage to store images.
 
 Basically, user can create new account, add new car to personal car list and create new parking ticket with PDF version.
 
